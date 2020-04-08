@@ -7,9 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	
-	소스파일만 커밋!
-ss송용현
-아니
+	메인페이지
 </body>
 </html>
