@@ -13,7 +13,7 @@ public class QnaDao {
 	DbConnect db = new DbConnect();
 	
 	//회원가입 Insert
-	public int insertClient(QnaDto dto) {
+	public int insertQna(QnaDto dto) {
 		Connection conn=null;
 		PreparedStatement pstmt=null;
 		//qnum, subject,content,secret,qwriteday,viewcount,id
