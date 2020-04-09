@@ -152,4 +152,29 @@ public class QnaDao {
 		}
 		return -1; //오류
 	}
+	
+	//답변여부
+	public boolean getAnswer(String qnum) {
+		Connection conn=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		String sql="select count(*) find from answer where qnum=?";
+		boolean find=false;
+		
+		conn=db.getConnection();
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1,qnum);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				find=true;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			db.dbClose(rs, pstmt, conn);
+		}
+		return find;
+	}
 }
