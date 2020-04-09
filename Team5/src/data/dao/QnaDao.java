@@ -6,8 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
-import data.dto.ClientDto;
 import data.dto.QnaDto;
 import oracle.db.DbConnect;
 
@@ -103,7 +101,7 @@ public class QnaDao {
 		Connection conn=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
-		String sql="select count(*) result from qna where qnum=? and pass=?";
+		String sql="select count(*) result from qna q,client c where q.qnum=? and (q.id=c.id) and c.pass=?";
 		
 		conn=db.getConnection();
 		try {
