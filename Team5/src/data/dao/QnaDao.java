@@ -12,7 +12,7 @@ import oracle.db.DbConnect;
 public class QnaDao {
 	DbConnect db = new DbConnect();
 	
-	//회원가입 Insert
+	// qna insert
 	public int insertQna(QnaDto dto) {
 		Connection conn=null;
 		PreparedStatement pstmt=null;
@@ -129,5 +129,25 @@ public class QnaDao {
 		}
 		return -1;//db오류	
 	}
-
+	
+	//전체 게시글 수
+	public int getTotalCount() {
+		Connection conn = null;
+		PreparedStatement pstmt =null;
+		ResultSet rs =null;
+		String sql="select count(*) count from qna";
+		conn=db.getConnection();
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				return rs.getInt("count");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return -1; //오류
+	}
 }
