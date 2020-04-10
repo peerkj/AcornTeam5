@@ -1,3 +1,4 @@
+<%@page import="data.dao.ClientDao"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="data.dto.QnaDto"%>
 <%@page import="data.dao.QnaDao"%>
@@ -11,6 +12,8 @@
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <script type="text/javascript">
 	$(function(){
+		$("#ansform").hide();
+		
 		$("#del").click(function() {
 			var pass = prompt("비밀번호를 입력해주세요");			
 			var num = $(this).attr("num");
@@ -30,10 +33,15 @@
 				}
 			});
 		});
+		
+		$("#answer").click(function() {
+			$("#ansform").slideToggle('fast');
+		});
 	});
 </script>
 </head>
 <%
+	String url = request.getContextPath();
 	String num = request.getParameter("num");
 	String pageNum = request.getParameter("pageNum");
 	QnaDao db = new QnaDao();
@@ -41,6 +49,9 @@
 	QnaDto dto = db.getData(num);
 	
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+	
+	ClientDao cdb = new ClientDao();
+	String id = (String)session.getAttribute("id");
 %>
 <body>
 	<table>
@@ -66,12 +77,33 @@
 		</tr>
 		<tr align="right">
 			<td colspan="2">
-				<button type="button" id="del" num="<%=num%>" pageNum="<%=pageNum%>">
+				<%
+				if(dto.getId().equals(id)){%>
+					<button type="button" id="del" num="<%=num%>" pageNum="<%=pageNum%>">
 				삭제</button>
+				<%}
+				if(cdb.checkManage(id)==1){%>
+					<button type="button" id="answer">
+				답변</button>
+				<%}
+				%>				
 				<button type="button" id="list" num="<%=num%>" pageNum="<%=pageNum%>">
 				목록으로</button>
 			</td>
 		</tr>
+		<%if(cdb.checkManage(id)==1){%>
+			<tr id="ansform">
+				<td colspan="2">
+					<hr style="border: 0.5px solid;">
+					<form action="<%=url %>/qna/answerinsertaction.jsp" method="post">
+						<input type="hidden" name="qnum" value="<%=num%>">
+						<input type="hidden" name="pangeNum" value="<%=pageNum%>">
+						<textarea name="content"></textarea>
+						<button type="submit">답변하기</button>
+					</form>
+				</td>
+			</tr>
+		<%}%>
 	</table>
 </body>
 </html>

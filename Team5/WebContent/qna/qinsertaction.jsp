@@ -4,6 +4,7 @@
 <%
 	//인코딩
 	request.setCharacterEncoding("utf-8");
+	String url = request.getContextPath();
 
 	String id = request.getParameter("id");
 	String subject = request.getParameter("subject");
@@ -25,5 +26,5 @@
 		dto.setSecret("1");
 	
 	db.insertQna(dto);
-	response.sendRedirect("qnalist.jsp");
+	response.sendRedirect(url+"/qna/qnalist.jsp");
 %>

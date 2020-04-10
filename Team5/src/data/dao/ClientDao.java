@@ -12,7 +12,7 @@ import oracle.db.DbConnect;
 public class ClientDao {
 	DbConnect db = new DbConnect();
 	
-	//아이디로 이름 얻어오기
+	//�븘�씠�뵒濡� �씠由� �뼸�뼱�삤湲�
 	public String getName(String id) {
 		String name="";
 		Connection conn=null;
@@ -37,11 +37,11 @@ public class ClientDao {
 		}
 		return null; //X
 	}
-	//회원가입 Insert
+	//�쉶�썝媛��엯 Insert
 	public int insertClient(ClientDto dto) {
 		Connection conn=null;
 		PreparedStatement pstmt=null;
-		//id,pass,name,hp,email,권한(0)
+		//id,pass,name,hp,email,沅뚰븳(0)
 		String sql="insert into client values (?,?,?,?,?,0)";
 		
 		conn=db.getConnection();
@@ -60,7 +60,7 @@ public class ClientDao {
 		} finally {
 			db.dbClose(pstmt, conn);
 		}	
-		return -1; //db오류
+		return -1; //db�삤瑜�
 	}
 	
 	//
@@ -78,19 +78,19 @@ public class ClientDao {
 			rs=pstmt.executeQuery();
 			if(rs.next()) {
 				if(rs.getString("pass").equals(pass)) {
-					return 1;//일치
+					return 1;//�씪移�
 				}else {
-					return 0;//비밀번호 불일치		
+					return 0;//鍮꾨�踰덊샇 遺덉씪移�		
 				}
 			}
-			return -1;//아이디가 없음
+			return -1;//�븘�씠�뵒媛� �뾾�쓬
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			db.dbClose(rs, pstmt, conn);
 		}
-		return -2;//db오류
+		return -2;//db�삤瑜�
 	}
 	
 	public List<ClientDto> getAllClientList(){
@@ -123,7 +123,7 @@ public class ClientDao {
 		}
 		return list;
 	}
-	//아이디 입력하면 회원정보 출력
+	//�븘�씠�뵒 �엯�젰�븯硫� �쉶�썝�젙蹂� 異쒕젰
 	public ClientDto getClientData(String id) {
 		Connection conn=null;
 		PreparedStatement pstmt=null;
@@ -152,9 +152,9 @@ public class ClientDao {
 		} finally {
 			db.dbClose(rs, pstmt, conn);
 		}
-		return null;//db오류 or 아이디 없음	
+		return null;//db�삤瑜� or �븘�씠�뵒 �뾾�쓬	
 	}
-	//삭제
+	//�궘�젣
 	public int deleteClient(String id,String pass) {
 		Connection conn=null;
 		PreparedStatement pstmt=null;
@@ -169,14 +169,14 @@ public class ClientDao {
 			rs=pstmt.executeQuery();
 			if(rs.next()) {
 				if(rs.getInt("result")==1) {
-					//1이면
+					//1�씠硫�
 					sql="delete from client where id=?";
 					pstmt=conn.prepareStatement(sql);
 					pstmt.setString(1, id);
-					//성공(1)
+					//�꽦怨�(1)
 					return pstmt.executeUpdate();
 				}else {
-					return 0; //비밀번호 틀림 
+					return 0; //鍮꾨�踰덊샇 ��由� 
 				}
 			}
 		} catch (SQLException e) {
@@ -185,9 +185,9 @@ public class ClientDao {
 		} finally {
 			db.dbClose(rs, pstmt, conn);
 		}
-		return -1;//db오류	
+		return -1;//db�삤瑜�	
 	}
-	//회원정보 수정(hp,email)
+	//�쉶�썝�젙蹂� �닔�젙(hp,email)
 	public int updateClient(ClientDto dto) {
 		Connection conn=null;
 		PreparedStatement pstmt=null;
@@ -207,7 +207,7 @@ public class ClientDao {
 		} finally {
 			db.dbClose(pstmt, conn);
 		}
-		return -1; //오류
+		return -1; //�삤瑜�
 	}
 	
 	 public int isEqualId(String id)
@@ -221,14 +221,14 @@ public class ClientDao {
         conn=db.getConnection();
         try {
            pstmt=conn.prepareStatement(sql);
-           //바인딩
+           //諛붿씤�뵫
            pstmt.setString(1, id);
-           //실행
+           //�떎�뻾
            rs=pstmt.executeQuery();
-           //조건
+           //議곌굔
            if(rs.next()) {
-              int n=rs.getInt(1);//해당 아이디가 있으면 1 없으면 0
-              if(n==1)//있을경우 1로 변경 (초기값은 0)\
+              int n=rs.getInt(1);//�빐�떦 �븘�씠�뵒媛� �엳�쑝硫� 1 �뾾�쑝硫� 0
+              if(n==1)//�엳�쓣寃쎌슦 1濡� 蹂�寃� (珥덇린媛믪� 0)\
                  find=1;
            }
         } catch (SQLException e) {
@@ -239,5 +239,31 @@ public class ClientDao {
         }
         return find;
      }
+	 
+	 //관리자권한 확인
+	 public int checkManage(String id) {
+		int manage=0;
+		Connection conn=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		String sql="select manager from client where id=?";
+		
+		conn=db.getConnection();
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				manage=Integer.parseInt(rs.getString("manager"));
+				return manage;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			db.dbClose(rs, pstmt, conn);
+		}
+		return 2; //X
+	}
 	 
 }
