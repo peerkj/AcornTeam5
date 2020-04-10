@@ -17,7 +17,7 @@
 	name=dao.getName(id);
 	}
 	%>
-	<%=name %>님 환영합니다^^
-	
+	<%=name %>님 환영합니다^^<br>
+	<button onclick="location.href='logoutaction.jsp'">로그아웃</button>
 </body>
 </html>
