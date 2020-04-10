@@ -35,6 +35,7 @@ $(function(){
 }
 .main-image02 { background-image: url(image/02.jpg); }
 .main-image03 { background-image: url(image/03.jpg); }
+
 </style>
 </head>
 <body>

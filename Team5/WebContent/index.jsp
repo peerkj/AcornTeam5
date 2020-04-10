@@ -11,6 +11,32 @@ String url=request.getContextPath();
 <link rel="stylesheet" href="<%=url%>/css/bxslider.css">
 <link rel="stylesheet" href="<%=url%>/css/style.css">
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<style type="text/css">
+div#header{/* 
+	    position:fixed;
+	    width:100%; */
+	    background-color: white;
+	}
+
+.act{
+	position: fixed;
+	top: 0;
+}
+</style>
+<script type="text/javascript">
+$( document ).ready( function() {
+	  var navOffset = $( '#header' ).offset();
+	  $( window ).scroll( function() {
+	    if ( $( document ).scrollTop() > navOffset.top ) {
+	      $( '#header' ).addClass( 'act' );
+	    }
+	    else {
+	      $( '#header' ).removeClass( 'act' );
+	    }
+	  });
+	});
+
+</script>
 </head>
 <%
 	String main=request.getParameter("main");

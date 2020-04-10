@@ -34,6 +34,8 @@ $(function(){
 		location.href="login/logoutaction.jsp";		
 	});
 });
+
+
 </script>
 </head>
 <body>
