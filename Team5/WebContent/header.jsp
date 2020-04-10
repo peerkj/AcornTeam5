@@ -1,3 +1,4 @@
+<%@page import="data.dao.ClientDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -10,7 +11,7 @@ String url=request.getContextPath();
 %>
 <link rel="stylesheet" href="<%=url%>/css/style_header.css">
 <style type="text/css">
-#join,#login,#home:hover{
+#logout,#join,#login,#home:hover{
 	cursor: pointer;
 }
 </style>
@@ -23,12 +24,14 @@ $(function(){
     $("#home").click(function() {
     	location.href="index.jsp";
     });
-	
 	$("#login").click(function() {
 		location.href="login/loginform.jsp";		
 	});
 	$("#join").click(function() {
 		location.href="register/registerform.jsp";		
+	});
+	$("#logout").click(function() {
+		location.href="login/logoutaction.jsp";		
 	});
 });
 </script>
@@ -38,13 +41,15 @@ $(function(){
 <ul class="info">
 	<%
 	String id=(String)session.getAttribute("id");
+	ClientDao db=new ClientDao();
+	String name=db.getName(id);
 	if(id==null){
 	%>
 	<li id="login">login</li>
 	<li id="join">join</li>
 	<%}else{%>
-	<li id="login">마이페이지</li>
-	<li id="join">로그아웃</li>
+	<li id="mypage"><%=name%> 페이지</li>
+	<li id="logout">로그아웃</li>
 	<%}%>
 </ul>
 <ul class="mainmenu">
