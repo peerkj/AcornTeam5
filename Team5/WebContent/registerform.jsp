@@ -90,12 +90,22 @@ var passchk = 0;//비밀번호 체크
 		});
 
 	});
-	
+
+function idpasschk() {
+	console.log(idchk);
+	console.log(passchk);
+	if(idchk==0||passchk==0){
+		return false;
+	}else{
+		return true;
+	}
+}	
+
 </script>
 </head>
 <body>
 
-	<form action="registeraction.jsp" method="post">
+	<form action="registeraction.jsp" onsubmit="return idpasschk();" method="post">
 		<table>
 			<caption>
 				<b>회원가입</b>

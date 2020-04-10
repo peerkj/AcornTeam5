@@ -1,3 +1,4 @@
+<%@page import="data.dao.ClientDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -7,6 +8,16 @@
 <title>Insert title here</title>
 </head>
 <body>
-	메인페이지
+	메인페이지;;
+	<%
+	String id=(String)session.getAttribute("id");
+	String name="비회원";
+	if(id!=null){
+	ClientDao dao=new ClientDao();
+	name=dao.getName(id);
+	}
+	%>
+	<%=name %>님 환영합니다^^
+	
 </body>
 </html>

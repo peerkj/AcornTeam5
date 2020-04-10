@@ -6,7 +6,6 @@
 <%
 	String id=request.getParameter("id");
 	ClientDao db = new ClientDao();
-
 	JSONArray array = new JSONArray();
 	JSONObject ob=new JSONObject();
 	ob.put("result",db.isEqualId(id));

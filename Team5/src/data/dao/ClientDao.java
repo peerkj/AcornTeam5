@@ -216,7 +216,7 @@ public class ClientDao {
         Connection conn=null;
         PreparedStatement pstmt=null;
         ResultSet rs=null;
-        String sql = "select count(*) from client where id=?"; 
+        String sql = "select count(*) from client where id=?";
        
         conn=db.getConnection();
         try {
