@@ -5,11 +5,16 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="logincss.css">
+<%
+String url=request.getContextPath();
+%>
+<link rel="stylesheet" href="<%=url%>/login/logincss.css">
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <script type="text/javascript">
 	$(function() {
-
+		//경로얻기
+		var url=$("#url").val();		
+		
 		$("#pass").keyup(function(e) {
 			if (e.keyCode == 13) {
 				$("#loginbtn").click();
@@ -26,13 +31,13 @@
 			} else {
 				$.ajax({
 					type : "post",
-					url : "loginaction.jsp",
+					url : url+"/login/loginaction.jsp",
 					dataType : "html",
 					data : "id=" + id + "&pass=" + pass,
 					success : function(data) {
 						var result = data.trim();
 						if (result == 1) {
-							location.href="index.jsp";
+							location.href=url+"/index.jsp";
 						} else if (result == 0) {
 							alert("비밀번호가 틀렸습니다.");
 						} else if (result == -1) {
@@ -48,6 +53,7 @@
 </script>
 </head>
 <body>
+
 	<div class="login-page">
 		<div class="form">
 			<a href="#"><img
@@ -57,10 +63,11 @@
 					required="required" /> <br> <input type="password"
 					name="pass" id="pass" placeholder="비밀번호 입력" required="required" />
 				<br>
+				<input type="hidden" id="url" value="<%=url%>">				
 				<button type="button" id="loginbtn" required="required">로그인</button>
 				<br>
 				<p class="message">
-					계정이 없으신가요? <a href="registerform.jsp">회원가입</a>
+					계정이 없으신가요? <a href="<%=url%>/register/registerform.jsp">회원가입</a>
 				</p>
 			</form>
 		</div>

@@ -12,7 +12,7 @@ var idchk = 0;//아이디 체크
 var passchk = 0;//비밀번호 체크
 
 	$(function() {
-		
+		var url=$("#url").val();		
 		//아이디체크
 		$('#id').keyup(function(e) {
 			//아이디 길이 저장
@@ -20,7 +20,7 @@ var passchk = 0;//비밀번호 체크
 			$.ajax({
 				type : "get",
 				dataType : "json",
-				url : "idchk.jsp",
+				url : url+"/register/idchk.jsp",
 				data : "id=" + $('#id').val(),
 				success : function(data) {
 					$.each(data, function(i, elt) {
@@ -104,8 +104,10 @@ function idpasschk() {
 </script>
 </head>
 <body>
-
-	<form action="registeraction.jsp" onsubmit="return idpasschk();" method="post">
+<%
+String url=request.getContextPath();
+%>
+	<form action="<%=url%>/register/registeraction.jsp" onsubmit="return idpasschk();" method="post">
 		<table>
 			<caption>
 				<b>회원가입</b>
@@ -157,6 +159,7 @@ function idpasschk() {
 			</tr>
 			<tr>
 				<td colspan="2">
+					<input type="hidden" id="url" value="<%=url%>">
 					<input id="submit" type="submit" value="가입하기">
 				</td>
 		</table>
