@@ -19,7 +19,7 @@ String url=request.getContextPath();
 <div id="wrapper">
 	<div id="header"><jsp:include page="header.jsp"/></div>
 	<div id="contentarea">
-	<%if(main==null){ %>
+	<%if(main==null){ %> 
 		<div id="bxslider"><jsp:include page="bxslider.jsp"/></div>
 		<div id="content"><jsp:include page="content.jsp"/></div>
 		<%}else{ %>
