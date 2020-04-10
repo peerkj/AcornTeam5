@@ -44,7 +44,7 @@ $(function(){
 	<li class="mainitem"><a>SERVICE</a></li>
 	<li class="mainitem"><a>INFORMATION</a></li>
 	<li class="mainitem"><a>RESERVATION</a></li>
-	<li class="mainitem"><a>Q&A</a></li>
+	<li class="mainitem"><a href="index.jsp?main=qna/qnalist.jsp">Q&A</a></li>
 </ul>
 </body>
 </html>
