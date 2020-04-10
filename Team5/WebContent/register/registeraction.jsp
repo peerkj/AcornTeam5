@@ -4,6 +4,7 @@
     pageEncoding="UTF-8"%>
 <%
 request.setCharacterEncoding("utf-8");
+String url=request.getContextPath();
 
 String name = request.getParameter("name");
 String id = request.getParameter("id");
@@ -35,5 +36,5 @@ dto.setEmail(email);
 //DB insert
 dao.insertClient(dto);
 //메인페이지이동
-response.sendRedirect("registerform.jsp");
+response.sendRedirect(url+"/register/registerform.jsp");
 %>
