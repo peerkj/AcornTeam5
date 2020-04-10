@@ -46,7 +46,7 @@ String url=request.getContextPath();
 		background-color: #f7f7f7;
 	}
 	#footer{
-		width: 100%;
+		width: 100%; 
 		height: 130px;
 		border-top: 1px solid #ddd;
 		background-color: #f7f7f7;
