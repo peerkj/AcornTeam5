@@ -18,6 +18,8 @@
 	}
 	%>
 	<%=name %>님 환영합니다^^<br>
+	<%if(id!=null){ %>
 	<button onclick="location.href='logoutaction.jsp'">로그아웃</button>
+	<%} %>
 </body>
 </html>
