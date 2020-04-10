@@ -1,0 +1,77 @@
+@charset "utf-8";
+	*{
+		margin: 0;
+		padding: 0;
+	}
+	
+	body{
+		background-color: #ececee;
+	}
+	
+	.form{
+		position: relative;
+		width: 40%;
+		height: 100vh;
+		background-color: white;
+		margin-left: 30%;
+		padding-top: 0;
+	}
+	
+	.login-form{
+		width:40%;
+		margin:auto;
+		margin-top: 10%;
+		text-align:center;
+	}
+	
+	img{
+		margin-left:43%;
+		padding-top: 10%;
+	}
+	
+	
+	
+	@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+	.form input {
+	  font-family: "Roboto", sans-serif;
+	  outline: 0;
+	  background: #ececee;
+	  width: 100%;
+	  border: 0;
+	  margin: 0 0 15px;
+	  padding: 15px;
+	  box-sizing: border-box;
+	  font-size: 14px;
+	}
+	
+	.form input:active,.form input:focus {
+	  border: 0.2px solid #fc9740;
+	}
+	
+	.form button {
+	  font-family: "Roboto", sans-serif;
+	  text-transform: uppercase;
+	  outline: 0;
+	  background: #fc9740;
+	  width: 100%;
+	  border: 0;
+	  padding: 15px;
+	  color: #FFFFFF;
+	  font-size: 14px;
+	  -webkit-transition: all 0.3 ease;
+	  transition: all 0.3 ease;
+	  cursor: pointer;
+	}
+	#loginbtn:hover,#loginbtn:active,#loginbtn:focus {
+	  background: #ffb05c;
+	  cursor:pointer;
+	}
+	.form .message {
+	  margin: 15px 0 0;
+	  color: #b3b3b3;
+	  font-size: 12px;
+	}
+	.form .message a {
+	  color: #fc9740;
+	  text-decoration: none;
+	}
