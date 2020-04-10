@@ -12,6 +12,7 @@
 <title>qna리스트</title>
 </head>
 <%
+	String url = request.getContextPath();
 	String pageNum = request.getParameter("pageNum");
 	PageMaker pm = new PageMaker();
 	int totalCount = pm.getTotalCount();
@@ -54,7 +55,7 @@ for(QnaDto dto:list){%>
 			<%}%>
 			</td>
 			<%if(dto.getSecret().equals("0")){%>
-				<td><a href="qnaselect.jsp?num=<%=dto.getQnum()%>&pageNum=<%=currentPage%>">
+				<td><a href="<%=url %>/qna/qnaselect.jsp?num=<%=dto.getQnum()%>&pageNum=<%=currentPage%>">
 				<%=dto.getSubject() %></a></td>
 			<%}else{%>
 				<td>비밀글 입니다</td>
@@ -73,21 +74,21 @@ for(QnaDto dto:list){%>
       <ul>   
       <%
       if(startPage!=1){%>
-         <li><a href="qnalist.jsp?pageNum=<%=startPage-1 %>">이전</a></li>
+         <li><a href="<%=url %>/qna/qnalist.jsp?pageNum=<%=startPage-1 %>">이전</a></li>
       <%}
       for(int i=startPage; i<=endPage;i++){
          if(i==currentPage){%>
             <li class="active">
-               <a href="qnalist.jsp?pageNum=<%=i %>"><%=i %></a>
+               <a href="<%=url %>/qna/qnalist.jsp?pageNum=<%=i %>"><%=i %></a>
             </li>         
          <%}else{%>
             <li>
-               <a href="qnalist.jsp?pageNum=<%=i %>"><%=i %></a>
+               <a href="<%=url %>/qna/qnalist.jsp?pageNum=<%=i %>"><%=i %></a>
             </li>
          <%}
       } 
       if(currentPage<totalPage){%>
-         <li><a href="qnalist.jsp?pageNum=<%=endPage+1 %>">다음</a></li>
+         <li><a href="<%=url %>/qna/qnalist.jsp?pageNum=<%=endPage+1 %>">다음</a></li>
       <%}%>
       </ul>
    </div>

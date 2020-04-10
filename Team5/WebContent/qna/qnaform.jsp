@@ -9,9 +9,10 @@
 <%
 	//id세션 얻기
 	String id = (String)session.getAttribute("id");
+	String url = request.getContextPath();
 %>
 <body>
-<form action="qinsertaction.jsp" method="post">
+<form action="<%=url %>/qna/qinsertaction.jsp" method="post">
 	<input type="hidden" name="id" value="<%=id%>">
 	<table>
 		<caption><b>질문하기</b></caption>
