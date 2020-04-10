@@ -34,10 +34,10 @@ public class QnaDao {
 		} finally {
 			db.dbClose(pstmt, conn);
 		}	
-		return -1; //db오류
+		return -1; //db�삤瑜�
 	}
 	
-	//start~end 게시글 출력
+	//start~end 寃뚯떆湲� 異쒕젰
 	public List<QnaDto> getAllQnaList(int start,int end){
 		List<QnaDto> list= new ArrayList<QnaDto>();
 		Connection conn=null;
@@ -70,7 +70,7 @@ public class QnaDao {
 		return list;
 	}
 	
-	//내가 쓴 질문 보기
+	//�궡媛� �벖 吏덈Ц 蹂닿린
 	public List<QnaDto> getClientQnaList(String id){
 		List<QnaDto> list= new ArrayList<QnaDto>();
 		Connection conn=null;
@@ -100,7 +100,7 @@ public class QnaDao {
 		}
 		return list;
 	}
-	//질문글 삭제
+	//吏덈Ц湲� �궘�젣
 	public int deleteQna(String qnum,String pass) {
 		Connection conn=null;
 		PreparedStatement pstmt=null;
@@ -115,14 +115,14 @@ public class QnaDao {
 			rs=pstmt.executeQuery();
 			if(rs.next()) {
 				if(rs.getInt("result")==1) {
-					//1이면
+					//1�씠硫�
 					sql="delete from qna where qnum=?";
 					pstmt=conn.prepareStatement(sql);
 					pstmt.setString(1,qnum);
-					//성공(1)
+					//�꽦怨�(1)
 					return pstmt.executeUpdate();
 				}else {
-					return 0; //비밀번호 틀림 
+					return 0; //鍮꾨�踰덊샇 ��由� 
 				}
 			}
 		} catch (SQLException e) {
@@ -131,10 +131,10 @@ public class QnaDao {
 		} finally {
 			db.dbClose(rs, pstmt, conn);
 		}
-		return -1;//db오류	
+		return -1;//db�삤瑜�	
 	}
 	
-	//전체 게시글 수
+	//�쟾泥� 寃뚯떆湲� �닔
 	public int getTotalCount() {
 		Connection conn = null;
 		PreparedStatement pstmt =null;
@@ -152,15 +152,15 @@ public class QnaDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return -1; //오류
+		return -1; //�삤瑜�
 	}
 	
-	//답변여부
+	//�떟蹂��뿬遺�
 	public boolean getAnswer(String qnum) {
 		Connection conn=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
-		String sql="select count(*) find from answer where qnum=?";
+		String sql="select * from answer where qnum=?";
 		boolean find=false;
 		
 		conn=db.getConnection();
@@ -178,5 +178,58 @@ public class QnaDao {
 			db.dbClose(rs, pstmt, conn);
 		}
 		return find;
+	}
+	
+	//num에 해당하는 데이터 dto를 반환하는 메서드
+	   public QnaDto getData(String num) {
+	      QnaDto dto = new QnaDto();
+	      Connection conn=null;
+	      PreparedStatement pstmt= null;
+	      ResultSet rs = null;
+	      String sql="";
+	      sql = "select * from qna where qnum=?";
+	      conn=db.getConnection();
+	      try {
+	         pstmt=conn.prepareStatement(sql);
+	         pstmt.setString(1, num);
+	         rs= pstmt.executeQuery();
+	         
+	         if(rs.next()) {
+	        	 dto.setQnum(rs.getString("qnum"));
+	        	 dto.setSubject(rs.getString("subject"));
+	        	 dto.setContent(rs.getString("content"));
+	        	 dto.setSecret(rs.getString("secret"));
+	        	 dto.setQwriteday(rs.getTimestamp("qwriteday"));
+	        	 dto.setViewcount(rs.getString("viewcount"));
+	        	 dto.setId(rs.getString("id"));
+	         }
+	      } catch (SQLException e) {
+	         // TODO Auto-generated catch block
+	         e.printStackTrace();
+	      } finally {
+	         db.dbClose(rs, pstmt, conn);
+	      }
+	      
+	      return dto;
+	   }
+	   
+	  //뷰카운트 증가 메서드
+	  public void updateViewCount(String num) {
+		   Connection conn=null;
+		   PreparedStatement pstmt= null;
+		   DbConnect db = new DbConnect();
+		   String sql = "";
+		   sql = "update qna set viewcount=viewcount+1 where qnum=?";
+		   conn=db.getConnection();
+		   try {
+		      pstmt = conn.prepareStatement(sql);
+		      pstmt.setString(1, num);
+		      pstmt.execute();
+		   } catch (SQLException e) {
+		      // TODO Auto-generated catch block
+		      e.printStackTrace();
+		   } finally {
+		      db.dbClose(pstmt, conn);
+		   }
 	}
 }
