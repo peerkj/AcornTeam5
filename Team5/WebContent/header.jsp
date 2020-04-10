@@ -9,20 +9,43 @@
 String url=request.getContextPath();
 %>
 <link rel="stylesheet" href="<%=url%>/css/style_header.css">
+<style type="text/css">
+#join,#login,#home:hover{
+	cursor: pointer;
+}
+</style>
 <script type="text/javascript">
 $(function(){
 	$(".dropouter").hide();
 	$('.mainitem > a').mouseover(function() {
         $(this).parent().children().slideDown('slow');
     })
+    $("#home").click(function() {
+    	location.href="index.jsp";
+    });
+	
+	$("#login").click(function() {
+		location.href="login/loginform.jsp";		
+	});
+	$("#join").click(function() {
+		location.href="register/registerform.jsp";		
+	});
 });
 </script>
 </head>
 <body>
-<h1 class="logo"><img src="image/logo.png" style="height: 120px;"></h1>
+<h1 class="logo"><img id="home" src="image/logo.png" style="height: 120px;"></h1>
 <ul class="info">
-	<li>login</li>
-	<li>join</li>
+	<%
+	String id=(String)session.getAttribute("id");
+	if(id==null){
+	%>
+	<li id="login">login</li>
+	<li id="join">join</li>
+	<%}else{%>
+	<li id="login">마이페이지</li>
+	<li id="join">로그아웃</li>
+	<%}%>
 </ul>
 <ul class="mainmenu">
 	<li class="mainitem"><a>ROOM</a>
@@ -41,7 +64,7 @@ $(function(){
 			</ul>
 		</div>
 	</li>
-	<li class="mainitem"><a>SERVICE</a></li>
+	<li class="mainitem"><a href="index.jsp?main=service/servicepage.jsp">SERVICE</a></li>
 	<li class="mainitem"><a>INFORMATION</a></li>
 	<li class="mainitem"><a>RESERVATION</a></li>
 	<li class="mainitem"><a href="index.jsp?main=qna/qnalist.jsp">Q&A</a></li>

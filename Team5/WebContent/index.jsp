@@ -14,7 +14,6 @@ String url=request.getContextPath();
 </head>
 <%
 	String main=request.getParameter("main");
-	if(main==null)
 %>
 <body>
 <div id="wrapper">
