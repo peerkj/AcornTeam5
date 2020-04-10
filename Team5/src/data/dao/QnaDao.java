@@ -54,7 +54,8 @@ public class QnaDao {
 				QnaDto dto=new QnaDto();
 				dto.setQnum(rs.getString("qnum"));
 				dto.setSubject(rs.getString("subject"));
-				dto.setContent(rs.getString("secret"));
+				dto.setContent(rs.getString("content"));
+				dto.setSecret(rs.getString("secret"));
 				dto.setQwriteday(rs.getTimestamp("qwriteday"));
 				dto.setViewcount(rs.getString("viewcount"));
 				dto.setId(rs.getString("id"));
@@ -84,7 +85,8 @@ public class QnaDao {
 				QnaDto dto=new QnaDto();
 				dto.setQnum(rs.getString("qnum"));
 				dto.setSubject(rs.getString("subject"));
-				dto.setContent(rs.getString("secret"));
+				dto.setContent(rs.getString("content"));
+				dto.setSecret(rs.getString("secret"));
 				dto.setQwriteday(rs.getTimestamp("qwriteday"));
 				dto.setViewcount(rs.getString("viewcount"));
 				dto.setId(rs.getString("id"));
