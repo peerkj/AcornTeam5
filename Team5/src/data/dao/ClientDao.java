@@ -154,8 +154,7 @@ public class ClientDao {
 		}
 		return null;//db오류 or 아이디 없음	
 	}
-	//아이디 입력하면 회원정보 출력
-
+	//삭제
 	public int deleteClient(String id,String pass) {
 		Connection conn=null;
 		PreparedStatement pstmt=null;
@@ -210,4 +209,35 @@ public class ClientDao {
 		}
 		return -1; //오류
 	}
+	
+	 public int isEqualId(String id)
+     {
+        int find=0;
+        Connection conn=null;
+        PreparedStatement pstmt=null;
+        ResultSet rs=null;
+        String sql = "select count(*) from client where id=?"; 
+       
+        conn=db.getConnection();
+        try {
+           pstmt=conn.prepareStatement(sql);
+           //바인딩
+           pstmt.setString(1, id);
+           //실행
+           rs=pstmt.executeQuery();
+           //조건
+           if(rs.next()) {
+              int n=rs.getInt(1);//해당 아이디가 있으면 1 없으면 0
+              if(n==1)//있을경우 1로 변경 (초기값은 0)\
+                 find=1;
+           }
+        } catch (SQLException e) {
+           // TODO Auto-generated catch block
+           e.printStackTrace();
+        }finally {
+           db.dbClose(rs, pstmt, conn);
+        }
+        return find;
+     }
+	 
 }
