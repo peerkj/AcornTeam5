@@ -1,0 +1,97 @@
+@charset "utf-8";
+   *{
+      margin: 0;
+      padding: 0;
+   }
+      
+   body{
+      background-color: #ececee;
+   }
+      
+   .form{
+      position: relative;
+      width: 40%;
+      height: 100vh;
+      background-color: white;
+      margin-left: 30%;
+      padding-top: 0;
+   }
+      
+   
+   .regi-form{
+      position: absolute;
+      width:80%;
+      margin-left: 10%;
+      margin-top: 3%;
+      text-align:left;   
+   }
+   
+   img{
+      position: relative;
+      margin-left:43%;
+      padding-top: 8%;
+   }
+
+@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+   .form input {
+     font-family: "Roboto", sans-serif;
+     outline: 0;
+     background: #ececee;
+     width: 30%;
+     border: 0;
+     margin: 10px 0 15px 0;
+     padding: 2%;
+     box-sizing: border-box;
+     font-size: 14px;
+   }
+   
+   .form input:active,.form input:focus {
+     border: 0.1px solid #fc9740;
+   }
+   
+   #submit {
+     font-family: "Roboto", sans-serif;
+     text-transform: uppercase;
+     outline: 0;
+     background: #fc9740;
+     width: 50%;
+     border: 0;
+     margin-top:25px;
+     margin-left: 25%;
+     padding: 2%;
+     color: #FFFFFF;
+     font-size: 14px;
+     -webkit-transition: all 0.3 ease;
+     transition: all 0.3 ease;
+     cursor: pointer;
+     
+   }
+   
+   #submit:hover,#submit:active,#submit:focus {
+     background: #ffb05c;
+     cursor:pointer;
+   }
+   
+   select {
+   width: 30%;
+   padding: 1.5%;
+   border: 1px solid #999;
+   font-family: inherit;
+   background: url('https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fk.kakaocdn.net%2Fdn%2FcPDi4q%2FbtqDiaMx0yi%2Flxq7LA2yalGbGnAo2VlAk1%2Fimg.jpg') no-repeat 95% 50%;
+   border-radius: 0px;
+   -webkit-appearance: none;
+   -moz-appearance: none;
+   appearance: none;
+   }
+
+   select::-ms-expand {
+       display: none;
+   }
+   
+   #copyright{
+      position: absolute;
+      color: #c0c1c1;
+      font-size: 9pt;
+      left: 33%;
+      bottom: 2%;
+   }

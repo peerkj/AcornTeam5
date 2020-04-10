@@ -8,7 +8,7 @@
 <%
 String url=request.getContextPath();
 %>
-<link rel="stylesheet" href="<%=url%>/login/logincss.css">
+<link rel="stylesheet" href="<%=url%>/css/style_login.css">
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <script type="text/javascript">
 	$(function() {
@@ -56,7 +56,7 @@ String url=request.getContextPath();
 
 	<div class="login-page">
 		<div class="form">
-			<a href="#"><img
+			<a href="../index.jsp"><img
 				src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fk.kakaocdn.net%2Fdn%2FkDN1L%2FbtqDhuX4ooQ%2FWY72cyF2e4frBUyLACEryK%2Fimg.png"></a>
 			<form class="login-form" action="#" method="post">
 				<input type="text" name="id" id="id" placeholder="아이디 입력"
