@@ -5,25 +5,16 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="css/style_header.css">
-<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<%
+String url=request.getContextPath();
+%>
+<link rel="stylesheet" href="<%=url%>/css/style_header.css">
 <script type="text/javascript">
 $(function(){
 	$(".dropouter").hide();
 	$('.mainitem > a').mouseover(function() {
         $(this).parent().children().slideDown('slow');
     })
-    /* $('.mainitem > a').mouseout(function() {
-        $(this).parent().children().slideUp('fast');
-    })
-	
-
-   $('.dropouter').on('mouseover', function() {
-        $(this).siblings('a').addClass('change')
-    })
-    $('.dropouter').on('mouseout', function() {
-        $(this).siblings('a').removeClass('change')
-    }) */
 });
 </script>
 </head>

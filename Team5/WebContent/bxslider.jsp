@@ -5,30 +5,24 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="css/jquery.bxslider.css">
-<script src="js/jquery-3.4.1.js"></script>
-<script src="js/jquery.bxslider.js"></script>
+<%
+String url=request.getContextPath();
+%>
+<link rel="stylesheet" href="<%=url%>/css/jquery.bxslider.css">
+<script src="<%=url %>/js/jquery.bxslider.js"></script>
 <script type="text/javascript">
-        $(function(){
-            $('#btn-blue').on('click', function(){
-                $('.dimmed').show();
-                $('.popup-wrap').show();
-            })
-            $('#popup_close').on('click', function(){
-                $('.dimmed').hide();
-                $('.popup-wrap').hide();
-            })
-
-            $('.bxslider').bxSlider({
-                auto: true, // 자동으로 애니메이션 시작 여부 (true면 자동 슬라이드, false는 자동 슬라이드 안함)
-                speed: 200, // 애니메이션 속도
-                pause: 2000, // 애니메이션 유지 시간 (1000은 1초)
-                autoControls: false, // 시작 및 중지버튼 여부 (true면 보여짐, false는 안보임)
-                pager: true, // 페이지 표시 여부 (true면 보여짐, false는 안보임)
-                mode: 'horizontal', // 슬라이드 모드 ('fade', 'horizontal', 'vertical' 이 있음)
-                captions: false // img 태그에 사용되는 title 속성을 이용해서 이미지 위에 텍스트를 넣을 수 있음 (true면 보여짐, false는 안보임)
-            }); 
-        });
+$(function(){
+	/* 이미지 슬라이더 */
+    $('.bxslider').bxSlider({
+        auto: true, // 자동으로 애니메이션 시작 여부 (true면 자동 슬라이드, false는 자동 슬라이드 안함)
+        speed: 200, // 애니메이션 속도
+        pause: 2000, // 애니메이션 유지 시간 (1000은 1초)
+        autoControls: false, // 시작 및 중지버튼 여부 (true면 보여짐, false는 안보임)
+        pager: true, // 페이지 표시 여부 (true면 보여짐, false는 안보임)
+        mode: 'horizontal', // 슬라이드 모드 ('fade', 'horizontal', 'vertical' 이 있음)
+        captions: false // img 태그에 사용되는 title 속성을 이용해서 이미지 위에 텍스트를 넣을 수 있음 (true면 보여짐, false는 안보임)
+    }); 
+});
 </script>
 <style type="text/css">
 .main-image {
