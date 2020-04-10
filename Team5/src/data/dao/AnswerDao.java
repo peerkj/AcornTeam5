@@ -50,4 +50,33 @@ public class AnswerDao {
 		}
 		return -1;//db error
 	}
+	public AnswerDto getAnswer(String qnum) {
+		Connection conn=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		String sql="select * from answer where qnum=?";
+		AnswerDto dto =new AnswerDto();
+		
+		conn=db.getConnection();
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, qnum);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				dto.setAnum(rs.getString("anum"));
+				dto.setContent(rs.getString("content"));
+				dto.setWriteday(rs.getTimestamp("writeday"));
+				dto.setQnum(rs.getString("qnum"));
+				
+				return dto;
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			db.dbClose(rs, pstmt, conn);
+		}
+		return null;
+	}
 }
