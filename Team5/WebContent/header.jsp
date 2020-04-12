@@ -13,7 +13,7 @@ String url=request.getContextPath();
 <style type="text/css">
 #logout,#join,#login,#home:hover{
 	cursor: pointer;
-}
+} 
 </style>
 <script type="text/javascript">
 $(function(){
@@ -34,6 +34,8 @@ $(function(){
 		location.href="login/logoutaction.jsp";		
 	});
 });
+
+
 </script>
 </head>
 <body>
