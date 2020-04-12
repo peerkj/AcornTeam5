@@ -1,3 +1,5 @@
+<%@page import="data.dao.AnswerDao"%>
+<%@page import="data.dto.AnswerDto"%>
 <%@page import="data.dao.ClientDao"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="data.dto.QnaDto"%>
@@ -9,9 +11,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<%
+	String url = request.getContextPath();
+%>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <script type="text/javascript">
 	$(function(){
+		var url = $("#url").attr("url");
 		$("#ansform").hide();
 		
 		$("#del").click(function() {
@@ -21,7 +27,7 @@
 			
 			$.ajax({
 				type : "post",
-				url : "qdeleteaction.jsp",
+				url : url+"/qna/qdeleteaction.jsp",
 				dataType : "html",
 				data : {"num":num, "pageNum":pageNum, "pass":pass},
 				success : function(data){
@@ -37,11 +43,15 @@
 		$("#answer").click(function() {
 			$("#ansform").slideToggle('fast');
 		});
+		
+		$("#list").click(function() {
+			var pageNum = $(this).attr("pageNum");
+			location.href="qnalist.jsp?pageNum="+pageNum;
+		});
 	});
 </script>
 </head>
 <%
-	String url = request.getContextPath();
 	String num = request.getParameter("num");
 	String pageNum = request.getParameter("pageNum");
 	QnaDao db = new QnaDao();
@@ -52,42 +62,59 @@
 	
 	ClientDao cdb = new ClientDao();
 	String id = (String)session.getAttribute("id");
+	
+	AnswerDto adto = new AnswerDto();
+	AnswerDao adb = new AnswerDao();
 %>
 <body>
+	<input type="hidden" id="url" url="<%=url%>">
 	<table>
 		<caption><b>내용보기</b></caption>
 		<tr>
 			<th>작성자</th>
-			<td><%=dto.getId() %></td>
+			<td colspan="2"><%=dto.getId() %></td>
 		</tr>
 		<tr>
 			<th>작성일</th>
-			<td><%=dto.getQwriteday() %></td>
+			<td colspan="2"><%=dto.getQwriteday() %></td>
 		</tr>
 		<tr>
 			<th>제목</th>
-			<td><%=dto.getSubject() %></td>
+			<td colspan="2"><%=dto.getSubject() %></td>
 		</tr>
 		<tr>
-			<td colspan="2"><pre><%=dto.getContent() %></pre></td>
+			<td colspan="3"><pre><%=dto.getContent() %></pre></td>
 		</tr>
+		<%
+		adto=adb.getAnswer(dto.getQnum());
+		if(adto!=null){%>
+			<tr>
+				<td colspan="2">
+					<hr style="border: 0.5px solid;">
+					<pre>답변: <%=adto.getContent() %></pre>
+					&nbsp;
+					<a href="<%=url%>/qna/answerdeleteaction.jsp?qnum=<%=num%>&pageNum=<%=pageNum%>">삭제</a>				
+				</td>
+				<td><%=adto.getWriteday() %></td>				
+			</tr>
+		<%}%>
 		<tr>
 			<th>조회수</th>
-			<td><%=dto.getViewcount() %></td>
+			<td colspan="2"><%=dto.getViewcount() %></td>
 		</tr>
 		<tr align="right">
-			<td colspan="2">
+			<td colspan="3">
 				<%
 				if(dto.getId().equals(id)){%>
 					<button type="button" id="del" num="<%=num%>" pageNum="<%=pageNum%>">
 				삭제</button>
 				<%}
-				if(cdb.checkManage(id)==1){%>
+				if(cdb.checkManage(id)==1&&adto==null){%>
 					<button type="button" id="answer">
 				답변</button>
 				<%}
 				%>				
-				<button type="button" id="list" num="<%=num%>" pageNum="<%=pageNum%>">
+				<button type="button" id="list" pageNum="<%=pageNum%>">
 				목록으로</button>
 			</td>
 		</tr>
@@ -97,13 +124,15 @@
 					<hr style="border: 0.5px solid;">
 					<form action="<%=url %>/qna/answerinsertaction.jsp" method="post">
 						<input type="hidden" name="qnum" value="<%=num%>">
-						<input type="hidden" name="pangeNum" value="<%=pageNum%>">
+						<input type="hidden" name="pageNum" value="<%=pageNum%>">
 						<textarea name="content"></textarea>
 						<button type="submit">답변하기</button>
 					</form>
 				</td>
 			</tr>
 		<%}%>
+		
+		
 	</table>
 </body>
 </html>

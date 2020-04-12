@@ -10,8 +10,13 @@
 %>
 
 <jsp:useBean id="dto" class="data.dto.AnswerDto"></jsp:useBean>
+<jsp:useBean id="db" class="data.dao.AnswerDao"></jsp:useBean>
 
 <%
+	dto.setContent(content);
+	dto.setQnum(qnum);
+
+	db.insertAnswer(dto); 
 	String url = request.getContextPath();
-	response.sendRedirect(url+"/qna/qnaselect.jsp?num="+qnum+"pageNum="+pageNum);
+	response.sendRedirect(url+"/qna/qnaselect.jsp?num="+qnum+"&pageNum="+pageNum);
 %>
