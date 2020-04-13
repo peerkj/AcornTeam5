@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;700&display=swap');
 .logo{
 	float: left;
 	margin-left: 20px;
@@ -5,6 +6,8 @@
 
 .info{
 	float: right;
+	font-family: 'Noto Sans KR', sans-serif;
+	font-weight: 300;
 }
 .info li {
     float: left;
@@ -12,13 +15,14 @@
 }
 .mainmenu{
     margin: 2% 0 0 55%;
-    font-weight: bold;
+    font-weight: 700;
+    font-family: 'Noto Sans KR', sans-serif;
 }
 .mainmenu>li{
 	float: left;
 	line-height: 70px;
 	text-align: center;
-} 
+}
 .mainitem{
 	cursor: pointer;
 }
@@ -30,7 +34,11 @@
 }
 .mainitem {
 	position: relative;
-	
+	/* text-align: center;
+	width: 190px;
+	box-sizing: border-box;
+	float: left;
+	margin-top: 44px; */
 }
 .mainitem::after {
 	content: "";
