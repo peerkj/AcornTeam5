@@ -45,14 +45,21 @@ $( document ).ready( function() {
 <div id="wrapper">
 	<div id="header"><jsp:include page="header.jsp"/></div>
 	<div id="contentarea">
-	<%if(main==null){ %> 
+	<%if(main==null){ 
+		main="1";
+		%> 
 		<div id="bxslider"><jsp:include page="bxslider.jsp"/></div>
 		<div id="content"><jsp:include page="content.jsp"/></div>
-		<%}else{ %>
+		<%}else{ 
+		%>
 		<jsp:include page="<%=main %>"/>
+		
 		<%} %>
 	</div>
+	<%if(main.equals("service/servicepage.jsp")) {
+	}else{%>
 	<div id="footer"><jsp:include page="footer.jsp"/></div>
+	<%} %>
 </div>
 </body>
 </html>
