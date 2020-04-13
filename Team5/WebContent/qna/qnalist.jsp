@@ -11,6 +11,25 @@
 <head>
 <meta charset="UTF-8">
 <title>qna리스트</title>
+
+<style type="text/css">
+.qnatb{ 
+	width: 1000px;
+	margin: 0 auto;
+	border-collapse: collapse;
+}
+.qnatb th,.qnatb td{
+	padding: 10px 20px;
+}
+#write{
+	width: 100px;
+    padding: 10px;
+    border-radius: 15px;
+    color: #fff;
+    background-color: #faa727;
+    border: none;
+}
+</style>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <script type="text/javascript">
 	$(function(){
@@ -28,7 +47,7 @@
 </script>
 </head>
 <%
-	String url = request.getContextPath();
+	String url=request.getContextPath();
 	String pageNum = request.getParameter("pageNum");
 	PageMaker pm = new PageMaker();
 	int totalCount = pm.getTotalCount();
@@ -52,13 +71,18 @@
 %>
 <body>
 <input type="hidden" id="url" url="<%=url%>">
-<table>
-	<tr>
-		<th>답변여부</th>
-		<th>제목</th>
-		<th>작성자</th>
-		<th>작성일</th>
-		<th>조회수</th>
+<div style="background: url('<%=url%>/image/qnapage.jpg');background-size: cover;width: 100%;height: 400px; margin-bottom: 30px;">
+	<div>
+		<div style="font-size: 50px;text-align: center;line-height: 400px;font-weight: bold;">Q&A</div>
+	</div>
+</div>
+<table class="qnatb">
+	<tr bgcolor="#ffe5bd">
+		<th width="10">답변여부</th>
+		<th width="50">제목</th>
+		<th width="10">작성자</th> 
+		<th width="20">작성일</th>
+		<th width="10">조회수</th>
 	</tr>
 <%if(totalCount==0){%>
 		<tr>
@@ -87,6 +111,7 @@ for(QnaDto dto:list){%>
 			<td><%=sdf.format(dto.getQwriteday()) %></td>
 			<td><%=dto.getViewcount() %></td>
 		</tr>
+		<tr height="1" bgcolor="#ddd"></tr>
 	
 
 <%}

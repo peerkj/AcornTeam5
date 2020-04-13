@@ -47,7 +47,7 @@ $(function(){
 	String name=db.getName(id);
 	if(id==null){
 	%>
-	<li id="login">login</li>
+	<li id="login">login</li> 
 	<li id="join">join</li>
 	<%}else{%>
 	<li id="mypage"><%=name%> 페이지</li>
@@ -55,6 +55,7 @@ $(function(){
 	<%}%>
 </ul>
 <ul class="mainmenu">
+	<li class="mainitem"><a>INFO</a></li>
 	<li class="mainitem"><a>ROOM</a>
 		<div class="dropouter">
 			<ul class="dropmenu" >
@@ -64,15 +65,10 @@ $(function(){
 				<li class="dropitem"><a href="#">ROOM04</a></li>
 				<li class="dropitem"><a href="#">ROOM05</a></li>
 				<li class="dropitem"><a href="#">ROOM06</a></li>
-				<li class="dropitem"><a href="#">ROOM07</a></li>
-				<li class="dropitem"><a href="#">ROOM08</a></li>
-				<li class="dropitem"><a href="#">ROOM09</a></li>
-				<li class="dropitem"><a href="#">ROOM10</a></li>
 			</ul>
 		</div>
 	</li>
 	<li class="mainitem"><a href="index.jsp?main=service/servicepage.jsp">SERVICE</a></li>
-	<li class="mainitem"><a>INFORMATION</a></li>
 	<li class="mainitem"><a>RESERVATION</a></li>
 	<li class="mainitem"><a href="index.jsp?main=qna/qnalist.jsp">Q&A</a></li>
 </ul>
