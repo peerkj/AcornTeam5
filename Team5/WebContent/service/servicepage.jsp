@@ -5,7 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>SERVICE</title>
-    <style type="text/css">
+    <style type="text/css"> 
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;500;700&display=swap');
         html,body{ 
 	        margin:0; 
 	        padding:0; 
@@ -15,14 +16,13 @@
         .box{ 
 	        width:100%; 
 	        height: 100%;
-	        position:relative; 
-	        color:#ffffff; 
+	        position:relative;  
 	        font-size:24pt;      
         }        
         .full_image{        	
-        	width: 100vw;
-        	height: 100vh;
-        	padding: 310px 0px;   	
+        	width: 100%;
+        	height: 100%;
+        	padding: 250px 0px;   	
         }        
         .textbox{
 			position: relative;
@@ -41,15 +41,17 @@
 	    	color: #fff; 
 	    	text-decoration: none; 
 	    	text-align: center;
+			font-family: 'Noto Sans KR', sans-serif;
 		}
 		.service_font_mt{
 			font-size: 20px; 
 			line-height: 50px; 
 			font-style: normal; 
-	    	font-weight: 600; 
+	    	font-weight: 400; 
 	    	color: #fff; 
 	    	text-decoration: none; 
 	    	text-align: center;
+			font-family: 'Noto Sans KR', sans-serif;
 		}        
               
     </style>
@@ -115,7 +117,8 @@
 </head>
 <body>
     <div class="box">
-    	<div class="full_image" style="background-image: url('https://k.kakaocdn.net/dn/mcb4g/btqDlkuP17M/EQzGXIEossr0YzQZaBC6t0/img.png');">
+    	<div class="full_image">
+    	<img src="https://k.kakaocdn.net/dn/VNmPO/btqDlOiprVO/Rz6icXmvdNj2VNzTiTQhG1/img.png")>
     		<div class="textbox">
 	    		<div class="service_font">바비큐장</div>
 	    		<div class="service_font_mt">정원 내 바비큐장에서는 날씨에 관계없이 분위기 있는 식사를 즐길 수 있습니다.</div>
@@ -123,7 +126,7 @@
     	</div>
     </div>
     <div class="box">
-    	<div class="full_image" style="background-image: url('https://k.kakaocdn.net/dn/NDVms/btqDliRsHox/LNBYa2KcSIeI0s4BSdZqvk/img.jpg');">
+    	<div class="full_image" style="background-image: url('https://k.kakaocdn.net/dn/bDb94Z/btqDmlUyNr3/2ywRgAEwLqVSBe4lKsG6UK/img.jpg');">
     		<div class="textbox">
 	    		<div class="service_font">카페</div>
 	    		<div class="service_font_mt">모든 투숙객에게 하루 한 잔의 커피를 제공합니다.</div>
@@ -131,7 +134,7 @@
     	</div>
     </div>
     <div class="box">
-    	<div class="full_image" style="background-image: url('https://k.kakaocdn.net/dn/bWOq6a/btqDofMqh5A/sUJpR95FNM7eSi4xbVdk91/img.jpg');">
+    	<div class="full_image" style="background-image: url('https://k.kakaocdn.net/dn/cdHKOy/btqDnwg1G5M/bakVSwf8JEDOraq22NefPk/img.jpg');">
     		<div class="textbox">
 	    		<div class="service_font">수영장</div>
 	    		<div class="service_font_mt">​제주의 싱그러운 자연과 함께 즐길 수 있는 야외 수영장입니다.</div>
@@ -139,7 +142,7 @@
     	</div>
     </div>
     <div class="box">
-    	<div class="full_image" style="background-image: url('https://k.kakaocdn.net/dn/d6gQKH/btqDofTaqNV/JkJN8f1uK5RpjMxQNFyt31/img.jpg');">
+    	<div class="full_image" style="background-image: url('https://k.kakaocdn.net/dn/cXNjOk/btqDmnrmwGM/dhKpWz3o8n1kKHEUPuwp01/img.jpg');">
     		<div class="textbox">
 	    		<div class="service_font">감귤 따기 체험</div>
 	    		<div class="service_font_mt">새콤달콤한 제주 감귤을 직접 수확하여 마음껏 먹을 수 있습니다.</div>

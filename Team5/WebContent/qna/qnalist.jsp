@@ -56,7 +56,7 @@
 <body>
 <input type="hidden" id="url" url="<%=url%>">
 <div class="qnaimg">
-		<div class="qnatext">Q&A</div>
+		<div class="qnaback"><span class="qnatext">Q&A</span></div>
 </div>
 
 <button type="button" id="write" check="<%=check%>">글쓰기</button>
