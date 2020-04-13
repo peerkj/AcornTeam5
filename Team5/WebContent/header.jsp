@@ -55,7 +55,7 @@ $(function(){
 	<%}%>
 </ul>
 <ul class="mainmenu">
-	<li class="mainitem"><a>INFO</a></li>
+	<li class="mainitem"><a href="index.jsp?main=service/infopage.jsp">INFO</a></li>
 	<li class="mainitem"><a>ROOM</a>
 		<div class="dropouter">
 			<ul class="dropmenu" >
@@ -69,7 +69,7 @@ $(function(){
 		</div>
 	</li>
 	<li class="mainitem"><a href="index.jsp?main=service/servicepage.jsp">SERVICE</a></li>
-	<li class="mainitem"><a>RESERVATION</a></li>
+	<li class="mainitem"><a href="#">RESERVATION</a></li>
 	<li class="mainitem"><a href="index.jsp?main=qna/qnalist.jsp">Q&A</a></li>
 </ul>
 </body>
