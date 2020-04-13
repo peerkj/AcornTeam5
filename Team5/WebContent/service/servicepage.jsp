@@ -4,56 +4,53 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>SERVICE</title>
     <style type="text/css">
         html,body{ 
-           margin:0; 
-           padding:0; 
-           width:100%; 
-           height:100%
-        }
-        
+	        margin:0; 
+	        padding:0; 
+	        width:100%; 
+	        height:100%;
+        }        
         .box{ 
-           width:100%; 
-           height: 100%;
-           position:relative; 
-           color:#ffffff; 
-           font-size:24pt;      
-        }
-        
-        .full_image{
-           
-           width: 100%;
-           height: 100vh;
-           padding: 310px 0px;      
-        }
-        
+	        width:100%; 
+	        height: 100%;
+	        position:relative; 
+	        color:#ffffff; 
+	        font-size:24pt;      
+        }        
+        .full_image{        	
+        	width: 100vw;
+        	height: 100vh;
+        	padding: 310px 0px;   	
+        }        
         .textbox{
-         position: absolute;
-         height: 80px;
-         width: 100%;
-         background-color: rgba(0, 0, 0, 0.3);                                                                 
-         z-index:1;
-         padding: 70px 0px;
-      }
-      .service_font{
-         font-size: 50px; 
-         line-height: 50px; 
-         font-style: normal; 
-          font-weight: 600; 
-          color: #fff; 
-          text-decoration: none; 
-          text-align: center;
-      }
-      .service_font_mt{
-         font-size: 20px; 
-         line-height: 50px; 
-         font-style: normal; 
-          font-weight: 600; 
-          color: #fff; 
-          text-decoration: none; 
-          text-align: center;
-      }        
+			position: relative;
+			height: 80px;
+			width: 100%;
+			background-color: rgba(0, 0, 0, 0.3);                                                                 
+			z-index:1;
+			padding: 100px 0;
+			margin-top: 2%;
+		}
+		.service_font{
+			font-size: 50px; 
+			line-height: 50px; 
+			font-style: normal; 
+	    	font-weight: 600; 
+	    	color: #fff; 
+	    	text-decoration: none; 
+	    	text-align: center;
+		}
+		.service_font_mt{
+			font-size: 20px; 
+			line-height: 50px; 
+			font-style: normal; 
+	    	font-weight: 600; 
+	    	color: #fff; 
+	    	text-decoration: none; 
+	    	text-align: center;
+		}        
               
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
@@ -63,8 +60,8 @@
             var elm = ".box";
             $(".service_font").hide();
             $(".service_font_mt").hide();
-            $(".service_font").fadeIn(2000); //1000=1초
-            $(".service_font_mt").fadeIn(2000);           
+            $(".service_font").fadeIn(1500); //1000=1초
+            $(".service_font_mt").fadeIn(1500);           
             $(elm).each(function (index) {
                 // 개별적으로 Wheel 이벤트 적용
                 $(this).on("mousewheel DOMMouseScroll", function (e) {
@@ -86,8 +83,8 @@
                                 moveTop = $(elmSelecter).next().offset().top;
                                 $(".service_font").hide();
                                 $(".service_font_mt").hide();
-                                $(".service_font").fadeIn(2000); //1000=1초
-                                $(".service_font_mt").fadeIn(2000);
+                                $(".service_font").fadeIn(1500); //1000=1초
+                                $(".service_font_mt").fadeIn(1500);
                             }catch(e){}
                         }
                     // 마우스휠을 아래에서 위로
@@ -97,8 +94,8 @@
                                 moveTop = $(elmSelecter).prev().offset().top;
                                 $(".service_font").hide();
                                 $(".service_font_mt").hide();
-                                $(".service_font").fadeIn(2000);
-                                $(".service_font_mt").fadeIn(2000);   
+                                $(".service_font").fadeIn(1500);
+                                $(".service_font_mt").fadeIn(1500);   
                             }catch(e){}
                         }
                     }
@@ -115,49 +112,39 @@
         }
         
     </script>
-
 </head>
 <body>
     <div class="box">
-       <div class="full_image" style="background-image: url('../image/7.jpeg');">
-          <div class="textbox">
-             <div class="service_font">해변</div>
-             <div class="service_font_mt">해변입니다</div>
-          </div>
-       </div>
+    	<div class="full_image" style="background-image: url('https://k.kakaocdn.net/dn/mcb4g/btqDlkuP17M/EQzGXIEossr0YzQZaBC6t0/img.png');">
+    		<div class="textbox">
+	    		<div class="service_font">바비큐장</div>
+	    		<div class="service_font_mt">정원 내 바비큐장에서는 날씨에 관계없이 분위기 있는 식사를 즐길 수 있습니다.</div>
+    		</div>
+    	</div>
     </div>
     <div class="box">
-       <div class="full_image" style="background-image: url('../image/8.jpeg');">
-          <div class="textbox">
-             <div class="service_font">한라봉</div>
-             <div class="service_font_mt">한라봉입니다</div>
-          </div>
-       </div>
+    	<div class="full_image" style="background-image: url('https://k.kakaocdn.net/dn/NDVms/btqDliRsHox/LNBYa2KcSIeI0s4BSdZqvk/img.jpg');">
+    		<div class="textbox">
+	    		<div class="service_font">카페</div>
+	    		<div class="service_font_mt">모든 투숙객에게 하루 한 잔의 커피를 제공합니다.</div>
+    		</div>
+    	</div>
     </div>
     <div class="box">
-       <div class="full_image" style="background-image: url('../image/9.jpeg');">
-          <div class="textbox">
-             <div class="service_font">하늘</div>
-             <div class="service_font_mt">하늘입니다</div>
-          </div>
-       </div>
+    	<div class="full_image" style="background-image: url('https://k.kakaocdn.net/dn/bWOq6a/btqDofMqh5A/sUJpR95FNM7eSi4xbVdk91/img.jpg');">
+    		<div class="textbox">
+	    		<div class="service_font">수영장</div>
+	    		<div class="service_font_mt">​제주의 싱그러운 자연과 함께 즐길 수 있는 야외 수영장입니다.</div>
+    		</div>
+    	</div>
     </div>
     <div class="box">
-       <div class="full_image" style="background-image: url('../image/11.jpeg');">
-          <div class="textbox">
-             <div class="service_font">바다</div>
-             <div class="service_font_mt">바다입니다</div>
-          </div>
-       </div>
+    	<div class="full_image" style="background-image: url('https://k.kakaocdn.net/dn/d6gQKH/btqDofTaqNV/JkJN8f1uK5RpjMxQNFyt31/img.jpg');">
+    		<div class="textbox">
+	    		<div class="service_font">감귤 따기 체험</div>
+	    		<div class="service_font_mt">새콤달콤한 제주 감귤을 직접 수확하여 마음껏 먹을 수 있습니다.</div>
+    		</div>
+    	</div>
     </div>
-    <div class="box">
-       <div class="full_image" style="background-image: url('../image/12.jpeg');">
-          <div class="textbox">
-             <div class="service_font">말</div>
-             <div class="service_font_mt">말입니다</div>
-          </div>
-       </div>
-    </div>
-
 </body>
 </html>
