@@ -50,7 +50,7 @@ $(function(){
 	<li id="login">login</li> 
 	<li id="join">join</li>
 	<%}else{%>
-	<li id="mypage"><%=name%> 페이지</li>
+	<li id="mypage"><%=name%> 님&nbsp;&nbsp;&nbsp;마이페이지</li>
 	<li id="logout">로그아웃</li>
 	<%}%>
 </ul>
