@@ -1,3 +1,4 @@
+<%@page import="data.dao.ClientDao"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="data.dao.PageMaker"%>
 <%@page import="data.dao.QnaDao"%>
@@ -44,6 +45,7 @@
 	
 	String id = (String)session.getAttribute("id");
 	String check="0";
+	ClientDao cdb = new ClientDao();
 	
 	if(id!=null)
 		check = "1";
@@ -75,7 +77,7 @@ for(QnaDto dto:list){%>
 				답변대기
 			<%}%>
 			</td>
-			<%if(dto.getSecret().equals("0")){%>
+			<%if(dto.getSecret().equals("0")||dto.getId().equals(id)||cdb.checkManage(id)==1){%>
 				<td><a href="<%=url %>/qna/qnaselect.jsp?num=<%=dto.getQnum()%>&pageNum=<%=currentPage%>">
 				<%=dto.getSubject() %></a></td>
 			<%}else{%>
