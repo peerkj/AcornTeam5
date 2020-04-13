@@ -93,7 +93,9 @@
 					<hr style="border: 0.5px solid;">
 					<pre>답변: <%=adto.getContent() %></pre>
 					&nbsp;
+					<%if(cdb.checkManage(id)==1){%>
 					<a href="<%=url%>/qna/answerdeleteaction.jsp?qnum=<%=num%>&pageNum=<%=pageNum%>">삭제</a>				
+					<%}%>
 				</td>
 				<td><%=adto.getWriteday() %></td>				
 			</tr>
