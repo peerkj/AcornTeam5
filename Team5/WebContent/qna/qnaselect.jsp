@@ -77,8 +77,9 @@ th,td{
     padding: 10px;
     color: #fff;
     background-color: #faa727;
-    border-radius: 10px;
+    border-radius: 15px;
     border: none;
+    cursor: pointer;
 }
 
 </style>
@@ -100,74 +101,78 @@ th,td{
 %>
 <body>
 	<input type="hidden" id="url" url="<%=url%>">
-	<table class="qnaseltb">
-		<caption><b>내용보기</b></caption>
-		<tr>
-			<th>작성자</th>
-			<td colspan="2"><%=dto.getId() %></td>
-		</tr>
-		<tr>
-			<th>작성일</th>
-			<td colspan="2"><%=dto.getQwriteday() %></td>
-		</tr>
-		<tr>
-			<th>제목</th>
-			<td colspan="2"><%=dto.getSubject() %></td>
-		</tr>
-		<tr>
-			<th>  </th>
-			<td colspan="2" class="content"><pre><%=dto.getContent() %></pre></td>
-		</tr>
-		<%
-		adto=adb.getAnswer(dto.getQnum());
-		if(adto!=null){%>
+	<div style="margin-top: 100px;">
+		<table class="qnaseltb">
+			<caption><b style="font-size: 20pt;">내용보기</b></caption>
 			<tr>
-				<td colspan="2">
-					<hr style="border: 0.5px solid;">
-					<pre>답변: <%=adto.getContent() %></pre>
-					&nbsp;
-					<%if(cdb.checkManage(id)==1){%>
-					<a href="<%=url%>/qna/answerdeleteaction.jsp?qnum=<%=num%>&pageNum=<%=pageNum%>">삭제</a>				
-					<%}%>
-				</td>
-				<td><%=adto.getWriteday() %></td>				
+				<th>작성자</th>
+				<td><%=dto.getId() %></td>
+				<th>조회수</th>
+				<td><%=dto.getViewcount() %></td>
 			</tr>
-		<%}%>
-		<tr>
-			<th>조회수</th>
-			<td colspan="2"><%=dto.getViewcount() %></td>
-		</tr>
-		<tr align="right">
-			<td colspan="3">
-				<%
-				if(dto.getId().equals(id)){%>
-					<button type="button" class="btn del" id="del" num="<%=num%>" pageNum="<%=pageNum%>">
-				삭제</button>
-				<%}
-				if(cdb.checkManage(id)==1&&adto==null){%>
-					<button type="button" id="answer">
-				답변</button>
-				<%}
-				%>				
-				<button type="button" class="btn list" id="list" pageNum="<%=pageNum%>">
-				목록으로</button>
-			</td>
-		</tr>
-		<%if(cdb.checkManage(id)==1){%>
-			<tr id="ansform">
-				<td colspan="2">
-					<hr style="border: 0.5px solid;">
-					<form action="<%=url %>/qna/answerinsertaction.jsp" method="post">
-						<input type="hidden" name="qnum" value="<%=num%>">
-						<input type="hidden" name="pageNum" value="<%=pageNum%>">
-						<textarea name="content"></textarea>
-						<button type="submit">답변하기</button>
-					</form>
+			<tr>
+				<th>작성일</th>
+				<td colspan="3"><%=dto.getQwriteday() %></td>
+			</tr>
+			<tr>
+				<th>제목</th>
+				<td colspan="3"><%=dto.getSubject() %></td>
+			</tr>
+			<tr>
+				<th>  </th>
+				<td colspan="3" class="content"><pre><%=dto.getContent() %></pre></td>
+			</tr>
+			<%
+			adto=adb.getAnswer(dto.getQnum());
+			if(adto!=null){%>
+				<tr>
+					<td colspan="2">
+						<hr style="border: 0.5px solid;">
+						<pre>답변: <%=adto.getContent() %></pre>
+						&nbsp;
+						<%if(cdb.checkManage(id)==1){%>
+						<a href="<%=url%>/qna/answerdeleteaction.jsp?qnum=<%=num%>&pageNum=<%=pageNum%>">삭제</a>				
+						<%}%>
+					</td>
+					<td><%=adto.getWriteday() %></td>				
+				</tr>
+			<%}%>
+			<%-- <tr>
+				<th>조회수</th>
+				<td colspan="2"><%=dto.getViewcount() %></td>
+			</tr> --%>
+			<tr align="center">
+				<td colspan="4">
+					<%
+					if(dto.getId().equals(id)){%>
+						<button type="button" class="btn del" id="del" num="<%=num%>" pageNum="<%=pageNum%>">
+					삭제</button>
+					<%}
+					if(cdb.checkManage(id)==1&&adto==null){%>
+						<button type="button" id="answer">
+					답변</button>
+					<%}
+					%>				
+					<button type="button" class="btn list" id="list" pageNum="<%=pageNum%>">
+					목록으로</button>
 				</td>
 			</tr>
-		<%}%>
-		
-		
-	</table>
+			<%if(cdb.checkManage(id)==1){%>
+				<tr id="ansform">
+					<td colspan="2">
+						<hr style="border: 0.5px solid;">
+						<form action="<%=url %>/qna/answerinsertaction.jsp" method="post">
+							<input type="hidden" name="qnum" value="<%=num%>">
+							<input type="hidden" name="pageNum" value="<%=pageNum%>">
+							<textarea name="content"></textarea>
+							<button type="submit">답변하기</button>
+						</form>
+					</td>
+				</tr>
+			<%}%>
+			
+			
+		</table>
+	</div>
 </body>
 </html>
