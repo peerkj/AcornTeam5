@@ -9,6 +9,15 @@ public class ReviewDto {
 	private String star;
 	private String id;
 	private String rnum;
+	private String img;
+	
+	public String getImg() {
+		return img;
+	}
+	public void setImg(String img) {
+		this.img = img;
+	}
+	
 	public String getRevnum() {
 		return revnum;
 	}

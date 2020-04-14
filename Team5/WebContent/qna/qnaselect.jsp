@@ -29,7 +29,7 @@
 				type : "post",
 				url : url+"/qna/qdeleteaction.jsp",
 				dataType : "html",
-				data : {"num":num, "pageNum":pageNum, "pass":pass},
+				data : {"num":num, "pass":pass},
 				success : function(data){
 					var eql = data.trim();
 					if(eql==0)

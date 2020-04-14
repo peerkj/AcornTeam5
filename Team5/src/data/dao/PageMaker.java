@@ -17,7 +17,7 @@ public class PageMaker {
 		totalCount = db.getTotalCount();
 		return totalCount;
 	}
-	
+		
 	public int getTotalPage(int totalCount) {
 		totalPage = totalCount/perpage+(totalCount%perpage>0?1:0);		
 		return totalPage;
