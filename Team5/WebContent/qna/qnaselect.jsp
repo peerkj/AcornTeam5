@@ -46,7 +46,7 @@
 		
 		$("#list").click(function() {
 			var pageNum = $(this).attr("pageNum");
-			location.href="qnalist.jsp?pageNum="+pageNum;
+			location.href="<%=url%>/index.jsp?main=qna/qnalist.jsp?pageNum="+pageNum;
 		});
 	});
 </script>

@@ -33,7 +33,7 @@
 				alert("로그인을 해주세요");
 				location.href=url+"/login/loginform.jsp"
 			}else{
-				location.href=url+"/qna/qnaform.jsp"
+				location.href=url+"/index.jsp?main=qna/qnaform.jsp"
 			}
 		})
 	});
@@ -96,7 +96,8 @@ for(QnaDto dto:list){%>
 			<%}%>
 			</td>
 			<%if(dto.getSecret().equals("0")||dto.getId().equals(id)||cdb.checkManage(id)==1){%>
-				<td><a href="<%=url %>/qna/qnaselect.jsp?num=<%=dto.getQnum()%>&pageNum=<%=currentPage%>">
+				<td>
+				<a href="<%=url %>/index.jsp?main=qna/qnaselect.jsp?num=<%=dto.getQnum()%>&pageNum=<%=currentPage%>">
 				<%=dto.getSubject() %></a></td>
 			<%}else{%>
 				<td>비밀글 입니다</td>
