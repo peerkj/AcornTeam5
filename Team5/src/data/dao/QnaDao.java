@@ -76,7 +76,7 @@ public class QnaDao {
 		Connection conn=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
-		String sql="select * from client where id=? order by qwriteday desc";
+		String sql="select * from qna where id=? order by qwriteday desc";
 		conn=db.getConnection();
 		try {
 			pstmt=conn.prepareStatement(sql);
