@@ -5,30 +5,66 @@ import java.sql.Timestamp;
 public class ReservationDto {
 
 	private String resnum;
-	private Timestamp startday;
-	private Timestamp endday;
+	private String startday;
+	private String endday;
 	private String pcount;
 	private String id;
 	private String rnum;
+	private String name;
+	private String hp;
+	private String email;
+	private String price;
+	private String additional;
 	
+	public String getStartday() {
+		return startday;
+	}
+	public void setStartday(String startday) {
+		this.startday = startday;
+	}
+	public String getEndday() {
+		return endday;
+	}
+	public void setEndday(String endday) {
+		this.endday = endday;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getHp() {
+		return hp;
+	}
+	public void setHp(String hp) {
+		this.hp = hp;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getPrice() {
+		return price;
+	}
+	public void setPrice(String price) {
+		this.price = price;
+	}
+	public String getAdditional() {
+		return additional;
+	}
+	public void setAdditional(String additional) {
+		this.additional = additional;
+	}
 	public String getResnum() {
 		return resnum;
 	}
 	public void setResnum(String resnum) {
 		this.resnum = resnum;
 	}
-	public Timestamp getStartday() {
-		return startday;
-	}
-	public void setStartday(Timestamp startday) {
-		this.startday = startday;
-	}
-	public Timestamp getEndday() {
-		return endday;
-	}
-	public void setEndday(Timestamp endday) {
-		this.endday = endday;
-	}
+	
 	public String getPcount() {
 		return pcount;
 	}

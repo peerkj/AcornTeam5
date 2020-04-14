@@ -78,19 +78,19 @@ public class ClientDao {
 			rs=pstmt.executeQuery();
 			if(rs.next()) {
 				if(rs.getString("pass").equals(pass)) {
-					return 1;//�씪移�
+					return 1;//
 				}else {
-					return 0;//鍮꾨�踰덊샇 遺덉씪移�		
+					return 0;//	
 				}
 			}
-			return -1;//�븘�씠�뵒媛� �뾾�쓬
+			return -1;//
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			db.dbClose(rs, pstmt, conn);
 		}
-		return -2;//db�삤瑜�
+		return -2;//
 	}
 	
 	public List<ClientDto> getAllClientList(){
@@ -123,7 +123,8 @@ public class ClientDao {
 		}
 		return list;
 	}
-	//�븘�씠�뵒 �엯�젰�븯硫� �쉶�썝�젙蹂� 異쒕젰
+	
+	//
 	public ClientDto getClientData(String id) {
 		Connection conn=null;
 		PreparedStatement pstmt=null;

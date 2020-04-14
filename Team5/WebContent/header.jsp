@@ -11,7 +11,7 @@ String url=request.getContextPath();
 %>
 <link rel="stylesheet" href="<%=url%>/css/style_header.css">
 <style type="text/css">
-#logout,#join,#login,#home:hover{
+#mypage,#logout,#join,#login,#home:hover{
 	cursor: pointer;
 }
 </style>
@@ -32,6 +32,9 @@ $(function(){
 	});
 	$("#logout").click(function() {
 		location.href="login/logoutaction.jsp";		
+	});
+	$("#mypage").click(function() {
+		location.href="index.jsp?main=mypage/mypage.jsp";		
 	});
 });
 </script>
@@ -71,7 +74,7 @@ $(function(){
 	</li>
 	<li class="mainitem"><a href="index.jsp?main=service/servicepage.jsp">SERVICE</a></li>
 	<li class="mainitem"><a>INFORMATION</a></li>
-	<li class="mainitem"><a>RESERVATION</a></li>
+	<li class="mainitem"><a href="index.jsp?main=rv/calendar.jsp">RESERVATION</a></li>
 	<li class="mainitem"><a href="index.jsp?main=qna/qnalist.jsp">Q&A</a></li>
 </ul>
 </body>
