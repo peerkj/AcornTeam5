@@ -50,6 +50,38 @@
 		});
 	});
 </script>
+<style type="text/css">
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&display=swap');
+body{
+	font-family: 'Noto Sans KR', sans-serif;
+}
+.qnaseltb {
+	margin: 10px auto 40px;
+	width: 800px;
+	border-collapse: collapse;
+}
+th{
+	background-color: #ffe5bd;
+	width: 100px;
+}
+th,td{
+	padding: 10px 20px;
+}  
+.content{
+	width: 500px;
+	height: 300px;
+	font-size: 12pt;
+}
+.btn {
+    width: 100px;
+    padding: 10px;
+    color: #fff;
+    background-color: #faa727;
+    border-radius: 10px;
+    border: none;
+}
+
+</style>
 </head>
 <%
 	String num = request.getParameter("num");
@@ -68,7 +100,7 @@
 %>
 <body>
 	<input type="hidden" id="url" url="<%=url%>">
-	<table>
+	<table class="qnaseltb">
 		<caption><b>내용보기</b></caption>
 		<tr>
 			<th>작성자</th>
@@ -83,7 +115,8 @@
 			<td colspan="2"><%=dto.getSubject() %></td>
 		</tr>
 		<tr>
-			<td colspan="3"><pre><%=dto.getContent() %></pre></td>
+			<th>  </th>
+			<td colspan="2" class="content"><pre><%=dto.getContent() %></pre></td>
 		</tr>
 		<%
 		adto=adb.getAnswer(dto.getQnum());
@@ -108,7 +141,7 @@
 			<td colspan="3">
 				<%
 				if(dto.getId().equals(id)){%>
-					<button type="button" id="del" num="<%=num%>" pageNum="<%=pageNum%>">
+					<button type="button" class="btn del" id="del" num="<%=num%>" pageNum="<%=pageNum%>">
 				삭제</button>
 				<%}
 				if(cdb.checkManage(id)==1&&adto==null){%>
@@ -116,7 +149,7 @@
 				답변</button>
 				<%}
 				%>				
-				<button type="button" id="list" pageNum="<%=pageNum%>">
+				<button type="button" class="btn list" id="list" pageNum="<%=pageNum%>">
 				목록으로</button>
 			</td>
 		</tr>
