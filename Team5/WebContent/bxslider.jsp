@@ -54,10 +54,10 @@ $(function(){
         <!-- 두번째 이미지 -->
         <li>
             <div class="main-image main-image02">
-                <div class="main-text-box">
-                    <p class="main-text text-large">두번째 이미지</p>
-                    <p class="main-text">두번째 이미지가 보입니다</p>
-                </div>
+                <!-- <div class="main-text-box">
+                    <p class="main-text text-large"></p>
+                    <p class="main-text"></p>
+                </div> -->
             </div>
         </li>
         <!-- //두번째 이미지 -->
@@ -65,18 +65,18 @@ $(function(){
         <!-- 세번째 이미지 -->
         <li>
             <div class="main-image main-image03">
-                <div class="main-text-box">
-                    <p class="main-text text-large">세번째 이미지</p>
-                </div>
+                <!-- <div class="main-text-box">
+                    <p class="main-text text-large"></p>
+                </div> -->
             </div>
         </li>
         <!-- //세번째 이미지 -->
         <!-- 네번째 이미지 -->
         <li>
             <div class="main-image main-image04">
-                <div class="main-text-box">
+                <!-- <div class="main-text-box">
                     <p class="main-text text-large">네번째 이미지</p>
-                </div>
+                </div> -->
             </div>
         </li>
         <!-- //네번째 이미지 -->
