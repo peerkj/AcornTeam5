@@ -15,6 +15,14 @@
 	String url=request.getContextPath();
 %>
 <link rel="stylesheet" href="<%=url%>/css/style_qnalist.css">
+<style type="text/css">
+#write{
+	cursor: pointer;
+}
+#answer_color{
+	color: #ff9b4f;
+}
+</style>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <script type="text/javascript">
 	$(function(){
@@ -56,17 +64,19 @@
 <body>
 <input type="hidden" id="url" url="<%=url%>">
 <div class="qnaimg">
-		<div class="qnaback"><span class="qnatext">Q&A</span></div>
+	<div class="qnaback">
+		<span class="qnatext">Q&A</span>
+	</div>
 </div>
 
 <button type="button" id="write" check="<%=check%>">글쓰기</button>
 <table class="qnatb">
 	<tr bgcolor="#ffe5bd">
-		<th>답변여부</th>
-		<th>제목</th>
-		<th>작성자</th> 
-		<th>작성일</th>
-		<th>조회수</th>
+		<th style="width:100px;">답변여부</th>
+		<th style="width:500px;">제목</th>
+		<th style="width:150px;">작성자</th> 
+		<th style="width:150px;">작성일</th>
+		<th style="width:100px;">조회수</th>
 	</tr>
 <%if(totalCount==0){%>
 		<tr>
@@ -82,7 +92,7 @@ for(QnaDto dto:list){%>
 			if(db.getAnswer(dto.getQnum())){%>
 				답변완료
 			<%}else{%>
-				답변대기
+				<span id="answer_color">답변대기</span>
 			<%}%>
 			</td>
 			<%if(dto.getSecret().equals("0")||dto.getId().equals(id)||cdb.checkManage(id)==1){%>
