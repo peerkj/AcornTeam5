@@ -10,11 +10,14 @@
 body{
 	font-family: 'Noto Sans KR', serif;
 }
+body::-webkit-scrollbar {
+	display: none;
+}
 .contentbody{
 	height: 600px;
 }
 .alltb{
-	margin-top: 100px;
+	margin-top: 45px;
 }
 .qnatb{
 	margin: 0 auto;
