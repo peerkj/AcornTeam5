@@ -35,7 +35,7 @@
 					if(eql==0)
 						alert("비밀번호가 일치하지 않습니다");
 					else
-						location.href="qnalist.jsp?pageNum="+pageNum;
+						location.href=url+"/index.jsp?main=qna/qnalist.jsp?pageNum="+pageNum;
 				}
 			});
 		});
