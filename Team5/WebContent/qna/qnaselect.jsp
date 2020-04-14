@@ -99,11 +99,11 @@ th,td{
 	AnswerDto adto = new AnswerDto();
 	AnswerDao adb = new AnswerDao();
 %>
-<body>
+<body style="background-color: rgb(252, 240, 215, 0.2);">
 	<input type="hidden" id="url" url="<%=url%>">
-	<div style="margin-top: 100px;">
+	<div style="margin-top: 50px;background-color: rgb(252, 240, 215, 0.2);">
 		<table class="qnaseltb">
-			<caption><b style="font-size: 20pt;">내용보기</b></caption>
+			<caption><b style="font-size: 20pt;">내용 보기</b></caption>
 			<tr>
 				<th>작성자</th>
 				<td><%=dto.getId() %></td>
@@ -169,9 +169,7 @@ th,td{
 						</form>
 					</td>
 				</tr>
-			<%}%>
-			
-			
+			<%}%>	
 		</table>
 	</div>
 </body>
