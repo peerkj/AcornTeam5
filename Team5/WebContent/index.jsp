@@ -13,17 +13,17 @@ String url=request.getContextPath();
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <style type="text/css">
 div#header{/* 
-	    position:fixed;
-	    width:100%; */
-	    background-color: white;
-	}
+	position:fixed;
+	width:100%; */
+	background-color: white;
+}
 
 .act{
 	position: fixed;
 	top: 0;
 }
 #footer{
-	height: 80px;
+	height: 150px;
 	bottom: 0;
 	position: relative;
 }
