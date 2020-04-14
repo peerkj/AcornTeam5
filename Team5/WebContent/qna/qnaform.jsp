@@ -22,7 +22,7 @@ body::-webkit-scrollbar {
 .qnatb{
 	margin: 0 auto;
 	border-collapse: collapse;
-	width: 800px;
+	width: 800px; 
 }
 th{
 	background-color: #ffe5bd;
@@ -57,11 +57,11 @@ button{
 	String id = (String)session.getAttribute("id");
 	String url = request.getContextPath();
 %>
-<body>
+<body style="background-color: rgb(252, 240, 215, 0.2);">
 <div class="contentbody">
 <form action="<%=url %>/qna/qinsertaction.jsp" method="post">
 	<input type="hidden" name="id" value="<%=id%>">
-	<div class="alltb">
+	<div class="alltb" style="background-color: rgb(252, 240, 215, 0.2);">
 	<table class="qnatb">
 		<caption><b style="font-weight: 700;font-size: 20pt;">질문하기</b></caption>	
 		<tr>
