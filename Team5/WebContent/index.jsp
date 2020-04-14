@@ -20,7 +20,7 @@ div#header{/*
 
 .act{
 	position: fixed; 
-	top: 0;
+	top: 0; 
 }
 #footer{
 	height: 150px;
