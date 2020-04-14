@@ -17,7 +17,7 @@
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <script type="text/javascript">
 	$(function(){
-		var url = $("#url").attr("url");
+		var url = $("#url").attr("url"); 
 		$("#ansform").hide();
 		
 		$("#del").click(function() {

@@ -88,10 +88,10 @@
 }
 .dropouter {
 	position: absolute;
-	top: 88px;
+	top: 88px;  
 	left: 30px;
 	z-index: 9999;
-	display: none;
+	display: none; 
 	background:#fff;
 	width:90px;
 }

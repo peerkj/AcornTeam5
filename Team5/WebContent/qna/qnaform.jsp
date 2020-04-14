@@ -22,7 +22,7 @@ body::-webkit-scrollbar {
 .qnatb{
 	margin: 0 auto;
 	border-collapse: collapse;
-	width: 800px;
+	width: 800px; 
 }
 th{
 	background-color: #ffe5bd;

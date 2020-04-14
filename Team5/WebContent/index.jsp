@@ -19,7 +19,7 @@ div#header{/*
 }
 
 .act{
-	position: fixed;
+	position: fixed; 
 	top: 0;
 }
 #footer{
