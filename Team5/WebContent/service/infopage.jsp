@@ -15,7 +15,7 @@ body, html {
 	height: 100%;
 }
 .info1,.info2{
-	margin-left: 550px;
+	margin-left: 560px;	
 }
 .mapbox{
 	padding-bottom: 30px;
@@ -56,6 +56,11 @@ body, html {
 	line-height: 400px;
 	height: 400px;
 }
+#line1{
+	size: 1;
+	width: 800px;
+	margin-left: 560px;
+}
 
 </style>
 </head>
@@ -81,7 +86,8 @@ body, html {
 
 오늘도 찾아주셔서 고맙습니다.
 	</pre>
-</div>
+</div><br>
+<hr id="line1" color="e8ebeb">
 <div class="info2">	
 	<div id="title">오시는 길</div><br>
 	<div id="addr">주소 : 제주특별자치도 제주시 구좌읍 해맞이해안로 474</div><br>
