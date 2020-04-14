@@ -11,8 +11,12 @@
 	margin: 0;
 	padding: 0;
 }
+
 body, html {
 	height: 100%;
+}
+.contentbody{
+	padding-bottom: 80px;
 }
 .info1,.info2{
 	margin-left: 560px;	
@@ -65,6 +69,7 @@ body, html {
 </style>
 </head>
 <body>
+<div class="contentbody">
 <div class="hd_img">
 	<div style="background-color: rgba(0, 0, 0, 0.1);">
 		<div class="img_title">INFORMATION</div>
@@ -103,6 +108,7 @@ body, html {
 			var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
 		</script>
 	</div>
+</div>
 </div>
 </body>
 </html>

@@ -11,7 +11,8 @@
     color: #c0c1c1;
     font-size: 10pt;
     text-align: center;
-    margin-bottom: 10px;
+    height: 80px;
+  	line-height: 80px;
 }
 #mainlink{
 	cursor: pointer;

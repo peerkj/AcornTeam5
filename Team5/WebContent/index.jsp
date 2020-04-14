@@ -22,6 +22,11 @@ div#header{/*
 	position: fixed;
 	top: 0;
 }
+#footer{
+	height: 80px;
+	bottom: 0;
+	position: relative;
+}
 </style>
 <script type="text/javascript">
 $( document ).ready( function() {
