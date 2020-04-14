@@ -6,29 +6,35 @@
 <meta charset="UTF-8">
 <title>SERVICE</title>
 <style type="text/css">
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;700&display=swap');
 html,body{ 
 	margin:0; 
 	padding:0; 
 	width:100%; 
 	height:100%;
 	z-index: -999;
+	font-family: 'Noto Sans KR', sans-serif;
+	font-weight: 700;
 }
   
 .box{ 
 	width:100%; 
-	height: 100%;
+	height: 1100px;
 	position:relative; 
 	color:#ffffff; 
 	font-size:24pt;    
 	-ms-overflow-style: none;  
 }
-/* body::-webkit-scrollbar {
+.b1{
+	height: 800px;
+}
+body::-webkit-scrollbar {
 	display: none;
-} */
+}
   
 .full_image{
 	width: 100%;
-	height: 100vh;
+	height: 55vh;
 	padding: 310px 0px; 
 	background-size: cover;     
 }
@@ -37,9 +43,15 @@ html,body{
 	position: absolute;
 	height: 80px;
 	width: 100%;
-	background-color: rgba(0, 0, 0, 0.3);                                                                 
+	background-color: rgba(255, 255, 255, 0.2);                                                                 
 	z-index:1;
 	padding: 70px 0px;
+}
+.tb1{
+	top: 200px;
+}
+.tb2{
+	top: 460px;
 }
 .service_font{
 	font-size: 50px; 
@@ -94,13 +106,7 @@ html,body{
                             $(".service_font_mt").fadeIn(1500);
                         }catch(e){}
                     }
-                    if ($(elmSelecter).next() == undefined){
-                    	try {
-							moveTop = $("#footer").offset().bottom;
-						} catch (e) {
-							// TODO: handle exception
-						}
-                    }
+                   
                 // 마우스휠을 아래에서 위로
                 } else {
                     if ($(elmSelecter).prev() != undefined) {
@@ -128,45 +134,45 @@ html,body{
 </script>
 </head>
 <body>
-    <div class="box">
-	<div class="full_image" style="background-image: url('image/7.jpg');">
-		<div class="textbox">
-			<div class="service_font">해변</div>
-			<div class="service_font_mt">해변입니다</div>
+    <div class="box b1">
+	<div class="full_image" style="background-image: url('image/s1.jpg');">
+		<div class="textbox tb1">
+			<div class="service_font">서비스1</div>
+			<div class="service_font_mt">서비스1입니다</div>
 		</div>
 	</div>
 </div>
 <div class="box">
-	<div class="full_image" style="background-image: url('image/8.jpg');">
-		<div class="textbox">
-			<div class="service_font">한라봉</div>
-			<div class="service_font_mt">한라봉입니다</div>
+	<div class="full_image" style="background-image: url('image/s2.jpg');">
+		<div class="textbox tb2">
+			<div class="service_font">서비스2</div>
+			<div class="service_font_mt">서비스2입니다</div>
 		</div>	
 	</div>
 </div>
 <div class="box">
-	<div class="full_image" style="background-image: url('image/9.jpg');">
+	<div class="full_image" style="background-image: url('image/s3.jpg');">
 		<div class="textbox">
-			<div class="service_font">하늘</div>
-			<div class="service_font_mt">하늘입니다</div>
+			<div class="service_font">서비스3</div>
+			<div class="service_font_mt">서비스3입니다</div>
 		</div>
 	</div>
 </div>
 <div class="box">
-	<div class="full_image" style="background-image: url('image/10.jpg');">
+	<div class="full_image" style="background-image: url('image/s4.jpg');">
 		<div class="textbox">
-			<div class="service_font">바다</div>
-			<div class="service_font_mt">바다입니다</div>
+			<div class="service_font">서비스4</div>
+			<div class="service_font_mt">서비스4입니다</div>
 		</div>
 	</div>
 </div>
-<div class="box">
+<!-- <div class="box">
 	<div class="full_image" style="background-image: url('image/11.jpg');">
 		<div class="textbox">
 			<div class="service_font">말</div>
 			<div class="service_font_mt">말입니다</div>
 		</div>
 	</div>
-</div>
+</div> -->
 </body>
 </html>
