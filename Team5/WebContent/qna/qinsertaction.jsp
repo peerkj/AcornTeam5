@@ -26,5 +26,5 @@
 		dto.setSecret("1");
 	
 	db.insertQna(dto);
-	response.sendRedirect(url+"/qna/qnalist.jsp");
+	response.sendRedirect(url+"/index.jsp?main=qna/qnalist.jsp");
 %>
