@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&display=swap');
+body{
+	font-family: 'Noto Sans KR', sans-serif;
+}
+.qnatb{ 
+	width: 1000px;
+	border-collapse: collapse;	
+	font-weight: 400;
+	margin: 10px auto 0;
+}
+.qnatb th,.qnatb td{
+	padding: 10px 20px;
+	text-align: center;
+}
+.qnatb td:nth-child(2){
+	text-align: left;
+}
+.qnatb th{
+	color: #333;
+}
+.qnaimg{
+	background: url('../image/qnapage.jpg');
+	background-size: cover;
+	width: 100%;
+	margin-bottom: 30px;
+}
+.qnaback{
+	background-color:  rgba(0, 0, 0, 0.1);
+	line-height: 400px;
+	height: 400px;
+}
+.qnatext{
+	margin-left: 45%;
+	font-weight: 700;
+	font-size: 50px;
+	text-align: center;	
+	color: #fff;
+}
+#write{
+	width: 100px;
+    padding: 10px;
+    border-radius: 15px;
+    color: #fff;
+    background-color: #faa727;
+    border: none;
+	margin-left: 1350px;
+}
+.pnum{
+	margin-top: 15px;
+	margin-bottom: 30px;
+}

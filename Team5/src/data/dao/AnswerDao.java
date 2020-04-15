@@ -16,7 +16,7 @@ public class AnswerDao {
 		Connection conn=null;
 		PreparedStatement pstmt=null;
 		//anum, content, writeday, qnum
-		String sql="insert into qna values (seq_semi.nextval,?,sysdate,?)";
+		String sql="insert into answer values (seq_semi.nextval,?,sysdate,?)";
 		conn=db.getConnection();
 		try {
 			pstmt=conn.prepareStatement(sql);

@@ -16,7 +16,7 @@ $(function(){
     $('.bxslider').bxSlider({
         auto: true, // 자동으로 애니메이션 시작 여부 (true면 자동 슬라이드, false는 자동 슬라이드 안함)
         speed: 200, // 애니메이션 속도
-        pause: 2000, // 애니메이션 유지 시간 (1000은 1초)
+        pause: 4000, // 애니메이션 유지 시간 (1000은 1초)
         autoControls: false, // 시작 및 중지버튼 여부 (true면 보여짐, false는 안보임)
         pager: true, // 페이지 표시 여부 (true면 보여짐, false는 안보임)
         mode: 'horizontal', // 슬라이드 모드 ('fade', 'horizontal', 'vertical' 이 있음)
@@ -29,12 +29,14 @@ $(function(){
     position: relative;
     width: 100%;
     height: 700px;
-    background-image: url(image/01.jpg);
+    background-image: url(image/main1.jpg);
     background-repeat: no-repeat;
     background-size: cover; /* contain:비율에 맞게 | cover: 비율무시  */    
 }
-.main-image02 { background-image: url(image/02.jpg); }
-.main-image03 { background-image: url(image/03.jpg); }
+.main-image02 { background-image: url(image/main2.jpg); }
+.main-image03 { background-image: url(image/main3.jpg); }
+.main-image04 { background-image: url(image/main4.jpg); }
+
 </style>
 </head>
 <body>
@@ -69,6 +71,15 @@ $(function(){
             </div>
         </li>
         <!-- //세번째 이미지 -->
+        <!-- 네번째 이미지 -->
+        <li>
+            <div class="main-image main-image04">
+                <div class="main-text-box">
+                    <p class="main-text text-large">네번째 이미지</p>
+                </div>
+            </div>
+        </li>
+        <!-- //네번째 이미지 -->
     </ul>
 </div>
 </body>

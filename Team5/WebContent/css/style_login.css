@@ -75,3 +75,11 @@
 	  color: #fc9740;
 	  text-decoration: none;
 	}
+	
+	.copyright{
+      position: absolute;
+      color: #c0c1c1;
+      font-size: 9pt;
+      bottom: 10px;
+      left: 260px;
+   }
