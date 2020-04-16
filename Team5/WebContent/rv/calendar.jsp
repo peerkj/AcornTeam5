@@ -59,11 +59,24 @@
 	}
 %>
 <style type="text/css">
+table{
+	margin: 0 auto;
+}
 td {
 	width: 150px;
 	height: 150px;
 }
-
+.calsub td{
+	font-weight: 700;
+	font-size: 17pt;
+}
+.calcon thead tr:first-child td{
+	height: 80px;
+	font-weight: 700;
+}
+.calcon tbody font{
+	padding: 5px 0 0 5px;
+}
 #v {
 	border: 2px solid red;
 	position: absolute;
@@ -75,7 +88,6 @@ td {
 </style>
 <script type="text/javascript">
 	$(function() {
-
 		$(document).on("mousemove","a.show_price",function(e) {
 					$("#v").css({
 						"top" : e.pageY + 8,
@@ -107,30 +119,30 @@ td {
 </head>
 <body>
 	<!-- 날짜 네비게이션 -->
-	<table width="80%">
+	<table class="calsub" width="80%">
 		<tr>
 			<td align="center">
 				<%
 					if (month > today_month) {
 						if (month > 0) {
-				%> <a
-				href="<%=request.getContextPath()%>/index.jsp?main=rv/calendar.jsp?year=<%=year%>&month=<%=month - 1%>">&lt;</a>
+				%> <a style="display: inline-block;"
+				href="<%=request.getContextPath()%>/index.jsp?main=rv/calendar.jsp?year=<%=year%>&month=<%=month - 1%>">&lt;&nbsp;&nbsp;</a>
 				<%
 					} else {
-				%> <a
-				href="<%=request.getContextPath()%>/index.jsp?main=rv/calendar.jsp?year=<%=year - 1%>&month=11">&lt;</a>
+				%> <a style="display: inline-block;"
+				href="<%=request.getContextPath()%>/index.jsp?main=rv/calendar.jsp?year=<%=year - 1%>&month=11">&lt;&nbsp;&nbsp;</a>
 				<%
 					}
 					}
 				%> <%=year%>년 <%=month + 1%>월 <%
  	if (today_month + 1 >= month) {
  		if (month < 11) {
- %> <a
-				href="<%=request.getContextPath()%>/index.jsp?main=rv/calendar.jsp?year=<%=year%>&month=<%=month + 1%>">&gt;</a>
+ %> <a style="display: inline-block;"
+				href="<%=request.getContextPath()%>/index.jsp?main=rv/calendar.jsp?year=<%=year%>&month=<%=month + 1%>">&nbsp;&nbsp;&gt;</a>
 				<%
 					} else {
-				%> <a
-				href="<%=request.getContextPath()%>/index.jsp?main=rv/calendar.jsp?year=<%=year + 1%>&month=0">&gt;</a>
+				%> <a style="display: inline-block;"
+				href="<%=request.getContextPath()%>/index.jsp?main=rv/calendar.jsp?year=<%=year + 1%>&month=0">&nbsp;&nbsp;&gt;</a>
 				<%
 					}
 					}
@@ -138,7 +150,7 @@ td {
 			</td>
 		</tr>
 	</table>
-	<table width="80%">
+	<table class="calcon" width="80%">
 		<thead>
 			<tr align="center">
 				<td><font color="red">일</font></td>
