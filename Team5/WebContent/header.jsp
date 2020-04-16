@@ -34,7 +34,10 @@ $(function(){
       location.href="register/registerform.jsp";      
    });
    $("#logout").click(function() {
-      location.href="login/logoutaction.jsp";      
+      location.href="login/logoutaction.jsp";   
+   });
+   $("#mypage").click(function(){
+	  location.href="<%=url%>/index.jsp?main=mypage/mypage.jsp";   	   
    });
 });
 
@@ -58,8 +61,8 @@ $(function(){
    <li id="login">login</li> 
    <li id="join">join</li>
    <%}else{%>
-   <li id="mypage"><b><%=name%> 님</b>&nbsp;&nbsp;&nbsp;<span id="mypage1">마이페이지</span></li>
-   <li id="logout">로그아웃</li>
+   <li id="mypage"><b><%=name%> 님</b>&nbsp;&nbsp;&nbsp;<span id="mypage1">mypage</span></li>
+   <li id="logout">logout</li>
    <%}%>
 </ul>
 <ul class="mainmenu">

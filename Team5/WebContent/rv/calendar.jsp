@@ -13,6 +13,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <%
+	String id = (String) session.getAttribute("id");
 	//넘기기위해,,+DB에서 X월 정보 얻기위해?
 	String strYear = request.getParameter("year");
 	String strMonth = request.getParameter("month");
@@ -36,27 +37,26 @@
 	int endDay = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
 	int start = cal.get(Calendar.DAY_OF_WEEK);
 	int newLine = 0;
-	
+
 	RoomDao roomdao = new RoomDao();
 	List<RoomDto> roomlist = roomdao.getAllRoom();
 	//년-월 형태
-	String s_month=String.format("%02d",month+1);
-	String selectDay=year+"-"+s_month;
+	String s_month = String.format("%02d", month + 1);
+	String selectDay = year + "-" + s_month;
 	//qnum 리스트 얻기
-	List<String> rnumList=roomdao.getAllRnum();
+	List<String> rnumList = roomdao.getAllRnum();
 	//qnum, 달 넣고 set 받기
-	int[][] soldOut=new int[rnumList.size()][endDay];
-	for(int i=0;i<rnumList.size();i++){
-		String rnum=rnumList.get(i);
-		Set<Integer> set=roomdao.check(rnum, selectDay);
-		for(int j=0;j<endDay;j++){
-			if(set.contains(j+1))
-				soldOut[i][j]=-1;
+	int[][] soldOut = new int[rnumList.size()][endDay];
+	for (int i = 0; i < rnumList.size(); i++) {
+		String rnum = rnumList.get(i);
+		Set<Integer> set = roomdao.check(rnum, selectDay);
+		for (int j = 0; j < endDay; j++) {
+			if (set.contains(j + 1))
+				soldOut[i][j] = -1;
 			else
-				soldOut[i][j]=0;
+				soldOut[i][j] = 0;
 		}
 	}
-	
 %>
 <style type="text/css">
 td {
@@ -105,22 +105,28 @@ td {
 				<%
 					if (month > today_month) {
 						if (month > 0) {
-				%> <a href="<%=request.getContextPath()%>/index.jsp?main=rv/calendar.jsp?year=<%=year%>&month=<%=month - 1%>">&lt;</a>
+				%> <a
+				href="<%=request.getContextPath()%>/index.jsp?main=rv/calendar.jsp?year=<%=year%>&month=<%=month - 1%>">&lt;</a>
 				<%
 					} else {
-				%> <a href="<%=request.getContextPath()%>/index.jsp?main=rv/calendar.jsp?year=<%=year - 1%>&month=11">&lt;</a> <%
- 	}
- 	}
- %> <%=year%>년 <%=month + 1%>월 <%
-					if (today_month + 1 >= month) {
-						if (month < 11) {
-				%> <a href="<%=request.getContextPath()%>/index.jsp?main=rv/calendar.jsp?year=<%=year%>&month=<%=month + 1%>">&gt;</a>
+				%> <a
+				href="<%=request.getContextPath()%>/index.jsp?main=rv/calendar.jsp?year=<%=year - 1%>&month=11">&lt;</a>
+				<%
+					}
+					}
+				%> <%=year%>년 <%=month + 1%>월 <%
+ 	if (today_month + 1 >= month) {
+ 		if (month < 11) {
+ %> <a
+				href="<%=request.getContextPath()%>/index.jsp?main=rv/calendar.jsp?year=<%=year%>&month=<%=month + 1%>">&gt;</a>
 				<%
 					} else {
-				%> <a href="<%=request.getContextPath()%>/index.jsp?main=rv/calendar.jsp?year=<%=year + 1%>&month=0">&gt;</a> <%
- 	}
- 	}
- %>
+				%> <a
+				href="<%=request.getContextPath()%>/index.jsp?main=rv/calendar.jsp?year=<%=year + 1%>&month=0">&gt;</a>
+				<%
+					}
+					}
+				%>
 			</td>
 		</tr>
 	</table>
@@ -144,7 +150,7 @@ td {
 						newLine++;
 					}
 					for (int i = 1; i <= endDay; i++) {
-						
+
 						String color = "";
 						if (newLine == 0)
 							color = "RED";
@@ -157,18 +163,21 @@ td {
 							backColor = "PINK";
 						out.println("<td bgcolor='" + backColor + "'>");
 				%>
-				<font color="<%=color%>"><%=i%></font><br>
+				<font color="<%=color%>"><%=i%></font>
+				<br>
 				<%
-				for (int j=0;j<roomlist.size();j++) {					
-					if(i<date)
-						continue;
-					if(soldOut[j][i-1]==0){
+					for (int j = 0; j < roomlist.size(); j++) {
+							if (i < date)
+								continue;
+							if (soldOut[j][i - 1] == 0) {
 				%>
-				<a href="<%=request.getContextPath()%>/index.jsp?main=rv/reservation.jsp?rnum=<%=roomlist.get(j).getRnum()%>&year=<%=year%>&month=<%=month%>&day=<%=i%>" class="show_price" price="<%=roomlist.get(j).getPrice()%>"><%=roomlist.get(j).getRname()%></a><br>
-				<%	
+				<a id="need" onclick="need()" href="<%=request.getContextPath()%>/index.jsp?main=rv/reservation.jsp?rnum=<%=roomlist.get(j).getRnum()%>&year=<%=year%>&month=<%=month%>&day=<%=i%>"
+					class="show_price" price="<%=roomlist.get(j).getPrice()%>"><%=roomlist.get(j).getRname()%></a>
+				<br>
+				<%
 					}
-				}
-					out.println("</td>");
+						}
+						out.println("</td>");
 						newLine++;
 						if (newLine == 7) {
 							out.println("</tr>");

@@ -51,7 +51,7 @@ ClientDto dto = dao.getClientData(id);
 %>
 <body>
 
-   <form action="login/updateclientaction.jsp" method="post">
+   <form action="<%=request.getContextPath()%>/mypage/updateclientaction.jsp" method="post">
       <table>
          <caption>
             <b>회원정보수정</b>

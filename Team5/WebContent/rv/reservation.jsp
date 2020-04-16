@@ -16,43 +16,43 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <%
-	int strYear=Integer.parseInt(request.getParameter("year"));
-	int strMonth=Integer.parseInt(request.getParameter("month"));
-	int strDay=Integer.parseInt(request.getParameter("day"));
-	String rnum=request.getParameter("rnum");
-	
+	int strYear = Integer.parseInt(request.getParameter("year"));
+	int strMonth = Integer.parseInt(request.getParameter("month"));
+	int strDay = Integer.parseInt(request.getParameter("day"));
+	String rnum = request.getParameter("rnum");
+	String id=(String)session.getAttribute("id");
 	Calendar cal = Calendar.getInstance();
-	cal.set(strYear,strMonth,1);
+	cal.set(strYear, strMonth, 1);
 	int startDay = cal.getMinimum(Calendar.DATE);
 	int endDay = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
 	int start = cal.get(Calendar.DAY_OF_WEEK);
 	int newLine = 0;
-	RoomDao roomdao=new RoomDao();
+	RoomDao roomdao = new RoomDao();
 	//년-월 형태
-	String sm = String.format("%02d",strMonth+1);
-	String selectDay = strYear+"-"+sm;
+	String sm = String.format("%02d", strMonth + 1);
+	String selectDay = strYear + "-" + sm;
 	//시작일 년-월 형태
-	String submit_start=selectDay+"-"+strDay;
-	
+	String submit_start = selectDay + "-" + strDay;
+
 	//예약체크
-	Set<Integer> list=roomdao.check(rnum, selectDay);
+	Set<Integer> list = roomdao.check(rnum, selectDay);
 	//rnum에 해당하는 방정보 얻기
-	RoomDto roomdto=roomdao.getRoom(rnum);
-	int roomSize=Integer.parseInt(roomdto.getAcception().trim());
+	RoomDto roomdto = roomdao.getRoom(rnum);
+	int roomSize = Integer.parseInt(roomdto.getAcception().trim());
 	//세션에 저장된 아이디로 고객 정보 얻어오기
-	ClientDao clientdao=new ClientDao();
-	ClientDto clientdto= clientdao.getClientData("peerkj");
+	ClientDao clientdao = new ClientDao();
+	ClientDto clientdto = clientdao.getClientData(id);		
+
 %>
 <style type="text/css">
-
 </style>
 <script type="text/javascript">
 $(function(){
 
 	var startday="<%=strDay%>";
 	var price="<%=roomdto.getPrice()%>";
-	$('.sel').click(function() {		
 	
+	$('.sel').click(function() {		
 		var endDay=Number.parseInt($(this).text());
 		var add=0;
 		if(startday-endDay>=0){
@@ -92,44 +92,47 @@ $(function(){
 		$("#submit_start").val('<%=submit_start%>');
 		$("#submit_end").val('<%=selectDay%>'+"-"+endDay);
 		$("#submit_rnum").val('<%=rnum%>');
-		$("#submit_price").val(price*z);
-		$("#submit_add").val(add);
-		
+					$("#submit_price").val(price * z);
+					$("#submit_add").val(add);
+
+				});
 	});
-});
-function numberWithCommas(x) {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-}
-function check(){
-	if($("#total").val()==0||$('#s option:selected').val()=='선택'){
-		alert("결제정보를 모두 입력해주세요.");
-		return false;
+	function numberWithCommas(x) {
+		return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	}
-	elas
+	function check() {
+		if ($("#total").val() == 0 || $('#s option:selected').val() == '선택') {
+			alert("결제정보를 모두 입력해주세요.");
+			return false;
+		}
+		elas
 		return true;
-}
+	}
 </script>
 <style type="text/css">
-.sel:hover{
+.sel:hover {
 	cursor: pointer;
 }
-table{
-border: 1px solid gray;
-}
-td{
-	width: 100px;
-}
-#info{
-height:370px;
-width:540px;
-border: 1px solid gray;
+
+table {
+	border: 1px solid gray;
 }
 
+td {
+	width: 100px;
+}
+
+#info {
+	height: 370px;
+	width: 540px;
+	border: 1px solid gray;
+}
 </style>
 </head>
-<body>	
+<body>
 	<table>
-		<caption><%=strYear%>년<%=strMonth+1%>월</caption>
+		<caption><%=strYear%>년<%=strMonth + 1%>월
+		</caption>
 		<thead>
 			<tr align="center">
 				<td><font color="red">일</font></td>
@@ -156,41 +159,40 @@ border: 1px solid gray;
 							color = "BLUE";
 						else
 							color = "BLACK";
-						String backColor = "#EFEFEF";		
+						String backColor = "#EFEFEF";
 						if (i == strDay)
 							backColor = "#FFDF24";
-						if(list.contains(i)){
-						%>
-						<td style="color:white" day="<%=newLine%>" bgcolor="<%=backColor%>" date="<%=i%>"
-						class="sel" soldout="1"><%=i%>
-						<%	
-						}else{
-						%>
-						<td style="color:<%=color%>" day="<%=newLine%>" bgcolor="<%=backColor%>" date="<%=i%>"
-						class="sel"><%=i%>
-						<%}
-						
-					out.println("<br></td>");
-						newLine++;
-						if (newLine == 7) {
-							out.println("</tr>");
-							if (i <= endDay) {
-								out.println("<tr>");
-							}
-							newLine = 0;
-						}
-					}
-					while (newLine > 0 && newLine < 7) {
-						out.println("<td>&nbsp;</td>");
-						newLine++;
-					}
+						if (list.contains(i)) {
 				%>
+				<td style="color: white" day="<%=newLine%>" bgcolor="<%=backColor%>"
+					date="<%=i%>" class="sel" soldout="1"><%=i%> <%
+ 	} else {
+ %>
+				<td style="color:<%=color%>" day="<%=newLine%>"
+					bgcolor="<%=backColor%>" date="<%=i%>" class="sel"><%=i%> <%
+ 	}
+
+ 		out.println("<br></td>");
+ 		newLine++;
+ 		if (newLine == 7) {
+ 			out.println("</tr>");
+ 			if (i <= endDay) {
+ 				out.println("<tr>");
+ 			}
+ 			newLine = 0;
+ 		}
+ 	}
+ 	while (newLine > 0 && newLine < 7) {
+ 		out.println("<td>&nbsp;</td>");
+ 		newLine++;
+ 	}
+ %>
 			</tr>
 		</tbody>
 	</table>
 	<div id="info">
-<pre>
-선택일 :<%=strYear+"-"+strMonth+"-"+strDay%> 부터
+		<pre>
+선택일 :<%=strYear + "-" + strMonth + "-" + strDay%> 부터
 
 전화번호
 010-5181-6558
@@ -203,58 +205,66 @@ border: 1px solid gray;
 기타사항
 - 달력에서 원하시는 날짜를 선택 하시면 예약 가능한 객실정보가 보여집니다.
 </pre>
-</div>
+	</div>
 
-<form action="<%=request.getContextPath()%>/rv/iamp.jsp" onsubmit="return check();" method="post">
-<table>
-<caption>객실예약</caption>
-<thead>
-<tr>
-<th>객실명</th>
-<th>이용일</th>
-<th>인원수</th>
-<th>적용요금</th>
-<th>추가요금</th>
-<th>합계</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><%=roomdto.getRname() %></td>
-<td id="use" name="use"></td>
-<td>
-<select id="s" required="required" name="pcount">
-	<option selected disabled hidden>선택</option>
-	<%for(int i=1;i<=roomSize;i++){ %>
-	<option><%=i%></option>
-	<%}%>
-</select>
-</td>
-<td id="price"></td>
-<td id="add"></td>
-<td id="sum"></td>
-</tr>
-</tbody>
-</table>
-<table>
-<caption>예약자정보</caption>
-<tr>
-<th>예약자명</th><td><input name="name" type="text" value="<%=clientdto.getName()%>"></td>
-</tr>
-<tr>
-<th>핸드폰</th><td><input name="hp" type="text" value="<%=clientdto.getHp()%>"></td>
-</tr>
-<tr>
-<th>이메일</th><td><input name="email" type="text" value="<%=clientdto.getEmail()%>"></td>
-</tr>
-</table>
-<input type="hidden" id="total" name="total" value="0">
-<input type="hidden" id="submit_price" name="price" value="0">
-<input type="hidden" id="submit_add" name="additional" value="0">
-<input type="hidden" id="submit_start" name="startday" value="0">
-<input type="hidden" id="submit_end" name="endday" value="0">
-<input type="hidden" id="submit_rnum" name="rnum" value="0">
-<button type="submit">결제하기</button>
-</form>
+	<form action="<%=request.getContextPath()%>/rv/iamp.jsp"
+		onsubmit="return check();" method="post">
+		<table>
+			<caption>객실예약</caption>
+			<thead>
+				<tr>
+					<th>객실명</th>
+					<th>이용일</th>
+					<th>인원수</th>
+					<th>적용요금</th>
+					<th>추가요금</th>
+					<th>합계</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><%=roomdto.getRname()%></td>
+					<td id="use" name="use"></td>
+					<td><select id="s" required="required" name="pcount">
+							<option selected disabled hidden>선택</option>
+							<%
+								for (int i = 1; i <= roomSize; i++) {
+							%>
+							<option><%=i%></option>
+							<%
+								}
+							%>
+					</select></td>
+					<td id="price"></td>
+					<td id="add"></td>
+					<td id="sum"></td>
+				</tr>
+			</tbody>
+		</table>
+		<table>
+			<caption>예약자정보</caption>
+			<tr>
+				<th>예약자명</th>
+				<td><input name="name" type="text"
+					value="<%=clientdto.getName()%>"></td>
+			</tr>
+			<tr>
+				<th>핸드폰</th>
+				<td><input name="hp" type="text" value="<%=clientdto.getHp()%>"></td>
+			</tr>
+			<tr>
+				<th>이메일</th>
+				<td><input name="email" type="text"
+					value="<%=clientdto.getEmail()%>"></td>
+			</tr>
+		</table>
+		<input type="hidden" id="total" name="total" value="0"> <input
+			type="hidden" id="submit_price" name="price" value="0"> <input
+			type="hidden" id="submit_add" name="additional" value="0"> <input
+			type="hidden" id="submit_start" name="startday" value="0"> <input
+			type="hidden" id="submit_end" name="endday" value="0"> <input
+			type="hidden" id="submit_rnum" name="rnum" value="0">
+		<button type="submit">결제하기</button>
+	</form>
 </body>
 </html>

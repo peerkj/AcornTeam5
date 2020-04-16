@@ -77,10 +77,10 @@ String id=(String)session.getAttribute("id");
     				success:function(data){
     					if(data.trim()==-1){
     						alert("실패");
-    						location.href="<%=request.getContextPath()%>/rv/calendar.jsp";
+    						location.href="<%=request.getContextPath()%>/index.jsp?main=rv/calendar.jsp";
     					}
     					else{	
-    						location.href="<%=request.getContextPath()%>/rv/successpage.jsp";
+    						location.href="<%=request.getContextPath()%>/index.jsp?main=rv/successpage.jsp";
     					}
     				}
                 });
@@ -89,7 +89,7 @@ String id=(String)session.getAttribute("id");
                 msg += '에러내용 : ' + rsp.error_msg;
                 //실패시 이동할 페이지
    
-                location.href="<%=request.getContextPath()%>/rv/calendar.jsp";
+                location.href="<%=request.getContextPath()%>/index.jsp?main=rv/calendar.jsp";
                 alert(msg);
             }
         });

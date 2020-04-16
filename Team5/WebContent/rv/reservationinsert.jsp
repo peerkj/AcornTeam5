@@ -6,16 +6,6 @@
 	request.setCharacterEncoding("utf-8");
 	
 	String id=(String)session.getAttribute("id");
-	//String id="peerkj";
-	//String name=request.getParameter("name");
-	//String email=request.getParameter("email");
-	//String hp=request.getParameter("hp");
-	//String price=request.getParameter("price");
-	//String additional=request.getParameter("additional");
-	//String startday=request.getParameter("startday");
-	//String endday=request.getParameter("endday");
-	//String pcount=request.getParameter("pcount");
-	//String rnum=request.getParameter("rnum");
 	
 	ReservationDao dao=new ReservationDao();
 	ReservationDto dto=new ReservationDto();
