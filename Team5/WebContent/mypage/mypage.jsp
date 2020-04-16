@@ -12,7 +12,7 @@
 </script>
 <style type="text/css">
 /* @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@300;600;700&display=swap'); */
-#allmypage{
+#allmypage{ 
 	width:100%;
     height:540px;
     position:relative;

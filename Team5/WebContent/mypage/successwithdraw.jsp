@@ -12,7 +12,7 @@
 	font-family: 'Noto Sans KR', serif;
 	font-weight: 400;
 	font-size: 15pt;
-	margin-left: 2px;
+	margin-left: 2px; 
 }
 #success_body button {
 	font-family: "Roboto", sans-serif;

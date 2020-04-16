@@ -3,6 +3,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+<%
+String url=request.getContextPath();
+%>
 <meta charset="UTF-8">
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <title>비밀번호 변경</title>
@@ -112,7 +115,7 @@
 <body>
 <div id="updatebody">
 	<div id="updateform">
-	<img id="logoimg" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fk.kakaocdn.net%2Fdn%2FkDN1L%2FbtqDhuX4ooQ%2FWY72cyF2e4frBUyLACEryK%2Fimg.png"><br>
+	<img id="logoimg" src="<img src="<%=url %>/image/labong.png">"><br>
 	<table id="updatepass_table"> 
 		<tr>
 			<td><span class="tabletext">현재 비밀번호</span><br>

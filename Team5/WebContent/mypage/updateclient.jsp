@@ -101,7 +101,7 @@ select {
 
 String id = (String)session.getAttribute("id");
 
-ClientDao dao=new ClientDao();
+ClientDao dao=new ClientDao(); 
 
 ClientDto dto = dao.getClientData(id);
 %>

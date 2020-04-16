@@ -6,6 +6,9 @@
 <%
 String ck=request.getParameter("ck");
 %>
+<%
+String url=request.getContextPath();
+%>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
@@ -81,7 +84,7 @@ String ck=request.getParameter("ck");
 </head>
 <body>
 <div class="checkform">
-<img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fk.kakaocdn.net%2Fdn%2FkDN1L%2FbtqDhuX4ooQ%2FWY72cyF2e4frBUyLACEryK%2Fimg.png"><br>
+<img src="<%=url %>/image/labong.png"><br>
 <span id="passtext">비밀번호를 입력하세요!</span><br>
 <input type="password" name="pass" id="pass"><br>
 <button type="button" id="submit">확인</button>
