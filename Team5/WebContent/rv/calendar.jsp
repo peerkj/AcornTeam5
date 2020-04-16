@@ -119,7 +119,7 @@ table{
 					$("#v").show()
 					var msg = $(this).attr("price");
 					$("#v").html(
-							"객실정보<br>" + "객실:" + $(this).text() + "<br>"
+							"객실 정보<br>" + "객실:" + $(this).text() + "<br>"
 									+ "가격:" + msg);
 				});
 		$(document).on("mouseout", "a.show_price", function(e) {

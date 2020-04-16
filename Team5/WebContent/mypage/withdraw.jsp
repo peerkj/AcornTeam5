@@ -47,13 +47,47 @@
 	});
 </script>
 <style type="text/css">
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;600;700&display=swap');
 #msg{
 	display: none;
+}
+#fullbox{
+	border: 1px solid #fc9740;
+	width: 400px;
+	height: 200px;
+	padding: 40px;
+	float: center;
+}
+#reason{
+	font-family: 'Noto Sans KR', sans-serif;
+	font-weight: 400;
+	font-size: 15pt;
+}
+#btn{
+	font-family: 'Noto Sans KR', sans-serif;
+    text-transform: uppercase;
+    outline: 0;
+    background: #fc9740;
+    width: 150px;
+    height: 50px;
+    border: 0;
+    margin: 20px 75px;
+    padding: 5px;
+    color: #FFFFFF;
+    font-size: 16px;
+    -webkit-transition: all 0.3 ease;
+    transition: all 0.3 ease;
+    cursor: pointer;
+    margin-top: 40px;   
+}
+#ta{
+	margin-top: 10px;
 }
 </style>
 </head>
 <body>
-탈퇴사유를 선택하세요<br>
+<div id="fullbox">
+<span id="reason">탈퇴 사유를 선택하세요</span><br>
 <select id="sel">
 	<option selected disabled hidden>선택</option>
 	<option>서비스 불만</option>
@@ -63,8 +97,9 @@
 </select>
 <br>
 <div id="msg">
-	<textarea id="ta" rows=5 cols="45" maxlength="50"></textarea>
+	<textarea id="ta" rows="3" cols="25" maxlength="50"></textarea>
 </div>
 <button id="btn">탈퇴하기</button>
+</div>
 </body>
 </html>
