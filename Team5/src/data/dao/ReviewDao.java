@@ -62,7 +62,7 @@ public class ReviewDao {
 		} finally {
 			db.dbClose(pstmt, conn);
 		}	
-		return -1; //db�삤瑜�
+		return -1; //
 	}
 	
 	//좋아요 확인

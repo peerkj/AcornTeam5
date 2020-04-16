@@ -85,10 +85,12 @@ public class ReservationDao {
 			rs=pstmt.executeQuery();
 			while(rs.next()) {
 				ReservationDto dto=new ReservationDto();
+				dto.setRnum(rs.getString("rnum"));
 				dto.setPrice(rs.getString("price"));
 				dto.setAdditional(rs.getString("additional"));
 				dto.setStartday(rs.getString("startday"));
 			    dto.setEndday(rs.getString("endday"));  
+			    list.add(dto);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -96,4 +98,49 @@ public class ReservationDao {
 		}
 		return list;
 	}
+	
+	public int getMoney(String id) {
+		Connection conn=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs= null;
+		int money=0;
+		String sql="select sum(price+additional) from reservation where id=?";
+		
+		conn=db.getConnection();
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				money=rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return money;
+	}
+	
+	public String getRoomName(String rnum) {
+	      Connection conn=null;
+	        PreparedStatement pstmt=null;
+	        ResultSet rs=null;
+	        String sql="select rname from room where rnum=?";
+	        
+	        conn=db.getConnection();
+	        try {
+	           pstmt=conn.prepareStatement(sql);
+	           pstmt.setString(1, rnum);
+	           rs=pstmt.executeQuery();
+	           if(rs.next()) {
+	              return rs.getString("rname");
+	           }
+	        } catch (SQLException e) {
+	           // TODO Auto-generated catch block
+	           e.printStackTrace();
+	        } finally {
+	           db.dbClose(rs, pstmt, conn);
+	        }
+	        return "0";
+	   }
 }

@@ -121,12 +121,44 @@ public class ClientDao {
 		Connection conn=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
-		String sql= "select a.* from (select client.*, rownum rnum from client order by id)a where rnum>=? and rnum<=?";
+		String sql= "select a.* from (select client.*, rownum rnum from client)a where rnum>=? and rnum<=?";
 		conn=db.getConnection();
 		try {
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setInt(1,start);
 			pstmt.setInt(2, end);
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				ClientDto dto=new ClientDto();
+				dto.setId(rs.getString("id"));
+				dto.setName(rs.getString("name"));
+				dto.setPass(rs.getString("pass"));
+				dto.setHp(rs.getString("hp"));
+				dto.setEmail(rs.getString("email"));
+				dto.setManager(rs.getString("manager"));				
+				list.add(dto);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			db.dbClose(rs, pstmt, conn);
+		}
+		return list;
+	}
+	
+	public List<ClientDto> getSearchList(int start,int end,String search,String content){
+		List<ClientDto> list= new ArrayList<ClientDto>();
+		Connection conn=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		String sql= "select a.* from (select client.*, rownum r from client where "+search+" like ? order by id)a where r>=? and r<=?";
+		conn=db.getConnection();
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1,"%"+content+"%");
+			pstmt.setInt(2,start);
+			pstmt.setInt(3, end);
 			rs=pstmt.executeQuery();
 			while(rs.next()) {
 				ClientDto dto=new ClientDto();
@@ -155,6 +187,28 @@ public class ClientDao {
 		conn=db.getConnection();
 		try {
 			pstmt=conn.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				return rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			db.dbClose(rs, pstmt, conn);
+		}
+		return -1;//error
+	}
+	
+	public int getSearchCount(String search,String content){
+		Connection conn=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		String sql="select count(*) from client where "+search+" like ?";
+		conn=db.getConnection();
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1,"%"+content+"%");
 			rs=pstmt.executeQuery();
 			if(rs.next()) {
 				return rs.getInt(1);
