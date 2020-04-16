@@ -116,16 +116,17 @@ public class ClientDao {
 		return -2;//
 	}
 	
-	public List<ClientDto> getAllClientList(){
+	public List<ClientDto> getAllClientList(int start,int end){
 		List<ClientDto> list= new ArrayList<ClientDto>();
 		Connection conn=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
-		String sql="select * from client order by id";
-		
+		String sql= "select a.* from (select client.*, rownum rnum from client order by id)a where rnum>=? and rnum<=?";
 		conn=db.getConnection();
 		try {
 			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1,start);
+			pstmt.setInt(2, end);
 			rs=pstmt.executeQuery();
 			while(rs.next()) {
 				ClientDto dto=new ClientDto();
@@ -134,8 +135,7 @@ public class ClientDao {
 				dto.setPass(rs.getString("pass"));
 				dto.setHp(rs.getString("hp"));
 				dto.setEmail(rs.getString("email"));
-				dto.setManager(rs.getString("manager"));
-				
+				dto.setManager(rs.getString("manager"));				
 				list.add(dto);
 			}
 		} catch (SQLException e) {
@@ -147,6 +147,26 @@ public class ClientDao {
 		return list;
 	}
 	
+	public int getCount(){
+		Connection conn=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		String sql="select count(*) from client";
+		conn=db.getConnection();
+		try {
+			pstmt=conn.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				return rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			db.dbClose(rs, pstmt, conn);
+		}
+		return -1;//error
+	}
 	//
 	public ClientDto getClientData(String id) {
 		Connection conn=null;
@@ -265,5 +285,83 @@ public class ClientDao {
 		}
 		return 2; //X
 	}
-	 
+	 public String findId(String name,String email) {
+         Connection conn=null;
+         PreparedStatement pstmt=null;
+         ResultSet rs=null;
+         String msg=null;
+         String sql="select id from client where name=? and email=?";
+         
+         conn=db.getConnection();
+         try {
+            pstmt=conn.prepareStatement(sql);
+            pstmt.setString(1, name);
+            pstmt.setString(2, email);
+            rs=pstmt.executeQuery();
+            if(rs.next()) {
+               msg= name+"님의 아이디는 "+rs.getString("id")+"입니다";
+               return msg;
+            }
+         } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+         } finally {
+            db.dbClose(rs, pstmt, conn);
+         }
+         return "입력하신 정보와 일치하는 아이디가 없습니다";//   
+   }
+    
+    public String findPass(String id,String email) {
+         Connection conn=null;
+         PreparedStatement pstmt=null;
+         ResultSet rs=null;
+         String sql="select pass from client where id=? and email=?";
+         
+         conn=db.getConnection();
+         try {
+            pstmt=conn.prepareStatement(sql);
+            pstmt.setString(1, id);
+            pstmt.setString(2, email);
+            rs=pstmt.executeQuery();
+            if(rs.next()) {
+               return rs.getString("pass");
+            }
+         } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+         } finally {
+            db.dbClose(rs, pstmt, conn);
+         }
+         return "0";//
+   }
+    
+    public int isEqualId(String id)
+    {
+       int find=0;
+       Connection conn=null;
+       PreparedStatement pstmt=null;
+       ResultSet rs=null;
+       String sql = "select count(*) from client where id=?";
+      
+       conn=db.getConnection();
+       try {
+          pstmt=conn.prepareStatement(sql);
+          //諛붿씤�뵫
+          pstmt.setString(1, id);
+          //�떎�뻾
+          rs=pstmt.executeQuery();
+          //議곌굔
+          if(rs.next()) {
+             int n=rs.getInt(1);
+             if(n==1)
+                find=1;
+          }
+       } catch (SQLException e) {
+          // TODO Auto-generated catch block
+          e.printStackTrace();
+       }finally {
+          db.dbClose(rs, pstmt, conn);
+       }
+       return find;
+    }
 }
