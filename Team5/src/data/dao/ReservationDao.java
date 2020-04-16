@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 import data.dto.ClientDto;
 import data.dto.ReservationDto;
@@ -68,4 +70,30 @@ public class ReservationDao {
 		return -1; //db오류
 	}
 	
+	//get used count
+	public List<ReservationDto> getUse(String id) {
+		Connection conn=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs= null;
+		List<ReservationDto> list=new ArrayList<ReservationDto>();
+		String sql="select * from reservation where id=?";
+		
+		conn=db.getConnection();
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				ReservationDto dto=new ReservationDto();
+				dto.setPrice(rs.getString("price"));
+				dto.setAdditional(rs.getString("additional"));
+				dto.setStartday(rs.getString("startday"));
+			    dto.setEndday(rs.getString("endday"));  
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;
+	}
 }
