@@ -3,6 +3,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+<%
+String url=request.getContextPath();
+%>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="../css/style_registerform.css">
@@ -103,8 +106,7 @@
 </head>
 <body>
 	<div class="form">
-		<a href="../index.jsp" title="메인 화면으로 이동"> <img
-			src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fk.kakaocdn.net%2Fdn%2FkDN1L%2FbtqDhuX4ooQ%2FWY72cyF2e4frBUyLACEryK%2Fimg.png">
+		<a href="../index.jsp" title="메인 화면으로 이동"> <img src="<%=url %>/image/labong.png">
 		</a>
 		<form class="regi-form" action="registeraction.jsp" method="post">
 			<b>이름</b><br> <input type="text" name="name" id="name"
