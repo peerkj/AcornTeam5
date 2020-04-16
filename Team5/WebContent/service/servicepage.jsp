@@ -42,6 +42,7 @@ body::-webkit-scrollbar {
 	background-color: rgba(255, 255, 255, 0.2);                                                                 
 	z-index:1;
 	padding: 70px 0px;
+	top: 350px;
 }
 .service_font{
 	font-size: 50px; 
@@ -56,7 +57,7 @@ body::-webkit-scrollbar {
 	font-size: 20px; 
 	line-height: 50px; 
 	font-style: normal; 
-	font-weight: 600; 
+	font-weight: 500; 
 	color: #fff; 
 	text-decoration: none; 
 	text-align: center;
@@ -120,41 +121,54 @@ body::-webkit-scrollbar {
             });
         });
     }
+    
+    $( document ).ready( function() {
+    	var navOffset = $( '#header' ).offset();
+    	$( window ).scroll( function() {
+    		if ( $( document ).scrollTop() > navOffset.top ) {
+    			$( '#header' ).addClass( 'act' );
+    		}
+    		else {
+    			$( '#header' ).removeClass( 'act' );
+    		}
+    	});
+    });
 </script>
 </head>
 <body>
     <div class="box b1">
 	<div class="full_image" style="background-image: url('image/s1.jpg');">
 		<div class="textbox tb1">
-			<div class="service_font">서비스1</div>
-			<div class="service_font_mt">서비스1입니다</div>
+			<div class="service_font">감귤 따기 체험</div>
+			<div class="service_font_mt">새콤달콤한 제주 감귤을 직접 수확하여 마음껏 먹을 수 있습니다.</div>
 		</div>
 	</div>
 </div>
 <div class="box">
 	<div class="full_image" style="background-image: url('image/s2.jpg');">
 		<div class="textbox tb2">
-			<div class="service_font">서비스2</div>
-			<div class="service_font_mt">서비스2입니다</div>
+			<div class="service_font">바비큐장</div>
+			<div class="service_font_mt">리조트 정원 내 삼나무 그늘 아래 바비큐 공간을 마련했습니다.</div>
 		</div>	
 	</div>
 </div>
 <div class="box">
 	<div class="full_image" style="background-image: url('image/s3.jpg');">
 		<div class="textbox">
-			<div class="service_font">서비스3</div>
-			<div class="service_font_mt">서비스3입니다</div>
+			<div class="service_font">수영장</div>
+			<div class="service_font_mt">야외 수영장은 따사로운 햇살과 시원한 바다를 동시에 즐기는 특별한 경험을 선사합니다.</div>
 		</div>
 	</div>
 </div>
 <div class="box">
 	<div class="full_image" style="background-image: url('image/s4.jpg');">
 		<div class="textbox">
-			<div class="service_font">서비스4</div>
-			<div class="service_font_mt">서비스4입니다</div>
+			<div class="service_font">카페</div>
+			<div class="service_font_mt">모든 숙박객에게 하루 한 잔의 커피를 제공합니다.</div>
 		</div>
 	</div>
 </div>
+<div id="to_main"></div>
 <!-- <div class="box">
 	<div class="full_image" style="background-image: url('image/11.jpg');">
 		<div class="textbox">

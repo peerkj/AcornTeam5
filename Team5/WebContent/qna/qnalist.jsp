@@ -22,6 +22,28 @@
 #answer_color{
 	color: #ff9b4f;
 }
+.qnaimg{
+	background: url('image/qnapage.jpg');
+	background-size: cover;
+	width: 100%;
+	height: 400px;
+	margin-bottom: 30px;
+	position: relative;
+}
+.qnaback{
+	background-color:  rgba(0, 0, 0, 0.1);
+	width: 100%;
+	height: 100%;
+}
+.qnatext{
+	font-family: 'Rozha One', serif;
+	font-weight: 700;
+	font-size: 90px;
+	color: #fff;
+	position: absolute;
+	bottom: -38px;
+    left: 300px;
+}
 </style>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <script type="text/javascript">

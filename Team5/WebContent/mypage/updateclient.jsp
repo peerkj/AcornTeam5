@@ -5,6 +5,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+<%
+String url=request.getContextPath();
+%>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
@@ -89,7 +92,6 @@ select {
    padding: 1.5%;
    border: 1px solid #999;
    font-family: inherit;
-   background: url('https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fk.kakaocdn.net%2Fdn%2FcPDi4q%2FbtqDiaMx0yi%2Flxq7LA2yalGbGnAo2VlAk1%2Fimg.jpg') no-repeat 95% 50%;
    border-radius: 0px;
    -webkit-appearance: none;
    -moz-appearance: none;
@@ -136,7 +138,7 @@ ClientDto dto = dao.getClientData(id);
                value = "<%=email[0]%>"> <b>@</b> <input
                type="text" name="email2" id="email2" required="required"
                value = "<%=email[1]%>">
-	        <select name="email3" id="email3">
+	        <select name="email3" id="email3" style="background: url('<%=url%>/image/icon.jpg') no-repeat 95% 50%;">
 		        <option value="-">직접 입력</option>
 		        <option value="naver.com">naver.com</option>
 		        <option value="nate.com">nate.com</option>

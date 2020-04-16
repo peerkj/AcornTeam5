@@ -106,28 +106,36 @@ String url=request.getContextPath();
 </head>
 <body>
 	<div class="form">
-		<a href="../index.jsp" title="메인 화면으로 이동"> <img src="<%=url %>/image/labong.png">
+		<a href="../index.jsp" title="메인 화면으로 이동"> 
+		<img src="<%=url %>/image/labong.png">
 		</a>
 		<form class="regi-form" action="registeraction.jsp" method="post">
-			<b>이름</b><br> <input type="text" name="name" id="name"
+			<b>이름</b><br> 
+			<input type="text" name="name" id="name"
 				required="required" pattern="^[가-힣]{2,}" placeholder="한글만 입력">
-			<br> <b>아이디</b><br> <input type="text" name="id" id="id"
+			<br> <b>아이디</b><br> 
+			<input type="text" name="id" id="id"
 				required="required" pattern="[a-z0-9._%+-]{5,}" placeholder="아이디 입력">
-			<font id="idchk" size="2"></font> <br> <b>비밀번호</b><br> <input
-				type="password" name="pass" id="pass" required="required"
-				placeholder="비밀번호 입력"> <br> <b>비밀번호 확인</b><br> <input
-				type="password" name="pass1" id="pass1" required="required"
+			<font id="idchk" size="2"></font> <br> 
+			<b>비밀번호</b><br> 
+			<input type="password" name="pass" id="pass" required="required"
+				placeholder="비밀번호 입력"> <br> 
+			<b>비밀번호 확인</b><br> 
+				<input type="password" name="pass1" id="pass1" required="required"
 				placeholder="비밀번호 다시 입력"> <font id="passchk" size="2"></font>
-			<br> <b>핸드폰</b><br> <input type="text" name="hp1" id="hp1"
+			<br> <b>핸드폰</b><br> 
+			<input type="text" name="hp1" id="hp1"
 				required="required" maxlength="4" pattern="^[0-9]{3}">&nbsp;&nbsp;<b>-</b>&nbsp;
 			<input type="text" name="hp2" id="hp2" required="required"
 				maxlength="4" pattern="^[0-9]{4}">&nbsp;&nbsp;<b>-</b>&nbsp;
 			<input type="text" name="hp3" id="hp3" required="required"
-				maxlength="4" pattern="^[0-9]{4}"> <br> <b>이메일</b><br>
+				maxlength="4" pattern="^[0-9]{4}"> <br> 
+			<b>이메일</b><br>
 			<input type="text" name="email1" id="email1" required="required"
-				pattern="[a-z0-9._%+-]{5,}">&nbsp;<b>@</b> <input
-				type="text" name="email2" id="email2" required="required">
-			&nbsp;&nbsp;&nbsp; <select name="email3" id="email3">
+				pattern="[a-z0-9._%+-]{5,}">&nbsp;<b>@</b> 
+			<input type="text" name="email2" id="email2" required="required">
+			&nbsp;&nbsp;&nbsp; 
+			<select name="email3" id="email3" style="background: url('<%=url%>/image/icon.jpg') no-repeat 95% 50%;">
 				<option value="-">직접 입력</option>
 				<option value="naver.com">naver.com</option>
 				<option value="nate.com">nate.com</option>
