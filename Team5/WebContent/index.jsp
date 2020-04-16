@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>라봉펜션</title>
 <%
 String url=request.getContextPath();
 %>
@@ -20,7 +20,7 @@ div#header{/*
 
 .act{
 	position: fixed; 
-	top: 0;
+	top: 0; 
 }
 #footer{
 	height: 150px;

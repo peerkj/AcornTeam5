@@ -36,5 +36,5 @@ dto.setEmail(email);
 //DB insert
 dao.insertClient(dto);
 //메인페이지이동
-response.sendRedirect(url+"/register/registerform.jsp");
+response.sendRedirect(url+"/index.jsp");
 %>

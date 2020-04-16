@@ -62,6 +62,29 @@ public class ClientDao {
 		}	
 		return -1; //db�삤瑜�
 	}
+	public int insertClient2(ClientDto dto,String reason) {
+		Connection conn=null;
+		PreparedStatement pstmt=null;
+		String sql="insert into client2 values (seq_semi.nextval,?,?,?,sysdate,?)";
+		
+		conn=db.getConnection();
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1,dto.getId());
+			pstmt.setString(2,dto.getName());
+			pstmt.setString(3,dto.getHp());
+			pstmt.setString(4,reason);
+			
+			return pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			db.dbClose(pstmt, conn);
+		}	
+		return -1; //
+	}
+
 	
 	//
 	public int login(String id,String pass) {
@@ -78,19 +101,19 @@ public class ClientDao {
 			rs=pstmt.executeQuery();
 			if(rs.next()) {
 				if(rs.getString("pass").equals(pass)) {
-					return 1;//�씪移�
+					return 1;//
 				}else {
-					return 0;//鍮꾨�踰덊샇 遺덉씪移�		
+					return 0;//	
 				}
 			}
-			return -1;//�븘�씠�뵒媛� �뾾�쓬
+			return -1;//
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			db.dbClose(rs, pstmt, conn);
 		}
-		return -2;//db�삤瑜�
+		return -2;//
 	}
 	
 	public List<ClientDto> getAllClientList(){
@@ -123,7 +146,8 @@ public class ClientDao {
 		}
 		return list;
 	}
-	//�븘�씠�뵒 �엯�젰�븯硫� �쉶�썝�젙蹂� 異쒕젰
+	
+	//
 	public ClientDto getClientData(String id) {
 		Connection conn=null;
 		PreparedStatement pstmt=null;
@@ -155,39 +179,25 @@ public class ClientDao {
 		return null;//db�삤瑜� or �븘�씠�뵒 �뾾�쓬	
 	}
 	//�궘�젣
-	public int deleteClient(String id,String pass) {
+	public int deleteClient(String id) {
 		Connection conn=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
-		String sql="select count(*) result from client where id=? and pass=?";
-		
+		String sql="delete from client where id=?";
 		conn=db.getConnection();
 		try {
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setString(1, id);
-			pstmt.setString(2, pass);
 			rs=pstmt.executeQuery();
-			if(rs.next()) {
-				if(rs.getInt("result")==1) {
-					//1�씠硫�
-					sql="delete from client where id=?";
-					pstmt=conn.prepareStatement(sql);
-					pstmt.setString(1, id);
-					//�꽦怨�(1)
-					return pstmt.executeUpdate();
-				}else {
-					return 0; //鍮꾨�踰덊샇 ��由� 
-				}
-			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			db.dbClose(rs, pstmt, conn);
 		}
-		return -1;//db�삤瑜�	
+		return -1;//
 	}
-	//�쉶�썝�젙蹂� �닔�젙(hp,email)
+
 	public int updateClient(ClientDto dto) {
 		Connection conn=null;
 		PreparedStatement pstmt=null;
@@ -210,34 +220,24 @@ public class ClientDao {
 		return -1; //�삤瑜�
 	}
 	
-	 public int isEqualId(String id)
-     {
-        int find=0;
+    public int updatePass(String id, String newpass) {
         Connection conn=null;
         PreparedStatement pstmt=null;
-        ResultSet rs=null;
-        String sql = "select count(*) from client where id=?";
-       
+        String sql="update client set pass=? where id=?";      
         conn=db.getConnection();
         try {
            pstmt=conn.prepareStatement(sql);
-           //諛붿씤�뵫
-           pstmt.setString(1, id);
-           //�떎�뻾
-           rs=pstmt.executeQuery();
-           //議곌굔
-           if(rs.next()) {
-              int n=rs.getInt(1);//�빐�떦 �븘�씠�뵒媛� �엳�쑝硫� 1 �뾾�쑝硫� 0
-              if(n==1)//�엳�쓣寃쎌슦 1濡� 蹂�寃� (珥덇린媛믪� 0)\
-                 find=1;
-           }
+           pstmt.setString(1, newpass);
+           pstmt.setString(2, id);
+           pstmt.execute();
+           return 1; 
         } catch (SQLException e) {
            // TODO Auto-generated catch block
            e.printStackTrace();
-        }finally {
-           db.dbClose(rs, pstmt, conn);
+        } finally {
+           db.dbClose(pstmt, conn);
         }
-        return find;
+        return -1; //
      }
 	 
 	 //관리자권한 확인
