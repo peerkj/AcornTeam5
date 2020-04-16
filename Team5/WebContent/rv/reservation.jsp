@@ -64,7 +64,7 @@ $(function(){
 			return;	
 		}
 		else if(endDay-startday>=5){
-			alert("최대 예약 4박5일 ㅡㅡ");
+			alert("최대 4박 5일까지 예약 가능\n5박 이상은 문의 바랍니다");
 			return;
 		}
 		for(var i=startday;i<=endDay;i++){
@@ -78,7 +78,7 @@ $(function(){
 			$('[date='+i+']').css('background-color','#EFEFEF');			
 		}
 		for(var i=startday;i<=endDay;i++){
-			$('[date='+i+']').css('background-color','#FFDF24');			
+			$('[date='+i+']').css('background-color','#fbc777');			
 			if($('[date='+i+']').attr('day')==6||$('[date='+i+']').attr('day')==0)
 			add+=price*0.25;
 		}
@@ -110,28 +110,85 @@ $(function(){
 	}
 </script>
 <style type="text/css">
+@import url('https://fonts.googleapis.com/css2?family=Rozha+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;600;700&display=swap');
 .sel:hover {
 	cursor: pointer;
 }
-
-table {
-	border: 1px solid gray;
+#selectdays{
+	border: none;
+	margin: 40px 300px;
+	float: left;	
 }
-
-td {
-	width: 100px;
+#selectdays td,#rvbox td{
+	width: 50px;
+	height: 50px;
+	text-align: center;
 }
 
 #info {
-	height: 370px;
-	width: 540px;
+	height: 300px;
+	width: 600px;
 	border: 1px solid gray;
+	padding: 25px;
+	float: left;
+}
+.hd_img{
+	height: 400px;
+	width: 100%;
+	background-size: cover;
+	background-image: url('image/rvpage.jpg');
+	position: relative;
+}
+.img_title{
+	width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.1);
+}
+.img_title span{
+	font-size: 70pt;
+	font-weight: 700;
+	color: #fff;
+	position: absolute;
+	bottom: -40px;
+    left: 300px;
+    font-family: 'Rozha One', serif;
+}
+#rvbox th{
+	width: 100px;	
+}
+#rvbox,#personinfo{
+	margin: 20px auto;
+}
+#submit {
+     font-family: 'Noto Sans KR', sans-serif;
+     text-transform: uppercase;
+     outline: 0;
+     background: #fc9740;
+     width: 100px;
+     height: 40px;
+     border: 0;
+     margin: 20px 910px;
+     padding: 10px;
+     color: #FFFFFF;
+     font-size: 14px;
+     -webkit-transition: all 0.3 ease;
+     transition: all 0.3 ease;
+     cursor: pointer;     
+   }
+#twobox{
+	position: absolute;
+	top: 500px;
+	right: 50px;
 }
 </style>
 </head>
 <body>
-	<table>
-		<caption><%=strYear%>년<%=strMonth + 1%>월
+<div class="hd_img">
+	<div class="img_title"><span>RESERVATION</span></div>
+</div>
+	<table id="selectdays">
+		<caption><%=strYear%>년 <%=strMonth + 1%>월
 		</caption>
 		<thead>
 			<tr align="center">
@@ -161,7 +218,7 @@ td {
 							color = "BLACK";
 						String backColor = "#EFEFEF";
 						if (i == strDay)
-							backColor = "#FFDF24";
+							backColor = "#fbc777";
 						if (list.contains(i)) {
 				%>
 				<td style="color: white" day="<%=newLine%>" bgcolor="<%=backColor%>"
@@ -194,22 +251,22 @@ td {
 		<pre>
 선택일 :<%=strYear + "-" + strMonth + "-" + strDay%> 부터
 
-전화번호
+펜션 전화번호
 010-5181-6558
+
 결제방법
-무통장
+카카오페이
+
 이용안내
-- 달력에서 원하시는 날짜를 선택 하시면 예약 가능한 객실정보가 보여집니다.
-- 예약전에 예약안내(예약규정)를(을) 반드시 숙지하시고 예약을 하시기 바랍니다.
-- 선택란의 체크박스를 체크하신 후 예약하기 버튼을 누르시면 예약이 진행 됩니다.
-기타사항
-- 달력에서 원하시는 날짜를 선택 하시면 예약 가능한 객실정보가 보여집니다.
+- 퇴실일을 선택하고 작성된 예약 내용을 확인해 주세요.
+- 예약전에 예약 안내(예약 규정)를(을) 반드시 숙지하시고 예약을 하시기 바랍니다.
+- 선택란의 체크박스를 체크하신 후 예약하기 버튼을 누르시면 예약이 진행됩니다.
 </pre>
 	</div>
-
 	<form action="<%=request.getContextPath()%>/rv/iamp.jsp"
 		onsubmit="return check();" method="post">
-		<table>
+		<div id="twobox">
+		<table id="rvbox">
 			<caption>객실예약</caption>
 			<thead>
 				<tr>
@@ -241,10 +298,10 @@ td {
 				</tr>
 			</tbody>
 		</table>
-		<table>
-			<caption>예약자정보</caption>
+		<table id="personinfo">
+			<caption>예약자 정보</caption>
 			<tr>
-				<th>예약자명</th>
+				<th>예약자명&nbsp;</th>
 				<td><input name="name" type="text"
 					value="<%=clientdto.getName()%>"></td>
 			</tr>
@@ -264,7 +321,8 @@ td {
 			type="hidden" id="submit_start" name="startday" value="0"> <input
 			type="hidden" id="submit_end" name="endday" value="0"> <input
 			type="hidden" id="submit_rnum" name="rnum" value="0">
-		<button type="submit">결제하기</button>
+		<button type="submit" id="submit">결제하기</button>
+		</div>
 	</form>
 </body>
 </html>

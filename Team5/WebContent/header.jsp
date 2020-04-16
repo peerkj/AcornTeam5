@@ -19,10 +19,10 @@ String url=request.getContextPath();
 $(function(){
    $(".dropouter").hide();
    $('.mainitem > a').mouseover(function() {
-        $(this).parent().find(".dropouter").slideDown('slow');
+        $(this).parent().find(".dropouter").slideDown('fast');
     }); 
    $('.mainitem > a').mouseover(function() {
-        $(this).parent().find(".dropouter2").slideDown('slow');
+        $(this).parent().find(".dropouter2").slideDown('fast');
     });
     $("#home").click(function() {
        location.href="index.jsp";
@@ -46,7 +46,7 @@ $(function(){
 <style type="text/css">
 .dropouter2{
 	display: none;
-}
+} 
 </style>
 </head>
 <body>

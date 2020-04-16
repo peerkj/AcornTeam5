@@ -7,7 +7,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html> 
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -51,12 +51,9 @@
 	});
 </script>
 <style type="text/css">
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&display=swap');
-body{
-	font-family: 'Noto Sans KR', sans-serif;
-}
+@import url('https://fonts.googleapis.com/css2?family=Rozha+One&display=swap');
 .qnaseltb {
-	margin: 10px auto 40px;
+	margin: 45px auto 40px;
 	width: 800px;
 	border-collapse: collapse;
 }
@@ -71,6 +68,28 @@ th,td{
 	width: 500px;
 	height: 300px;
 	font-size: 12pt;
+}
+.qnaimg{
+	background: url('image/qnapage.jpg');
+	background-size: cover;
+	width: 100%;
+	height: 400px;
+	margin-bottom: 30px;
+	position: relative;
+}
+.qnaback{
+	background-color:  rgba(0, 0, 0, 0.1);
+	width: 100%;
+	height: 100%;
+}
+.qnatext{
+	font-family: 'Rozha One', serif;
+	font-weight: 700;
+	font-size: 90px;
+	color: #fff;
+	position: absolute;
+	bottom: -38px;
+    left: 300px;
 }
 .btn {
     width: 100px;
@@ -99,9 +118,14 @@ th,td{
 	AnswerDto adto = new AnswerDto();
 	AnswerDao adb = new AnswerDao();
 %>
-<body style="background-color: rgb(252, 240, 215, 0.2);">
+<body>
 	<input type="hidden" id="url" url="<%=url%>">
-	<div style="margin-top: 50px;background-color: rgb(252, 240, 215, 0.2);">
+	<div class="allseltb">
+		<div class="qnaimg">
+			<div class="qnaback">
+				<span class="qnatext">Q&A</span>
+			</div>
+		</div>
 		<table class="qnaseltb">
 			<caption><b style="font-size: 20pt;">내용 보기</b></caption>
 			<tr>

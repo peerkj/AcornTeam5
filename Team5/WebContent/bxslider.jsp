@@ -11,7 +11,7 @@ String url=request.getContextPath();
 <link rel="stylesheet" href="<%=url%>/css/jquery.bxslider.css">
 <script src="<%=url %>/js/jquery.bxslider.js"></script>
 <script type="text/javascript">
-$(function(){
+$(function(){ 
 	/* 이미지 슬라이더 */
     $('.bxslider').bxSlider({
         auto: true, // 자동으로 애니메이션 시작 여부 (true면 자동 슬라이드, false는 자동 슬라이드 안함)
@@ -28,7 +28,7 @@ $(function(){
 .main-image {
     position: relative;
     width: 100%;
-    height: 700px;
+    height: 800px;
     background-image: url(image/main1.jpg);
     background-repeat: no-repeat;
     background-size: cover; /* contain:비율에 맞게 | cover: 비율무시  */    

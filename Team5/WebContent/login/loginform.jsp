@@ -56,7 +56,7 @@ String url=request.getContextPath();
 	<div class="login-page">
 		<div class="form">
 			<a href="../index.jsp" title="메인 화면으로 이동">
-			<img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fk.kakaocdn.net%2Fdn%2FkDN1L%2FbtqDhuX4ooQ%2FWY72cyF2e4frBUyLACEryK%2Fimg.png"></a>
+			<img src="<%=url %>/image/labong.png"></a>
 			<form class="login-form" action="#" method="post">
 				<input type="text" name="id" id="id" placeholder="아이디 입력"
 					required="required" /> <br> <input type="password"

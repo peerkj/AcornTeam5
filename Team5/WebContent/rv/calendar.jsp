@@ -56,23 +56,25 @@
 			else
 				soldOut[i][j] = 0;
 		}
-	}
+	} 
 %>
 <style type="text/css">
+@import url('https://fonts.googleapis.com/css2?family=Rozha+One&display=swap');
 table{
-	margin: 0 auto;
+	margin: 0 auto 50px;
 }
-td {
+.calcon td {
 	width: 150px;
 	height: 150px;
 }
 .calsub td{
 	font-weight: 700;
 	font-size: 17pt;
+	padding: 50px 0 30px;
 }
 .calcon thead tr:first-child td{
 	height: 80px;
-	font-weight: 700;
+	font-weight: 600;
 }
 .calcon tbody font{
 	padding: 5px 0 0 5px;
@@ -85,6 +87,27 @@ td {
 	height: 80px;
 	background-color: white;
 }
+.hd_img{
+	height: 400px;
+	width: 100%;
+	background-size: cover;
+	background-image: url('image/rvpage.jpg');
+	position: relative;
+}
+.img_title{
+	width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.1);
+}
+.img_title span{
+	font-size: 70pt;
+	font-weight: 700;
+	color: #fff;
+	position: absolute;
+	bottom: -40px;
+    left: 300px;
+    font-family: 'Rozha One', serif;
+}
 </style>
 <script type="text/javascript">
 	$(function() {
@@ -96,7 +119,7 @@ td {
 					$("#v").show()
 					var msg = $(this).attr("price");
 					$("#v").html(
-							"객실정보<br>" + "객실:" + $(this).text() + "<br>"
+							"객실 정보<br>" + "객실:" + $(this).text() + "<br>"
 									+ "가격:" + msg);
 				});
 		$(document).on("mouseout", "a.show_price", function(e) {
@@ -118,6 +141,9 @@ td {
 </script>
 </head>
 <body>
+	<div class="hd_img">
+		<div class="img_title"><span>RESERVATION</span></div>
+	</div>
 	<!-- 날짜 네비게이션 -->
 	<table class="calsub" width="80%">
 		<tr>
@@ -178,9 +204,9 @@ td {
 							color = "BLUE";
 						else
 							color = "BLACK";
-						String backColor = "#EFEFEF";
+						String backColor = "#FAFAFA";
 						if (i == date)
-							backColor = "PINK";
+							backColor = "#ffe5bd";
 						out.println("<td bgcolor='" + backColor + "'>");
 				%>
 				<font color="<%=color%>"><%=i%></font>

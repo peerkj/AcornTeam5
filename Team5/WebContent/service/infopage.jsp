@@ -7,7 +7,8 @@
 <title>Information</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&family=Noto+Serif+KR:wght@300;600;700&display=swap');
-*{
+@import url('https://fonts.googleapis.com/css2?family=Rozha+One&display=swap');
+*{ 
 	margin: 0;
 	padding: 0;
 }
@@ -15,9 +16,7 @@
 body, html {
 	height: 100%;
 }
-.contentbody{
-	padding-bottom: 80px;
-}
+
 .info1,.info2{
 	margin-left: 560px;	
 }
@@ -48,17 +47,22 @@ body, html {
 	height: 400px;
 	width: 100%;
 	background-size: cover;
-	background-image: url('https://k.kakaocdn.net/dn/27gUI/btqDpfevG47/gU3B0nfQaEPAQKQNjaFZAk/img.jpg');
-	
+	background-image: url('image/infopage.jpg');
+	position: relative;
 }
 .img_title{
-	font-family: 'Noto Sans KR', sans-serif;
-	font-size: 50pt;
+	width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.1);
+}
+.img_title span{
+	font-size: 70pt;
 	font-weight: 700;
-	text-align: center;	
 	color: #fff;
-	line-height: 400px;
-	height: 400px;
+	position: absolute;
+	bottom: -40px;
+    left: 300px;
+    font-family: 'Rozha One', serif;
 }
 #line1{
 	size: 1;
@@ -71,9 +75,7 @@ body, html {
 <body>
 <div class="contentbody">
 <div class="hd_img">
-	<div style="background-color: rgba(0, 0, 0, 0.1);">
-		<div class="img_title">INFORMATION</div>
-	</div>
+	<div class="img_title"><span>INFORMATION</span></div>
 </div>
 <div class="info1">
 	<div id="title">인사말</div><br>
