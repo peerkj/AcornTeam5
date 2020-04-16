@@ -11,6 +11,7 @@
 	});
 </script>
 <style type="text/css">
+@import url('https://fonts.googleapis.com/css2?family=Rozha+One&display=swap');
 /* @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@300;600;700&display=swap'); */
 #allmypage{ 
 	width:100%;
@@ -50,9 +51,33 @@
     margin-top: 100px;
     float: center;
 }
+.hd_img{
+   height: 400px;
+   width: 100%;
+   background-size: cover;
+   background-image: url('image/mypage.jpg');
+   position: relative;
+}
+.img_title{
+   width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.1);
+} 
+.img_title span{
+   font-size: 70pt;
+   font-weight: 700;
+   color: #fff;
+   position: absolute;
+   bottom: -40px;
+    left: 300px;
+    font-family: 'Rozha One', serif;
+}
 </style>
 </head>
 <body>
+<div class="hd_img">
+   <div class="img_title"><span>MY PAGE</span></div>
+</div>
 <div id="allmypage">
 <div id="mypagebox">
 <ul>

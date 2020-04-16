@@ -115,7 +115,7 @@ String url=request.getContextPath();
 <body>
 <div id="updatebody">
 	<div id="updateform">
-	<img id="logoimg" src="<img src="<%=url %>/image/labong.png">"><br>
+	<img id="logoimg" src="<%=url %>/image/labong.png"><br>
 	<table id="updatepass_table"> 
 		<tr>
 			<td><span class="tabletext">현재 비밀번호</span><br>

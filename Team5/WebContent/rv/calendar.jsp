@@ -206,7 +206,7 @@ table{
 							color = "BLACK";
 						String backColor = "#FAFAFA";
 						if (i == date)
-							backColor = "PINK";
+							backColor = "#ffe5bd";
 						out.println("<td bgcolor='" + backColor + "'>");
 				%>
 				<font color="<%=color%>"><%=i%></font>
