@@ -12,16 +12,19 @@ String url=request.getContextPath();
 <link rel="stylesheet" href="<%=url%>/css/style.css">
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <style type="text/css">
-div#header{/* 
-	position:fixed;
-	width:100%; */
-	background-color: white;
+/* 글씨체 */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;600;700&display=swap');
+*{
+	font-family: 'Noto Sans KR', sans-serif;
 }
 
+/* 스크립트 addClass */
 .act{
 	position: fixed; 
 	top: 0; 
 }
+
+/* 푸터 */
 #footer{
 	height: 150px;
 	bottom: 0;
@@ -29,18 +32,18 @@ div#header{/*
 }
 </style>
 <script type="text/javascript">
-$( document ).ready( function() {
-	  var navOffset = $( '#header' ).offset();
-	  $( window ).scroll( function() {
-	    if ( $( document ).scrollTop() > navOffset.top ) {
-	      $( '#header' ).addClass( 'act' );
-	    }
-	    else {
-	      $( '#header' ).removeClass( 'act' );
-	    }
-	  });
+/* 헤더고정 */
+/* $( document ).ready( function() {
+	var navOffset = $( '#header' ).offset();
+	$( window ).scroll( function() {
+		if ( $( document ).scrollTop() > navOffset.top ) {
+			$( '#header' ).addClass( 'act' );
+		}
+		else {
+			$( '#header' ).removeClass( 'act' );
+		}
 	});
-
+}); */
 </script>
 </head>
 <%

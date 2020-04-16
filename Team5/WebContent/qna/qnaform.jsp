@@ -6,28 +6,21 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&family=Noto+Serif+KR:wght@300;600;700&display=swap');
-body{
-	font-family: 'Noto Sans KR', serif;
-}
-body::-webkit-scrollbar {
+@import url('https://fonts.googleapis.com/css2?family=Rozha+One&display=swap');
+/* body::-webkit-scrollbar {
 	display: none;
-}
-.contentbody{
-	height: 600px;
-}
-.alltb{
-	margin-top: 45px;
-}
+} */
+
 .qnatb{
-	margin: 0 auto;
+	margin: 45px auto 40px;
 	border-collapse: collapse;
 	width: 800px; 
 }
 th{
 	background-color: #ffe5bd;
-	padding: 10px 10px;
-	font-weight: 400;
+	padding: 10px 20px;
+	font-weight: 600;
+	width: 100px;
 }
 td{
 	padding: 10px 30px;
@@ -40,6 +33,28 @@ td{
 }
 #subject{
 	height: 30px;
+}
+.qnaimg{
+	background: url('image/qnapage.jpg');
+	background-size: cover;
+	width: 100%;
+	height: 400px;
+	margin-bottom: 30px;
+	position: relative;
+}
+.qnaback{
+	background-color:  rgba(0, 0, 0, 0.1);
+	width: 100%;
+	height: 100%;
+}
+.qnatext{
+	font-family: 'Rozha One', serif;
+	font-weight: 700;
+	font-size: 90px;
+	color: #fff;
+	position: absolute;
+	bottom: -38px;
+    left: 300px;
 }
 button{
 	width: 100px;
@@ -57,41 +72,46 @@ button{
 	String id = (String)session.getAttribute("id");
 	String url = request.getContextPath();
 %>
-<body style="background-color: rgb(252, 240, 215, 0.2);">
-<div class="contentbody">
-<form action="<%=url %>/qna/qinsertaction.jsp" method="post">
-	<input type="hidden" name="id" value="<%=id%>">
-	<div class="alltb" style="background-color: rgb(252, 240, 215, 0.2);">
-	<table class="qnatb">
-		<caption><b style="font-weight: 700;font-size: 20pt;">질문하기</b></caption>	
-		<tr>
-			<th>작성자</th>
-			<td>
-				<b><%=id %></b>
-			</td>
-		</tr>
-		<tr>
-			<th>제목</th>
-			<td>
-				<input type="text" name="subject" id="subject" required="required" autofocus="autofocus">&nbsp;&nbsp;
-				<input type="checkbox" name="secret">비밀글
-			</td>
-		</tr>
-		<tr>
-			<th>  </th>
-			<td>
-				<textarea name="content" id="content" required="required"></textarea>
-			</td>
-		</tr>
-		<tr>
-			<td colspan="2" align="center">
-				<button type="submit">저장하기</button>
-				<button type="button" onclick="history.back()">목록보기</button>
-			</td>
-		</tr>
-	</table>
-	</div>
-</form>
-</div>
+<body>
+	<form action="<%=url %>/qna/qinsertaction.jsp" method="post">
+		<input type="hidden" name="id" value="<%=id%>">
+		<div class="alltb">
+			<div class="qnaimg">
+				<div class="qnaback">
+					<span class="qnatext">Q&A</span>
+				</div>
+			</div>
+			
+			<table class="qnatb">
+				<caption><b style="font-weight: 700;font-size: 20pt;">질문하기</b></caption>	
+				<tr>
+					<th>작성자</th>
+					<td>
+						<b><%=id %></b>
+					</td>
+				</tr>
+				<tr>
+					<th>제목</th>
+					<td>
+						<input type="text" name="subject" id="subject" required="required" autofocus="autofocus">&nbsp;&nbsp;
+						<input type="checkbox" name="secret">비밀글
+					</td>
+				</tr>
+				<tr>
+					<th>  </th>
+					<td>
+						<textarea name="content" id="content" required="required"></textarea>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2" align="center">
+						<button type="submit">저장하기</button>
+						<button type="button" onclick="history.back()">목록보기</button>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</form>
+
 </body>
 </html>

@@ -16,7 +16,6 @@ html,body{
 	font-family: 'Noto Sans KR', sans-serif;
 	font-weight: 700;
 }
-  
 .box{ 
 	width:100%; 
 	height: 1100px;
@@ -24,9 +23,6 @@ html,body{
 	color:#ffffff; 
 	font-size:24pt;    
 	-ms-overflow-style: none;  
-}
-.b1{
-	height: 800px;
 }
 body::-webkit-scrollbar {
 	display: none;
@@ -46,12 +42,6 @@ body::-webkit-scrollbar {
 	background-color: rgba(255, 255, 255, 0.2);                                                                 
 	z-index:1;
 	padding: 70px 0px;
-}
-.tb1{
-	top: 200px;
-}
-.tb2{
-	top: 460px;
 }
 .service_font{
 	font-size: 50px; 

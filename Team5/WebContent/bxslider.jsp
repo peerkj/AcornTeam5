@@ -28,7 +28,7 @@ $(function(){
 .main-image {
     position: relative;
     width: 100%;
-    height: 700px;
+    height: 800px;
     background-image: url(image/main1.jpg);
     background-repeat: no-repeat;
     background-size: cover; /* contain:비율에 맞게 | cover: 비율무시  */    
