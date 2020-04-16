@@ -75,6 +75,7 @@ td {
 </style>
 <script type="text/javascript">
 	$(function() {
+
 		$(document).on(
 				"mousemove",
 				"span.show_price",
@@ -93,14 +94,24 @@ td {
 			$("#v").hide();
 		});
 
+		$('.show_price').click(function() {
+			var id='<%=id%>';
+			if(id=='null'){
+				alert("로그인 후 이용하세요.");
+				location.href='<%=request.getContextPath()%>/login/loginform.jsp';
+				return false;
+			}
+		});		
 	});
+	function need(){
+		
+	}
 </script>
 </head>
 <body>
 	<!-- 날짜 네비게이션 -->
 	<table width="80%">
 		<tr>
-
 			<td align="center">
 				<%
 					if (month > today_month) {
@@ -171,7 +182,7 @@ td {
 								continue;
 							if (soldOut[j][i - 1] == 0) {
 				%>
-				<a id="need" onclick="need()" href="<%=request.getContextPath()%>/index.jsp?main=rv/reservation.jsp?rnum=<%=roomlist.get(j).getRnum()%>&year=<%=year%>&month=<%=month%>&day=<%=i%>"
+				<a href="<%=request.getContextPath()%>/index.jsp?main=rv/reservation.jsp?rnum=<%=roomlist.get(j).getRnum()%>&year=<%=year%>&month=<%=month%>&day=<%=i%>"
 					class="show_price" price="<%=roomlist.get(j).getPrice()%>"><%=roomlist.get(j).getRname()%></a>
 				<br>
 				<%
