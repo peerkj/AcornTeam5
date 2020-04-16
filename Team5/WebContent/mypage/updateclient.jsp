@@ -40,6 +40,62 @@
       
    });
 </script>
+<style type="text/css">
+/* @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap'); */
+#updateclient_full{
+	margin-bottom: 10px;
+}
+#updateclient_body{
+	border: 1px solid #fc9740;
+	padding: 70px;
+	width: 600px;
+}
+#updateclient_title{
+	font-size: 20pt;
+	margin-left: 200px;
+	font-weight: 700;
+}
+form input {
+	outline: 0;
+	background: #ececee;
+	width: 30%;
+	border: 0;
+    margin: 10px 0 15px 0;
+    padding: 2%;
+    box-sizing: border-box;
+    font-size: 14px;
+   }
+form b{
+	font-weight: 500;
+	font-size: 12pt;
+}
+#submit {
+     text-transform: uppercase;
+     outline: 0;
+     background: #fc9740;
+     width: 250px;
+     border: 0;
+     margin-top:25px;
+     margin-left: 165px;
+     padding: 2%;
+     color: #FFFFFF;
+     font-size: 14px;
+     -webkit-transition: all 0.3 ease;
+     transition: all 0.3 ease;
+     cursor: pointer;     
+   }
+select {
+   width: 30%;
+   padding: 1.5%;
+   border: 1px solid #999;
+   font-family: inherit;
+   background: url('https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fk.kakaocdn.net%2Fdn%2FcPDi4q%2FbtqDiaMx0yi%2Flxq7LA2yalGbGnAo2VlAk1%2Fimg.jpg') no-repeat 95% 50%;
+   border-radius: 0px;
+   -webkit-appearance: none;
+   -moz-appearance: none;
+   appearance: none;
+   }
+</style>
 </head>
 <%
 
@@ -50,63 +106,46 @@ ClientDao dao=new ClientDao();
 ClientDto dto = dao.getClientData(id);
 %>
 <body>
-
+<div id="updateclient_full">
+<div id="updateclient_body">
    <form action="<%=request.getContextPath()%>/mypage/updateclientaction.jsp" method="post">
-      <table>
-         <caption>
-            <b>회원정보수정</b>
-         </caption>
-         <tr>
-            <th>이름</th>
-            <td><input type="text" name="name" id="name"
-               readonly="readonly" value="<%= dto.getName() %>">
-            </td>
-         </tr>
-         <tr>
-            <th>아이디</th>
-            <td><input type="text" name="id" id="id" readonly="readonly"
-            value="<%=dto.getId() %>">
-            </td>
-         </tr>
-         
-         <tr>
+            <span id="updateclient_title">회원 정보 수정</span><br><br>
+            <b>이름</b><br>
+            <input type="text" name="name" id="name"
+               readonly="readonly" value="<%= dto.getName() %>"><br>
+            <b>아이디</b><br>
+            <input type="text" name="id" id="id" readonly="readonly"
+            value="<%=dto.getId() %>"><br>
          <%
          String[] hp = dto.getHp().split("-");
             
          %>
-            <th>핸드폰</th>
-            <td><input type="text" name="hp1" id="hp1" required="required"
-               maxlength="4" pattern="^[0-9]{3}" value="<%=hp[0] %>"> <b>-</b> 
-               <input type="text" name="hp2" id="hp2" required="required" maxlength="4"
-               pattern="^[0-9]{4}" value="<%=hp[1] %>"> <b>-</b> 
-               <input type="text" name="hp3" id="hp3" required="required" maxlength="4" 
-               pattern="^[0-9]{4}" value="<%=hp[2] %>">
-            </td>
-         </tr>
-         <tr>
+            <b>핸드폰</b><br>
+            <input type="text" name="hp1" id="hp1" required="required"
+            maxlength="4" pattern="^[0-9]{3}" value="<%=hp[0] %>"> <b>-</b> 
+            <input type="text" name="hp2" id="hp2" required="required" maxlength="4"
+            pattern="^[0-9]{4}" value="<%=hp[1] %>"> <b>-</b> 
+            <input type="text" name="hp3" id="hp3" required="required" maxlength="4" 
+            pattern="^[0-9]{4}" value="<%=hp[2] %>"><br>
          <%
          String[] email = dto.getEmail().split("@");
          %>
-            <th>e-mail</th>
-            <td><input type="text" name="email1" id="email1"
+         <b>이메일</b><br>
+         <input type="text" name="email1" id="email1"
                required="required" pattern="[a-z0-9._%+-]{5,}"
                value = "<%=email[0]%>"> <b>@</b> <input
                type="text" name="email2" id="email2" required="required"
                value = "<%=email[1]%>">
-               <select name="email3" id="email3">
-                  <option value="-">직접입력</option>
-                  <option value="naver.com">naver.com</option>
-                  <option value="nate.com">nate.com</option>
-                  <option value="gmail.com">gmail.com</option>
-                  <option value="daum.net">daum.net</option>
-            </select></td>
-         </tr>
-         <tr>
-            <td colspan="2">
-               <input id="submit" type="submit" value="수정하기">
-            </td>
-      </table>
+	        <select name="email3" id="email3">
+		        <option value="-">직접 입력</option>
+		        <option value="naver.com">naver.com</option>
+		        <option value="nate.com">nate.com</option>
+		        <option value="gmail.com">gmail.com</option>
+		        <option value="daum.net">daum.net</option>
+	        </select><br>
+        <button id="submit" type="submit">수정하기</button>
    </form>
-
+</div>
+</div>
 </body>
 </html>
