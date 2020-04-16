@@ -11,7 +11,7 @@ String url=request.getContextPath();
 <link rel="stylesheet" href="<%=url%>/css/jquery.bxslider.css">
 <script src="<%=url %>/js/jquery.bxslider.js"></script>
 <script type="text/javascript">
-$(function(){
+$(function(){ 
 	/* 이미지 슬라이더 */
     $('.bxslider').bxSlider({
         auto: true, // 자동으로 애니메이션 시작 여부 (true면 자동 슬라이드, false는 자동 슬라이드 안함)

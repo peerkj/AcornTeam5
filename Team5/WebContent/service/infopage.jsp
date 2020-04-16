@@ -8,7 +8,7 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&family=Noto+Serif+KR:wght@300;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Rozha+One&display=swap');
-*{
+*{ 
 	margin: 0;
 	padding: 0;
 }

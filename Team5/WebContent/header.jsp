@@ -46,7 +46,7 @@ $(function(){
 <style type="text/css">
 .dropouter2{
 	display: none;
-}
+} 
 </style>
 </head>
 <body>

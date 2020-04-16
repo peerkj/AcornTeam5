@@ -120,7 +120,6 @@ body::-webkit-scrollbar {
             });
         });
     }
-    
 </script>
 </head>
 <body>

@@ -56,7 +56,7 @@
 			else
 				soldOut[i][j] = 0;
 		}
-	}
+	} 
 %>
 <style type="text/css">
 @import url('https://fonts.googleapis.com/css2?family=Rozha+One&display=swap');

@@ -33,7 +33,7 @@ td{
 }
 #subject{
 	height: 30px;
-}
+}  
 .qnaimg{
 	background: url('image/qnapage.jpg');
 	background-size: cover;
