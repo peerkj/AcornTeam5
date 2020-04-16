@@ -15,7 +15,7 @@ String url=request.getContextPath();
 	var idchk = 0;//아이디 체크
 	var passchk = 0;//비밀번호 체크
 
-	$(function() {
+	$(function() { 
 		//아이디체크
 		$('#id').keyup(function(e) {
 			//아이디 길이 저장

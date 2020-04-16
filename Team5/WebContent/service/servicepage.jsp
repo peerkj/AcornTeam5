@@ -94,7 +94,7 @@ body::-webkit-scrollbar {
                             $(".service_font").hide();
                             $(".service_font_mt").hide();
                             $(".service_font").fadeIn(1500); //1000=1초
-                            $(".service_font_mt").fadeIn(1500);
+                            $(".service_font_mt").fadeIn(1500); 
                         }catch(e){}
                     }
                    
