@@ -56,7 +56,8 @@
 	width: 400px;
 	height: 200px;
 	padding: 40px;
-	float: center;
+	text-align: center;
+	position: relative;
 }
 #reason{
 	font-family: 'Noto Sans KR', sans-serif;
@@ -71,14 +72,14 @@
     width: 150px;
     height: 50px;
     border: 0;
-    margin: 20px 75px;
-    padding: 5px;
     color: #FFFFFF;
     font-size: 16px;
     -webkit-transition: all 0.3 ease;
     transition: all 0.3 ease;
     cursor: pointer;
-    margin-top: 40px;   
+	position: absolute;
+    top: 200px;
+    right: 35%;  
 }
 #ta{
 	margin-top: 10px;

@@ -18,5 +18,5 @@
 
 	db.insertAnswer(dto); 
 	String url = request.getContextPath();
-	response.sendRedirect(url+"/qna/qnaselect.jsp?num="+qnum+"&pageNum="+pageNum);
+	response.sendRedirect(url+"/index.jsp?main=qna/qnaselect.jsp?num="+qnum+"&pageNum="+pageNum);
 %>

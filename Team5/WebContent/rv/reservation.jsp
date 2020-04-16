@@ -117,7 +117,7 @@ $(function(){
 }
 #selectdays{
 	border: none;
-	margin: 40px 300px;
+	margin-right: 200px;
 	float: left;	
 }
 #selectdays td,#rvbox td{
@@ -176,10 +176,19 @@ $(function(){
      transition: all 0.3 ease;
      cursor: pointer;     
    }
-#twobox{
+.twobox{
 	position: absolute;
 	top: 500px;
 	right: 50px;
+}
+.contentbody{
+	position: relative;
+	margin: 50px 240px 0 420px;
+}
+.contentbody::after {
+    content: "";
+    clear: both;
+    display: block;
 }
 </style>
 </head>
@@ -187,6 +196,7 @@ $(function(){
 <div class="hd_img">
 	<div class="img_title"><span>RESERVATION</span></div>
 </div>
+<div class="contentbody">
 	<table id="selectdays">
 		<caption><%=strYear%>년 <%=strMonth + 1%>월
 		</caption>
@@ -247,8 +257,7 @@ $(function(){
 			</tr>
 		</tbody>
 	</table>
-	<div id="info">
-		<pre>
+	<div id="info"><pre>
 선택일 :<%=strYear + "-" + strMonth + "-" + strDay%> 부터
 
 펜션 전화번호
@@ -261,11 +270,10 @@ $(function(){
 - 퇴실일을 선택하고 작성된 예약 내용을 확인해 주세요.
 - 예약전에 예약 안내(예약 규정)를(을) 반드시 숙지하시고 예약을 하시기 바랍니다.
 - 선택란의 체크박스를 체크하신 후 예약하기 버튼을 누르시면 예약이 진행됩니다.
-</pre>
-	</div>
+</pre></div>
 	<form action="<%=request.getContextPath()%>/rv/iamp.jsp"
 		onsubmit="return check();" method="post">
-		<div id="twobox">
+		<div class="twobox">
 		<table id="rvbox">
 			<caption>객실예약</caption>
 			<thead>
@@ -324,5 +332,6 @@ $(function(){
 		<button type="submit" id="submit">결제하기</button>
 		</div>
 	</form>
+</div>
 </body>
 </html>

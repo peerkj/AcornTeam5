@@ -100,7 +100,10 @@ th,td{
     border: none;
     cursor: pointer;
 }
-
+.re{
+	position: absolute;
+	margin: 250px 0 0 10px;
+}
 </style>
 </head>
 <%
@@ -149,17 +152,20 @@ th,td{
 			<%
 			adto=adb.getAnswer(dto.getQnum());
 			if(adto!=null){%>
-				<tr>
-					<td colspan="2">
-						<hr style="border: 0.5px solid;">
-						<pre>답변: <%=adto.getContent() %></pre>
-						&nbsp;
-						<%if(cdb.checkManage(id)==1){%>
-						<a href="<%=url%>/qna/answerdeleteaction.jsp?qnum=<%=num%>&pageNum=<%=pageNum%>">삭제</a>				
-						<%}%>
-					</td>
-					<td><%=adto.getWriteday() %></td>				
-				</tr>
+			<tr style="border-top: 2px solid #ddd;">
+				<td colspan="3">
+					
+					<pre>답변: <%=adto.getContent() %></pre>
+				
+				</td>
+				<td style="text-align: right;color: #666;font-size: 11pt;width: 150px;"><%=adto.getWriteday() %>
+					<%if(cdb.checkManage(id)==1){%>
+					<a href="<%=url%>/qna/answerdeleteaction.jsp?qnum=<%=num%>&pageNum=<%=pageNum%>" 
+					style="text-decoration: none;color: #000;">삭제</a>				
+					<%}%>
+				</td>				
+			
+			</tr>
 			<%}%>
 			<%-- <tr>
 				<th>조회수</th>
@@ -173,7 +179,7 @@ th,td{
 					삭제</button>
 					<%}
 					if(cdb.checkManage(id)==1&&adto==null){%>
-						<button type="button" id="answer">
+						<button type="button" class="btn ans" id="answer">
 					답변</button>
 					<%}
 					%>				
@@ -182,14 +188,13 @@ th,td{
 				</td>
 			</tr>
 			<%if(cdb.checkManage(id)==1){%>
-				<tr id="ansform">
-					<td colspan="2">
-						<hr style="border: 0.5px solid;">
+				<tr id="ansform" style="border-top: 0.5px solid #676767;">
+					<td colspan="4">
 						<form action="<%=url %>/qna/answerinsertaction.jsp" method="post">
 							<input type="hidden" name="qnum" value="<%=num%>">
 							<input type="hidden" name="pageNum" value="<%=pageNum%>">
-							<textarea name="content"></textarea>
-							<button type="submit">답변하기</button>
+							<textarea name="content" cols="80" rows="15"></textarea>
+							<button type="submit" class="btn re">답변하기</button>
 						</form>
 					</td>
 				</tr>
