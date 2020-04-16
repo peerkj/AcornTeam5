@@ -76,10 +76,7 @@ td {
 <script type="text/javascript">
 	$(function() {
 
-		$(document).on(
-				"mousemove",
-				"span.show_price",
-				function(e) {
+		$(document).on("mousemove","a.show_price",function(e) {
 					$("#v").css({
 						"top" : e.pageY + 8,
 						"left" : e.pageX + 13
