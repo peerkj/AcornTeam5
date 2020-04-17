@@ -152,13 +152,14 @@ th,td{
 			<%
 			adto=adb.getAnswer(dto.getQnum());
 			if(adto!=null){%>
-			<tr style="border-top: 2px solid #ddd;">
-				<td colspan="3">
+			<tr style="border-top: 2px solid #ddd;background-color: #f8f8f8;">
+				<td colspan="3" style="padding:30px 40px;min-height: 300px;max-width: 600px;">
 					
-					<pre>답변: <%=adto.getContent() %></pre>
+					<span style="font-weight: 700;font-size: 13pt;">답변</span>
+					<pre><%=adto.getContent() %></pre>
 				
 				</td>
-				<td style="text-align: right;color: #666;font-size: 11pt;width: 150px;"><%=adto.getWriteday() %>
+				<td style="text-align: right;color: #666;font-size: 11pt;width: 150px;padding:30px 20px;"><%=adto.getWriteday() %>
 					<%if(cdb.checkManage(id)==1){%>
 					<a href="<%=url%>/qna/answerdeleteaction.jsp?qnum=<%=num%>&pageNum=<%=pageNum%>" 
 					style="text-decoration: none;color: #000;">삭제</a>				
@@ -172,7 +173,7 @@ th,td{
 				<td colspan="2"><%=dto.getViewcount() %></td>
 			</tr> --%>
 			<tr align="center">
-				<td colspan="4">
+				<td colspan="4" style="padding:50px 20px 20px;">
 					<%
 					if(dto.getId().equals(id)){%>
 						<button type="button" class="btn del" id="del" num="<%=num%>" pageNum="<%=pageNum%>">
@@ -189,7 +190,7 @@ th,td{
 			</tr>
 			<%if(cdb.checkManage(id)==1){%>
 				<tr id="ansform" style="border-top: 0.5px solid #676767;">
-					<td colspan="4">
+					<td colspan="4" style="padding: 60px 20px 20px;">
 						<form action="<%=url %>/qna/answerinsertaction.jsp" method="post">
 							<input type="hidden" name="qnum" value="<%=num%>">
 							<input type="hidden" name="pageNum" value="<%=pageNum%>">

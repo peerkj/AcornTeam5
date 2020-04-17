@@ -4,6 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<%
+String url=request.getContextPath();
+%>
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <script type="text/javascript">
@@ -58,8 +61,9 @@
 	padding: 40px;
 	text-align: center;
 	position: relative;
+	margin-left: -130px;
 }
-#reason{
+#reasontxt{
 	font-family: 'Noto Sans KR', sans-serif;
 	font-weight: 400;
 	font-size: 15pt;
@@ -84,12 +88,26 @@
 #ta{
 	margin-top: 10px;
 }
+#sel {
+   width: 180px;
+   height: 40px;
+   padding: 1.5%;
+   border: 1px solid #999;
+   font-family: inherit;
+   border-radius: 0px;
+   -webkit-appearance: none;
+   -moz-appearance: none;
+   appearance: none;
+}
+#sel option{
+	font-size: 11pt;
+}
 </style>
 </head>
 <body>
 <div id="fullbox">
-<span id="reason">탈퇴 사유를 선택하세요</span><br>
-<select id="sel">
+<span id="reasontxt">탈퇴 사유를 선택하세요</span><br><br>
+<select id="sel" style="background: url('<%=url%>/image/icon.jpg') no-repeat 95% 50%;">
 	<option selected disabled hidden>선택</option>
 	<option>서비스 불만</option>
 	<option>홈페이지 정보 부족</option>	
