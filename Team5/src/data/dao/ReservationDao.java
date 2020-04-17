@@ -42,12 +42,11 @@ public class ReservationDao {
 		Connection conn=null;
 		PreparedStatement pstmt=null;
 		//id,pass,name,hp,email,권한(0)
-		String sql="insert into reservation values (seq_semi.nextval,?,?,?,?,?,?,?,?,?,?)";
+		String sql="insert into reservation values (seq_semi.nextval,?,?,?,?,?,?,?,?,?,?,1)";
 		conn=db.getConnection();
 		Timestamp st= Timestamp.valueOf(dto.getStartday()+" 15:00:00.0");
 		Timestamp et= Timestamp.valueOf(dto.getEndday()+" 12:00:00.0");
-		try {
-			
+		try {			
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setTimestamp(1,st);
 			pstmt.setTimestamp(2,et);
@@ -99,6 +98,61 @@ public class ReservationDao {
 		return list;
 	}
 	
+	//get used count
+	   public List<ReservationDto> getUse(String id, int start, int end) {
+	      Connection conn=null;
+	      PreparedStatement pstmt=null;
+	      ResultSet rs= null;
+	      List<ReservationDto> list=new ArrayList<ReservationDto>();
+	      String sql="select * from (select reservation.*, rownum snum from reservation where id=?) where snum>=? and snum<=?";
+	      
+	      conn=db.getConnection();
+	      try {
+	         pstmt=conn.prepareStatement(sql);
+	         pstmt.setString(1, id);
+	         pstmt.setInt(2, start);
+	         pstmt.setInt(3, end);
+	         rs=pstmt.executeQuery();
+	         while(rs.next()) {
+	            ReservationDto dto=new ReservationDto();
+	            dto.setName(rs.getString("name"));
+	            dto.setPcount(rs.getString("pcount"));
+	            dto.setPrice(rs.getString("price"));
+	            dto.setAdditional(rs.getString("additional"));
+	            dto.setStartday(rs.getString("startday"));
+	             dto.setEndday(rs.getString("endday")); 
+	             dto.setRnum(rs.getString("rnum"));
+	             list.add(dto);
+	         }
+	      } catch (SQLException e) {
+	         // TODO Auto-generated catch block
+	         e.printStackTrace();
+	      }
+	      return list;
+	   }
+	 //usecount
+	   public int useCount(String id) {
+	      Connection conn=null;
+	      PreparedStatement pstmt=null;
+	      ResultSet rs= null;
+	      int count = 0;
+	      String sql="select count(*) count from reservation where id=?";
+	      
+	      conn=db.getConnection();
+	      try {
+	         pstmt=conn.prepareStatement(sql);
+	         pstmt.setString(1, id);
+	         rs=pstmt.executeQuery();
+	         if(rs.next()) {
+	            count = rs.getInt("count");
+	         }
+	      } catch (SQLException e) {
+	         // TODO Auto-generated catch block
+	         e.printStackTrace();
+	      }
+	      return count;
+	   }
+	   
 	public int getMoney(String id) {
 		Connection conn=null;
 		PreparedStatement pstmt=null;
@@ -143,4 +197,83 @@ public class ReservationDao {
 	        }
 	        return "0";
 	   }
+	
+	//get all count
+	public int getAllCount() {
+	      	Connection conn=null;
+	        PreparedStatement pstmt=null;
+	        ResultSet rs=null;
+	        String sql="select count(*) from reservation";
+	        conn=db.getConnection();
+	        try {
+	           pstmt=conn.prepareStatement(sql);
+	           rs=pstmt.executeQuery();
+	           if(rs.next()) {
+	              return rs.getInt(1);
+	           }
+	        } catch (SQLException e) {
+	           // TODO Auto-generated catch block
+	           e.printStackTrace();
+	        } finally {
+	           db.dbClose(rs, pstmt, conn);
+	        }
+	        return -1;
+	   }
+	//get search count
+	public int getSearchCount(String startday,String endday) {
+      	Connection conn=null;
+        PreparedStatement pstmt=null;
+        ResultSet rs=null;
+        String sql="select count(*) from reservation where to_char(STARTDAY,'YYYY-MM-dd') between ? and ?";
+        conn=db.getConnection();
+        try {
+           pstmt=conn.prepareStatement(sql);
+           pstmt.setString(1, startday);
+           pstmt.setString(2, endday);
+           rs=pstmt.executeQuery();
+           if(rs.next()) {
+              return rs.getInt(1);
+           }
+        } catch (SQLException e) {
+           // TODO Auto-generated catch block
+           e.printStackTrace();
+        } finally {
+           db.dbClose(rs, pstmt, conn);
+        }
+        return -1;
+   }
+	
+	//get all info
+	public List<ReservationDto> getAllRv(int start,int end) {
+		Connection conn=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs= null;
+		List<ReservationDto> list=new ArrayList<ReservationDto>();
+		String sql="select * from(select reservation.*,rownum r from reservation) where r<=? and r>=? order by startday desc";
+		conn=db.getConnection();
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, start);
+			pstmt.setInt(2, end);
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				ReservationDto dto=new ReservationDto();
+				dto.setRnum(rs.getString("rnum"));
+				dto.setId(rs.getString("id"));
+				dto.setPrice(rs.getString("price"));
+				dto.setAdditional(rs.getString("additional"));
+				dto.setStartday(rs.getString("startday"));
+			    dto.setEndday(rs.getString("endday"));
+			    dto.setName(rs.getString("name"));
+			    dto.setHp(rs.getString("hp"));
+			    dto.setPcount(rs.getString("pcount"));
+			    dto.setResnum(rs.getString("resnum"));		    
+			    list.add(dto);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;
+	}
 }
