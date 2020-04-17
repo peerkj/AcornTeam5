@@ -90,6 +90,31 @@ public class RoomDao {
 		}
 		return dto;
 	}
+	
+	public int updateRoom(RoomDto dto){
+		Connection conn=null;
+		PreparedStatement pstmt=null;
+		String sql="update room set rname=?,price=?,acception=? where rnum=?";
+		
+		conn=db.getConnection();
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, dto.getRname());
+			pstmt.setString(2, dto.getPrice());
+			pstmt.setString(3, dto.getAcception());
+			pstmt.setString(4, dto.getRnum());
+			
+			return pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			db.dbClose(pstmt, conn);
+		}
+		return -1;
+	}
+	
 	public Set<Integer> check(String rnum,String date){
 
 		Connection conn=null;
@@ -122,5 +147,46 @@ public class RoomDao {
 		}
 		return set;
 	}
-
+	
+	public double getRate() {
+		Connection conn=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		String sql="select rate from rate";
+		
+		conn=db.getConnection();
+		try {
+			pstmt=conn.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				return rs.getDouble(1);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			db.dbClose(rs, pstmt, conn);
+		}
+		return -1;
+	}
+	
+	public int updateRate(Double rate) {
+		Connection conn=null;
+		PreparedStatement pstmt=null;
+		
+		String sql="update rate set rate=?";
+		conn=db.getConnection();
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setDouble(1, rate);
+			pstmt.execute();
+			return 1;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			db.dbClose(pstmt, conn);
+		}
+		return -1;
+	}
 }
