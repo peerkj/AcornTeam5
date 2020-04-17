@@ -15,7 +15,14 @@ public class ReservationDto {
 	private String email;
 	private String price;
 	private String additional;
+	private int can;
 	
+	public int getCan() {
+		return can;
+	}
+	public void setCan(int can) {
+		this.can = can;
+	}
 	public String getStartday() {
 		return startday;
 	}
