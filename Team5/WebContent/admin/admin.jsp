@@ -11,6 +11,7 @@
 <meta charset="UTF-8">
 <title>관리자 페이지</title>
 <%
+	request.setCharacterEncoding("utf-8");
 	String url=request.getContextPath();
 	String search=request.getParameter("search");
 	String content=request.getParameter("content");
@@ -97,7 +98,10 @@ tr:hover{
 			<td colspan="5" align="center">회원이 없습니다</td>
 		</tr>
 <%}
-for(ClientDto c:clientList){%>
+for(ClientDto c:clientList){
+	if(c.getId().equals("admin"))
+		continue;
+%>
 	<tr class="show">
 		<td class="id"><%=c.getId()%></td>
 		<td><%=c.getName() %></td>

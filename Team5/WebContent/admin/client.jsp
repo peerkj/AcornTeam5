@@ -1,3 +1,4 @@
+<%@page import="data.dto.ClientDto"%>
 <%@page import="java.text.NumberFormat"%>
 <%@page import="data.dao.ClientDao"%>
 <%@page import="data.dto.ReservationDto"%>
@@ -11,6 +12,7 @@
 <meta charset="UTF-8">
 <title>상세정보</title>
 <%
+	request.setCharacterEncoding("utf-8");
 	String id = request.getParameter("id");
 	//dao
 	ReservationDao rd = new ReservationDao();
@@ -19,10 +21,59 @@
 	List<ReservationDto> list = rd.getUse(id);
 	//화폐
 	NumberFormat nf=NumberFormat.getInstance();	
+	//권한 확인
+	ClientDto cdto=cd.getClientData(id);
+	int m=Integer.parseInt(cdto.getManager());
 %>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script type="text/javascript">
+	$(function(){
+		//권한주기
+		var id='<%=id%>';
+		var m='<%=m%>';
+		$('#addmanager').click(function() {
+			$.ajax({
+				url:'<%=request.getContextPath()%>/admin/manager.jsp',
+				type:'post',
+				dataType:'html',
+				data:'id='+id+'&m='+m,
+				success:function(e){
+					if(e!=-1){
+						location.href='<%=request.getContextPath()%>/admin/client.jsp?id='+id;		
+					}
+				}
+			});
+		});
+		$('#deletemanager').click(function() {
+			$.ajax({
+				url:'<%=request.getContextPath()%>/admin/manager.jsp',
+				type:'post',
+				dataType:'html',
+				data:'id='+id+'&m='+m,
+				success:function(e){
+					if(e!=-1){
+						location.href='<%=request.getContextPath()%>/admin/client.jsp?id='+id;		
+					}
+				}
+			});
+		});
+	});
+</script>
 </head>
 <body>
-	아이디:<%=id%><br> 고객명:<%=cd.getName(id)%><br> 이용건수:<%=list.size()%><br>
+	아이디:<%=id%>&nbsp;&nbsp;&nbsp;&nbsp;<br>
+	등급:<%if(m==1){
+		%>
+		매니저
+		<button id="addmanager">관리자권한해제</button>
+	<%}else{
+		%>
+		일반
+		<button id="deletemanager">관리자권한주기</button>
+		<%}
+	%>
+	<br> 
+	고객명:<%=cd.getName(id)%><br> 이용건수:<%=list.size()%><br>
 	총 이용금액:<%=nf.format(rd.getMoney(id))%><br>
 	<table>
 		<caption>이용 내역</caption>
