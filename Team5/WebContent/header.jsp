@@ -71,7 +71,7 @@ $(function(){
       <a>ROOM</a>
       <div class="dropouter">
          <ul class="dropmenu">
-            <li class="dropitem"><a href="#">ROOM01</a></li>
+            <li class="dropitem"><a href="index.jsp?main=room/room1.jsp">ROOM01</a></li>
             <li class="dropitem"><a href="#">ROOM02</a></li>
             <li class="dropitem"><a href="#">ROOM03</a></li>
             <li class="dropitem"><a href="#">ROOM04</a></li>
