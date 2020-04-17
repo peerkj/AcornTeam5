@@ -34,8 +34,10 @@
 					var eql = data.trim();
 					if(eql==0)
 						alert("비밀번호가 일치하지 않습니다");
-					else
+					else if(pageNum==null)
 						location.href=url+"/index.jsp?main=qna/qnalist.jsp?pageNum="+pageNum;
+					else
+						history.back();
 				}
 			});
 		});
@@ -46,7 +48,10 @@
 		
 		$("#list").click(function() {
 			var pageNum = $(this).attr("pageNum");
-			location.href="<%=url%>/index.jsp?main=qna/qnalist.jsp?pageNum="+pageNum;
+			if(pageNum!=null)
+				location.href="<%=url%>/index.jsp?main=qna/qnalist.jsp?pageNum="+pageNum;
+			else
+				history.back();
 		});
 	});
 </script>
