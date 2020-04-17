@@ -117,7 +117,7 @@ $(function(){
 }
 #selectdays{
 	border: none;
-	margin: 40px 300px;
+	margin-right: 200px;
 	float: left;	
 }
 #selectdays td,#rvbox td{
@@ -132,6 +132,8 @@ $(function(){
 	border: 1px solid gray;
 	padding: 25px;
 	float: left;
+	margin-bottom: 100px;
+	margin-left: -50px;
 }
 .hd_img{
 	height: 400px;
@@ -157,29 +159,49 @@ $(function(){
 #rvbox th{
 	width: 100px;	
 }
-#rvbox,#personinfo{
-	margin: 20px auto;
+#rvbox{
+	margin: 40px 190px;
+}
+#personinfo{
+	margin: 40px 340px;
 }
 #submit {
      font-family: 'Noto Sans KR', sans-serif;
      text-transform: uppercase;
      outline: 0;
      background: #fc9740;
-     width: 100px;
-     height: 40px;
+     width: 250px;
+     height: 50px;
      border: 0;
-     margin: 20px 910px;
+     margin: 20px 360px;
      padding: 10px;
      color: #FFFFFF;
-     font-size: 14px;
+     font-size: 16px;
      -webkit-transition: all 0.3 ease;
      transition: all 0.3 ease;
-     cursor: pointer;     
+     cursor: pointer;   
    }
-#twobox{
-	position: absolute;
-	top: 500px;
-	right: 50px;
+.contentbody{
+	position: relative;
+	margin: 50px 240px 0 420px;
+}
+.contentbody::after {
+    content: "";
+    clear: both;
+    display: block;
+}
+.personinput{
+	  outline: 0;
+	  background: #ececee;
+	  width: 100%;
+	  border: 0;
+	  margin: 0 0 15px;
+	  padding: 10px;
+	  box-sizing: border-box;
+	  font-size: 14px;
+}
+.personinput:active,.personinput:focus {
+	  border: 0.2px solid #fc9740;
 }
 </style>
 </head>
@@ -187,6 +209,7 @@ $(function(){
 <div class="hd_img">
 	<div class="img_title"><span>RESERVATION</span></div>
 </div>
+<div class="contentbody">
 	<table id="selectdays">
 		<caption><%=strYear%>년 <%=strMonth + 1%>월
 		</caption>
@@ -247,27 +270,25 @@ $(function(){
 			</tr>
 		</tbody>
 	</table>
-	<div id="info">
-		<pre>
+	<div id="info"><pre>
 선택일 :<%=strYear + "-" + strMonth + "-" + strDay%> 부터
 
 펜션 전화번호
 010-5181-6558
 
-결제방법
+결제 방법
 카카오페이
 
-이용안내
-- 퇴실일을 선택하고 작성된 예약 내용을 확인해 주세요.
-- 예약전에 예약 안내(예약 규정)를(을) 반드시 숙지하시고 예약을 하시기 바랍니다.
-- 선택란의 체크박스를 체크하신 후 예약하기 버튼을 누르시면 예약이 진행됩니다.
-</pre>
-	</div>
+이용 안내
+- 퇴실일을 선택하고 예약 내용과 본인 정보를 확인해 주세요.
+- 예약 전 예약 안내(예약 규정)를(을) 반드시 숙지하시고 예약하시기 바랍니다.
+- 하단의 결제하기 버튼을 누르시면 예약이 진행됩니다.
+</pre></div>
 	<form action="<%=request.getContextPath()%>/rv/iamp.jsp"
 		onsubmit="return check();" method="post">
-		<div id="twobox">
+		<div class="twobox">
 		<table id="rvbox">
-			<caption>객실예약</caption>
+			<caption style="font-size: 17pt;font-weight: 700;">객실 예약</caption>
 			<thead>
 				<tr>
 					<th>객실명</th>
@@ -299,30 +320,29 @@ $(function(){
 			</tbody>
 		</table>
 		<table id="personinfo">
-			<caption>예약자 정보</caption>
+			<caption style="font-size: 16pt;font-weight: 700;">예약자 정보</caption>
 			<tr>
 				<th>예약자명&nbsp;</th>
-				<td><input name="name" type="text"
-					value="<%=clientdto.getName()%>"></td>
+				<td><input name="name" type="text" class="personinput" value="<%=clientdto.getName()%>"></td>
 			</tr>
 			<tr>
 				<th>핸드폰</th>
-				<td><input name="hp" type="text" value="<%=clientdto.getHp()%>"></td>
+				<td><input name="hp" type="text" class="personinput" value="<%=clientdto.getHp()%>"></td>
 			</tr>
 			<tr>
 				<th>이메일</th>
-				<td><input name="email" type="text"
-					value="<%=clientdto.getEmail()%>"></td>
+				<td><input name="email" type="text" class="personinput" value="<%=clientdto.getEmail()%>"></td>
 			</tr>
-		</table>
-		<input type="hidden" id="total" name="total" value="0"> <input
-			type="hidden" id="submit_price" name="price" value="0"> <input
-			type="hidden" id="submit_add" name="additional" value="0"> <input
-			type="hidden" id="submit_start" name="startday" value="0"> <input
-			type="hidden" id="submit_end" name="endday" value="0"> <input
-			type="hidden" id="submit_rnum" name="rnum" value="0">
+		</table><br>
+		<input type="hidden" id="total" name="total" value="0"> 
+		<input type="hidden" id="submit_price" name="price" value="0">
+		<input type="hidden" id="submit_add" name="additional" value="0">
+		<input type="hidden" id="submit_start" name="startday" value="0">
+		<input type="hidden" id="submit_end" name="endday" value="0">
+		<input type="hidden" id="submit_rnum" name="rnum" value="0">
 		<button type="submit" id="submit">결제하기</button>
 		</div>
 	</form>
+</div>
 </body>
 </html>

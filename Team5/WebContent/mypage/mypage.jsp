@@ -82,6 +82,7 @@
 <div id="mypagebox">
 <ul>
 	<li class="mylist"><a href="<%=request.getContextPath()%>#">예약 내역</a></li>
+	<li class="mylist"><a href="<%=request.getContextPath()%>#">질문 내역</a></li>
 	<li class="mylist"><a href="<%=request.getContextPath()%>/index.jsp?main=mypage/mypage.jsp?select=checkpass.jsp?ck=1">회원정보 수정</a></li>
 	<li class="mylist"><a href="<%=request.getContextPath()%>/index.jsp?main=mypage/mypage.jsp?select=updatepass.jsp">비밀번호 변경</a></li>
 	<li class="mylist"><a href="<%=request.getContextPath()%>/index.jsp?main=mypage/mypage.jsp?select=checkpass.jsp?ck=2">탈퇴하기</a></li>

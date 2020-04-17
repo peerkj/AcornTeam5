@@ -9,5 +9,5 @@
 	AnswerDao db = new AnswerDao();
 	db.deleteAnswer(qnum);
 	
-	response.sendRedirect(url+"/qna/qnalist.jsp?pageNum="+pageNum);
+	response.sendRedirect(url+"/index.jsp?main=qna/qnalist.jsp?pageNum="+pageNum);
 %>

@@ -58,6 +58,36 @@
 		}
 	} 
 %>
+<script type="text/javascript">
+	$(function() {
+		$(document).on("mousemove","a.show_price",function(e) {
+					$("#v").css({
+						"top" : e.pageY + 8,
+						"left" : e.pageX + 13
+					});
+					$("#v").show()
+					var msg = $(this).attr("price");
+					$("#v").html(
+							"<b>객실 정보</b><br>" + "객실:" + $(this).text() + "<br>"
+									+ "가격:" + msg);
+				});
+		$(document).on("mouseout", "a.show_price", function(e) {
+			$("#v").hide();
+		});
+
+		$('.show_price').click(function() {
+			var id='<%=id%>';
+			if(id=='null'){
+				alert("로그인 후 이용하세요.");
+				location.href='<%=request.getContextPath()%>/login/loginform.jsp';
+				return false;
+			}
+		});		
+	});
+	function need(){
+		
+	}
+</script>
 <style type="text/css">
 @import url('https://fonts.googleapis.com/css2?family=Rozha+One&display=swap');
 table{
@@ -80,7 +110,7 @@ table{
 	padding: 5px 0 0 5px;
 }
 #v {
-	border: 2px solid red;
+	border: 2px solid #fbc777;
 	position: absolute;
 	display: none;
 	width: 150px;
@@ -109,36 +139,6 @@ table{
     font-family: 'Rozha One', serif;
 }
 </style>
-<script type="text/javascript">
-	$(function() {
-		$(document).on("mousemove","a.show_price",function(e) {
-					$("#v").css({
-						"top" : e.pageY + 8,
-						"left" : e.pageX + 13
-					});
-					$("#v").show()
-					var msg = $(this).attr("price");
-					$("#v").html(
-							"객실 정보<br>" + "객실:" + $(this).text() + "<br>"
-									+ "가격:" + msg);
-				});
-		$(document).on("mouseout", "a.show_price", function(e) {
-			$("#v").hide();
-		});
-
-		$('.show_price').click(function() {
-			var id='<%=id%>';
-			if(id=='null'){
-				alert("로그인 후 이용하세요.");
-				location.href='<%=request.getContextPath()%>/login/loginform.jsp';
-				return false;
-			}
-		});		
-	});
-	function need(){
-		
-	}
-</script>
 </head>
 <body>
 	<div class="hd_img">
@@ -188,7 +188,7 @@ table{
 				<td><font color="blue">토</font></td>
 			</tr>
 		</thead>
-		<tbody>
+		<tbody valign="top">
 			<tr>
 				<%
 					for (int i = 1; i < start; i++) {

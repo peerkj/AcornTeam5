@@ -44,14 +44,11 @@ String url=request.getContextPath();
    });
 </script>
 <style type="text/css">
-/* @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap'); */
-#updateclient_full{
-	margin-bottom: 10px;
-}
 #updateclient_body{
 	border: 1px solid #fc9740;
 	padding: 70px;
 	width: 600px;
+	margin-left: -250px;
 }
 #updateclient_title{
 	font-size: 20pt;
@@ -97,6 +94,9 @@ select {
    -moz-appearance: none;
    appearance: none;
    }
+#focusform input:active, #focusform input:focus {
+	border: 0.2px solid #fc9740;
+}
 </style>
 </head>
 <%
@@ -118,6 +118,7 @@ ClientDto dto = dao.getClientData(id);
             <b>아이디</b><br>
             <input type="text" name="id" id="id" readonly="readonly"
             value="<%=dto.getId() %>"><br>
+         <div id="focusform">
          <%
          String[] hp = dto.getHp().split("-");
             
@@ -145,6 +146,7 @@ ClientDto dto = dao.getClientData(id);
 		        <option value="gmail.com">gmail.com</option>
 		        <option value="daum.net">daum.net</option>
 	        </select><br>
+	    </div>
         <button id="submit" type="submit">수정하기</button>
    </form>
 </div>

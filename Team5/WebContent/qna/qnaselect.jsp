@@ -34,8 +34,10 @@
 					var eql = data.trim();
 					if(eql==0)
 						alert("비밀번호가 일치하지 않습니다");
-					else
+					else if(pageNum==null)
 						location.href=url+"/index.jsp?main=qna/qnalist.jsp?pageNum="+pageNum;
+					else
+						history.back();
 				}
 			});
 		});
@@ -46,7 +48,10 @@
 		
 		$("#list").click(function() {
 			var pageNum = $(this).attr("pageNum");
-			location.href="<%=url%>/index.jsp?main=qna/qnalist.jsp?pageNum="+pageNum;
+			if(pageNum!=null)
+				location.href="<%=url%>/index.jsp?main=qna/qnalist.jsp?pageNum="+pageNum;
+			else
+				history.back();
 		});
 	});
 </script>
@@ -100,7 +105,10 @@ th,td{
     border: none;
     cursor: pointer;
 }
-
+.re{
+	position: absolute;
+	margin: 250px 0 0 10px;
+}
 </style>
 </head>
 <%
@@ -149,31 +157,35 @@ th,td{
 			<%
 			adto=adb.getAnswer(dto.getQnum());
 			if(adto!=null){%>
-				<tr>
-					<td colspan="2">
-						<hr style="border: 0.5px solid;">
-						<pre>답변: <%=adto.getContent() %></pre>
-						&nbsp;
-						<%if(cdb.checkManage(id)==1){%>
-						<a href="<%=url%>/qna/answerdeleteaction.jsp?qnum=<%=num%>&pageNum=<%=pageNum%>">삭제</a>				
-						<%}%>
-					</td>
-					<td><%=adto.getWriteday() %></td>				
-				</tr>
+			<tr style="border-top: 2px solid #ddd;background-color: #f8f8f8;">
+				<td colspan="3" style="padding:30px 40px;min-height: 300px;max-width: 600px;">
+					
+					<span style="font-weight: 700;font-size: 13pt;">답변</span>
+					<pre><%=adto.getContent() %></pre>
+				
+				</td>
+				<td style="text-align: right;color: #666;font-size: 11pt;width: 150px;padding:30px 20px;"><%=adto.getWriteday() %>
+					<%if(cdb.checkManage(id)==1){%>
+					<a href="<%=url%>/qna/answerdeleteaction.jsp?qnum=<%=num%>&pageNum=<%=pageNum%>" 
+					style="text-decoration: none;color: #000;">삭제</a>				
+					<%}%>
+				</td>				
+			
+			</tr>
 			<%}%>
 			<%-- <tr>
 				<th>조회수</th>
 				<td colspan="2"><%=dto.getViewcount() %></td>
 			</tr> --%>
 			<tr align="center">
-				<td colspan="4">
+				<td colspan="4" style="padding:50px 20px 20px;">
 					<%
 					if(dto.getId().equals(id)){%>
 						<button type="button" class="btn del" id="del" num="<%=num%>" pageNum="<%=pageNum%>">
 					삭제</button>
 					<%}
 					if(cdb.checkManage(id)==1&&adto==null){%>
-						<button type="button" id="answer">
+						<button type="button" class="btn ans" id="answer">
 					답변</button>
 					<%}
 					%>				
@@ -182,14 +194,13 @@ th,td{
 				</td>
 			</tr>
 			<%if(cdb.checkManage(id)==1){%>
-				<tr id="ansform">
-					<td colspan="2">
-						<hr style="border: 0.5px solid;">
+				<tr id="ansform" style="border-top: 0.5px solid #676767;">
+					<td colspan="4" style="padding: 60px 20px 20px;">
 						<form action="<%=url %>/qna/answerinsertaction.jsp" method="post">
 							<input type="hidden" name="qnum" value="<%=num%>">
 							<input type="hidden" name="pageNum" value="<%=pageNum%>">
-							<textarea name="content"></textarea>
-							<button type="submit">답변하기</button>
+							<textarea name="content" cols="80" rows="15"></textarea>
+							<button type="submit" class="btn re">답변하기</button>
 						</form>
 					</td>
 				</tr>

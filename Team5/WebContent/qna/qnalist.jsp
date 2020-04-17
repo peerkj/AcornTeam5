@@ -14,7 +14,7 @@
 <%
 	String url=request.getContextPath();
 %>
-<link rel="stylesheet" href="<%=url%>/css/style_qnalist.css">
+<link rel="stylesheet" href="<%=url %>/css/style_qnalist.css">
 <style type="text/css">
 @import url('https://fonts.googleapis.com/css2?family=Rozha+One&display=swap');
 #write{
@@ -23,28 +23,27 @@
 #answer_color{
 	color: #ff9b4f;
 }
-/* .qnaimg{
-	background: url('image/qnapage.jpg');
-	background-size: cover;
-	width: 100%;
+.hd_img{
 	height: 400px;
-	margin-bottom: 30px;
+	width: 100%;
+	background-size: cover;
+	background-image: url('image/qnapage.jpg');
 	position: relative;
 }
-.qnaback{
-	background-color:  rgba(0, 0, 0, 0.1);
+.img_title{
 	width: 100%;
-	height: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.1);
 }
-.qnatext{
-	font-family: 'Rozha One', serif;
+.img_title span{
+	font-size: 70pt;
 	font-weight: 700;
-	font-size: 90px;
 	color: #fff;
 	position: absolute;
-	bottom: -38px;
+	bottom: -40px;
     left: 300px;
-} */
+    font-family: 'Rozha One', serif;
+}
 </style>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <script type="text/javascript">
@@ -86,10 +85,8 @@
 %>
 <body>
 <input type="hidden" id="url" url="<%=url%>">
-<div class="qnaimg">
-	<div class="qnaback">
-		<span class="qnatext">Q&A</span>
-	</div>
+<div class="hd_img">
+	<div class="img_title"><span>Q&A</span></div>
 </div>
 
 <button type="button" id="write" check="<%=check%>">글쓰기</button>
