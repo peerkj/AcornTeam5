@@ -20,7 +20,6 @@ public class ReservationDao {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		String sql="select * from reservation where rnum=? and to_char(startday,'YYYY-MM-DD')=?";
-		
 		conn=db.getConnection();
 		try {
 			pstmt=conn.prepareStatement(sql);
@@ -249,12 +248,47 @@ public class ReservationDao {
 		PreparedStatement pstmt=null;
 		ResultSet rs= null;
 		List<ReservationDto> list=new ArrayList<ReservationDto>();
-		String sql="select * from(select reservation.*,rownum r from reservation) where r<=? and r>=? order by startday desc";
+		String sql="select * from(select reservation.*,rownum r from reservation) where r>=? and r<=? order by startday desc";
 		conn=db.getConnection();
 		try {
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setInt(1, start);
 			pstmt.setInt(2, end);
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				ReservationDto dto=new ReservationDto();
+				dto.setRnum(rs.getString("rnum"));
+				dto.setId(rs.getString("id"));
+				dto.setPrice(rs.getString("price"));
+				dto.setAdditional(rs.getString("additional"));
+				dto.setStartday(rs.getString("startday"));
+			    dto.setEndday(rs.getString("endday"));
+			    dto.setName(rs.getString("name"));
+			    dto.setHp(rs.getString("hp"));
+			    dto.setPcount(rs.getString("pcount"));
+			    dto.setResnum(rs.getString("resnum"));		    
+			    list.add(dto);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;
+	}
+	//get search info
+	public List<ReservationDto> getSearchRv(String startday,String endday,int start,int end) {
+		Connection conn=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs= null;
+		List<ReservationDto> list=new ArrayList<ReservationDto>();
+		String sql="select * from(select reservation.*,rownum r from reservation where to_char(STARTDAY,'YYYY-MM-dd') between ? and ?) where r<=? and r>=? order by startday desc";
+		conn=db.getConnection();
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, startday);
+			pstmt.setString(2, endday);
+			pstmt.setInt(3, start);
+			pstmt.setInt(4, end);
 			rs=pstmt.executeQuery();
 			while(rs.next()) {
 				ReservationDto dto=new ReservationDto();
