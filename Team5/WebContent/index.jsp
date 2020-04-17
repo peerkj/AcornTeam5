@@ -30,6 +30,17 @@ String url=request.getContextPath();
 	bottom: 0;
 	position: relative;
 }
+#header{
+	width: 100%;
+	height: 130px;
+	border-top: 10px solid rgba(255,255,255,0);
+	z-index: 999;
+	position: absolute;
+	color: #fff;
+}
+#contentarea{
+	margin-bottom: 200px;
+}
 </style>
 <script type="text/javascript">
 /* 헤더고정 */
