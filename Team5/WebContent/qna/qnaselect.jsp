@@ -34,7 +34,7 @@
 					var eql = data.trim();
 					if(eql==0)
 						alert("비밀번호가 일치하지 않습니다");
-					else if(pageNum==null)
+					else if(pageNum!="null")
 						location.href=url+"/index.jsp?main=qna/qnalist.jsp?pageNum="+pageNum;
 					else
 						history.back();
@@ -48,7 +48,7 @@
 		
 		$("#list").click(function() {
 			var pageNum = $(this).attr("pageNum");
-			if(pageNum!=null)
+			if(pageNum!="null")
 				location.href="<%=url%>/index.jsp?main=qna/qnalist.jsp?pageNum="+pageNum;
 			else
 				history.back();

@@ -68,6 +68,8 @@ String url=request.getContextPath();
 				<p class="message">
 					계정이 없으신가요? <a href="<%=url%>/register/registerform.jsp">회원가입</a>
 				</p>
+				<a href="<%=url%>/login/findid.jsp">아이디 찾기</a>
+            <a href="<%=url%>/login/findpass.jsp">비밀번호 찾기</a>
 			</form>
 		<div class="copyright">Copyright © 라봉펜션. All Rights Reserved.</div>
 		</div>		
