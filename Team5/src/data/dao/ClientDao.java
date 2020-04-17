@@ -12,7 +12,6 @@ import oracle.db.DbConnect;
 public class ClientDao {
 	DbConnect db = new DbConnect();
 	
-	//�븘�씠�뵒濡� �씠由� �뼸�뼱�삤湲�
 	public String getName(String id) {
 		String name="";
 		Connection conn=null;
@@ -84,8 +83,6 @@ public class ClientDao {
 		}	
 		return -1; //
 	}
-
-	
 	//
 	public int login(String id,String pass) {
 		
@@ -418,4 +415,23 @@ public class ClientDao {
        }
        return find;
     }
+    
+    public int updateManager(String id,int m) {
+		Connection conn=null;
+		PreparedStatement pstmt=null;
+		String sql="update client set manager=? where id=?";		
+		conn=db.getConnection();
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1,m);
+			pstmt.setString(2,id);			
+			return pstmt.executeUpdate(); 
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			db.dbClose(pstmt, conn);
+		}
+		return -1; //
+	}
 }
