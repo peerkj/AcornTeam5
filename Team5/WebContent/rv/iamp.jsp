@@ -80,7 +80,7 @@ String id=(String)session.getAttribute("id");
     						location.href="<%=request.getContextPath()%>/index.jsp?main=rv/calendar.jsp";
     					}
     					else{	
-    						location.href="<%=request.getContextPath()%>/index.jsp?main=rv/successpage.jsp";
+    						location.href="<%=request.getContextPath()%>/rv/successpage.jsp";
     					}
     				}
                 });

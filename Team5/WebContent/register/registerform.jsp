@@ -7,7 +7,7 @@
 String url=request.getContextPath();
 %>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>라봉 회원가입</title>
 <link rel="stylesheet" href="../css/style_registerform.css">
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 

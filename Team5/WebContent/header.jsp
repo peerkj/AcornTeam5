@@ -11,9 +11,12 @@ String url=request.getContextPath();
 %>
 <link rel="stylesheet" href="<%=url%>/css/style_header.css">
 <style type="text/css">
-#logout,#join,#login,#home,#mypage1:hover{
+#logout,#join,#login,#home,#mypage1,#adminpage1:hover{
    cursor: pointer;
-} 
+}
+.mainmenu a{
+   display: block;
+}
 </style>
 <script type="text/javascript">
 $(function(){
@@ -37,7 +40,10 @@ $(function(){
       location.href="login/logoutaction.jsp";   
    });
    $("#mypage").click(function(){
-	  location.href="<%=url%>/index.jsp?main=mypage/mypage.jsp";   	   
+     location.href="<%=url%>/index.jsp?main=mypage/mypage.jsp";         
+   });
+   $('#adminpage').click(function() {
+   location.href="<%=url%>/index.jsp?main=admin/adminmain.jsp";            
    });
 });
 
@@ -45,7 +51,7 @@ $(function(){
 </script>
 <style type="text/css">
 .dropouter2{
-	display: none;
+   display: none;
 } 
 </style>
 </head>
@@ -60,7 +66,12 @@ $(function(){
    %>
    <li id="login">login</li> 
    <li id="join">join</li>
-   <%}else{%>
+   <%}else if(id.equals("admin")){
+   %>
+   <li id="adminpage">&nbsp;&nbsp;&nbsp;<span id="adminpage1">관리페이지</span></li>
+   <li id="logout">logout</li>
+   <%   
+   }else{%>
    <li id="mypage"><b><%=name%> 님</b>&nbsp;&nbsp;&nbsp;<span id="mypage1">mypage</span></li>
    <li id="logout">logout</li>
    <%}%>
@@ -72,11 +83,11 @@ $(function(){
       <div class="dropouter">
          <ul class="dropmenu">
             <li class="dropitem"><a href="index.jsp?main=room/room1.jsp">ROOM01</a></li>
-            <li class="dropitem"><a href="#">ROOM02</a></li>
-            <li class="dropitem"><a href="#">ROOM03</a></li>
-            <li class="dropitem"><a href="#">ROOM04</a></li>
-            <li class="dropitem"><a href="#">ROOM05</a></li>
-            <li class="dropitem"><a href="#">ROOM06</a></li>
+            <li class="dropitem"><a href="index.jsp?main=room/room2.jsp">ROOM02</a></li>
+            <li class="dropitem"><a href="index.jsp?main=room/room3.jsp">ROOM03</a></li>
+            <li class="dropitem"><a href="index.jsp?main=room/room4.jsp">ROOM04</a></li>
+            <li class="dropitem"><a href="index.jsp?main=room/room5.jsp">ROOM05</a></li>
+            <li class="dropitem"><a href="index.jsp?main=room/room6.jsp">ROOM06</a></li>
          </ul>
       </div>
    </li>
@@ -85,7 +96,7 @@ $(function(){
       <div class="dropouter2">
          <ul class="dropmenu2" >
             <li class="dropitem2"><a href="index.jsp?main=service/servicepage.jsp" id="faci1">FACILITIES</a></li>
-            <li class="dropitem2"><a href="#" id="faci2">ATTRACTION</a></li>
+            <li class="dropitem2"><a href="index.jsp?main=service/mapservice.jsp" id="faci2">ATTRACTION</a></li>
          </ul>
       </div>
    </li>

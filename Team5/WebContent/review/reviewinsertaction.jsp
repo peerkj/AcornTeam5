@@ -34,7 +34,7 @@
 		
 		db.insertReview(dto);
 		
-		response.sendRedirect(url+"/review/reviewlist.jsp");
+		response.sendRedirect(url+"/review/reviewlist.jsp?rnum="+rnum);
 	} catch(Exception e){
 		System.out.println("업로드오류:"+e.getMessage());
 	}

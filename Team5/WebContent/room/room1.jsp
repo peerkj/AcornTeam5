@@ -25,6 +25,7 @@ $(function(){
 });
 </script>
 <style type="text/css">
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;500;600;700&display=swap');
 .room1-image {
     position: relative;
     width: 100%;
@@ -69,9 +70,9 @@ $(function(){
 	font-family: 'Noto Serif KR', serif;
 	position: absolute;
 	top: 450px;
-    right: 280px;;
-	font-size: 12pt;
-	font-weight: 600;
+    right: 280px;
+	font-size: 14pt;
+	font-weight: 400;
 	color: #666;
 }
 .text2{
@@ -83,7 +84,47 @@ $(function(){
 	font-weight: 600;
     color: #3f3b3b;
 }
-
+#pricegroup{
+	margin:100px 0 50px 750px;
+}
+#pricetb{
+	margin:0 0 50px 30px;
+	border-collapse: collapse;
+	border: 1px solid #cccccc;
+}
+#pricetb th{
+	background-color: #eeeeee;
+	border: 1px solid #cccccc;
+	padding: 5px;
+}
+#pricetb td{
+	border: 1px solid #cccccc;
+	width: 150px;
+	text-align: center;
+	padding: 5px;
+}
+#pricetb caption{
+	padding-bottom: 15px;
+	font-size: 13pt;
+	font-weight: 700;
+}
+#gorv{
+	width: 200px;
+	height: 50px;
+	background-color: #eeeeee;
+	border: none;
+	font-size: 12pt;
+	font-style: none;
+	margin-left: 90px;
+	font-weight: 700;
+}
+#gorv:hover{
+	background-color: #e5e4e4;
+	cursor: pointer;
+}
+#reviewbox{
+	width:900px;
+}
 </style>
 </head>
 <body>
@@ -139,7 +180,7 @@ $(function(){
 				<div style="font-size:16px; line-height:25px; margin-top:40px;">
 				
 				평수 : 10평<br>
-				기준 : 2명　최대 : 2<br><br>
+				기준 : 2명　최대 : 2명<br><br>
 				</div>
 			</div>
 			<img src="<%=url %>/image/room1-2.jpg" style="width: 1000px; height: 600px; float: right;">
@@ -156,6 +197,28 @@ $(function(){
 			<img src="<%=url %>/image/room1-5.jpg" style="width: 1050px; height: 600px; margin-left: 200px;">
 		</div>
 	</div>
+	<div id="pricegroup">
+		<table id="pricetb">
+			<caption>가격 정보</caption>
+			<tr>
+				<th>주중</th>
+				<th>주말</th>
+			</tr>
+			<tr>
+				<td>#</td>
+				<td>#</td>
+			</tr>
+			<tr>
+				<td colspan="2">※성수기는 위 요금의 1.5배</td>
+			</tr>
+		</table>
+		<button type="button" id="gorv" onclick="location.href='<%=url%>/index.jsp?main=rv/calendar.jsp'">예약하기</button>
+   </div>
+	<%-- <div id="reviewbox">
+	<jsp:include page="../review/reviewlist.jsp">
+		<jsp:param value="1" name="rnum"/>
+	</jsp:include>
+	</div> --%>
 </div>
 </body>
 </html>

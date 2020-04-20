@@ -12,6 +12,12 @@ String url=request.getContextPath();
 <script type="text/javascript">
 	var passchk = 0;//비밀번호 체크
 	$(function() {
+		
+		$("#pass2").keyup(function(e) {
+			if (e.keyCode == 13) {
+				$("#btnchange").click();
+			}
+		});
 		$('#pass2').keyup(function() {
 			if ($(this).val().length == 0) {
 				$('#passchk').html('');
@@ -100,8 +106,8 @@ String url=request.getContextPath();
 	font-size: 15pt;
 	margin-left: 2px;
 }
-#updatepass_table {
-	height: 
+#updatebody{
+	margin-left: 300px;
 }
 #updatepass_table input:active,#updatepass_table input:focus{
      border: 0.1px solid #fc9740;

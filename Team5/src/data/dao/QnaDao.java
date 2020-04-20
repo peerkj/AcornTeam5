@@ -43,7 +43,7 @@ public class QnaDao {
       Connection conn=null;
       PreparedStatement pstmt=null;
       ResultSet rs=null;
-      String sql= "select a.* from (select qna.*, rownum rnum from qna order by qwriteday desc)a where rnum>=? and rnum<=?";
+      String sql= "select a.* from (select b.*, rownum rnum from (select * from qna order by qwriteday desc)b)a where rnum>=? and rnum<=?";
       conn=db.getConnection();
       try {
          pstmt=conn.prepareStatement(sql);

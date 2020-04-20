@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -11,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import data.dto.PeakDto;
 import data.dto.RoomDto;
 import oracle.db.DbConnect;
 
@@ -147,6 +149,38 @@ public class RoomDao {
 		}
 		return set;
 	}
+
+	public Map<Integer,Double> peak(String date){
+
+		Connection conn=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		Map<Integer,Double> map=new HashMap<Integer,Double>();
+		String sql="select to_char(startday,'DD') s,to_char(endday,'DD') e,peak_rate from peak where TO_CHAR(startday,'YYYY-MM')=?";
+		conn=db.getConnection();
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1,date);
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				int end=rs.getInt("e")-1;
+				int start=rs.getInt("s");
+				if(end-start==0){
+					map.put(start, rs.getDouble(3));
+				}else {
+					for(int i=start;i<=end;i++) {
+						map.put(i,rs.getDouble(3));
+					}
+				}
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			db.dbClose(rs, pstmt, conn);
+		}
+		return map;
+	}
 	
 	public double getRate() {
 		Connection conn=null;
@@ -188,5 +222,77 @@ public class RoomDao {
 			db.dbClose(pstmt, conn);
 		}
 		return -1;
+	}
+
+	public int insertPeak(PeakDto dto) {
+		Connection conn=null;
+		PreparedStatement pstmt=null;
+		
+		Timestamp st = Timestamp.valueOf(dto.getStartday()+" 00:00:00");
+		Timestamp et = Timestamp.valueOf(dto.getEndday()+" 00:00:00");
+		
+		String sql="insert into peak values (seq_semi.nextval,?,?,?)";
+		conn=db.getConnection();
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setTimestamp(1, st);
+			pstmt.setTimestamp(2, et);
+			pstmt.setDouble(3, dto.getPeak_rate());
+			pstmt.execute();
+			return 1;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			db.dbClose(pstmt, conn);
+		}
+		return -1;
+	}
+	
+	public void deletePeak(String pnum) {
+		Connection conn=null;
+		PreparedStatement pstmt=null;
+		String sql="delete from peak where pnum=?";
+		
+		conn=db.getConnection();
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, pnum);
+			pstmt.execute();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			db.dbClose(pstmt, conn);
+		}
+	}
+	
+	public List<PeakDto> getPeak() {
+		Connection conn=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		List<PeakDto> list=new ArrayList<PeakDto>();
+		
+		String sql="select * from peak order by startday desc";
+		conn=db.getConnection();
+		try {
+			pstmt=conn.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				PeakDto dto=new PeakDto();
+				dto.setPnum(rs.getString("pnum"));
+				dto.setStartday(rs.getString("startday"));
+				dto.setEndday(rs.getString("endday"));
+				dto.setPeak_rate(rs.getDouble("peak_rate"));
+				list.add(dto);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			db.dbClose(rs, pstmt, conn);
+		}
+		return list;
 	}
 }

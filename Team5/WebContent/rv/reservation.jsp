@@ -1,3 +1,4 @@
+<%@page import="java.util.Map"%>
 <%@page import="java.sql.Timestamp"%>
 <%@page import="data.dto.ClientDto"%>
 <%@page import="data.dao.ClientDao"%>
@@ -27,13 +28,17 @@
 	int endDay = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
 	int start = cal.get(Calendar.DAY_OF_WEEK);
 	int newLine = 0;
+	
 	RoomDao roomdao = new RoomDao();
+	double rate=roomdao.getRate();
 	//년-월 형태
 	String sm = String.format("%02d", strMonth + 1);
 	String selectDay = strYear + "-" + sm;
-	//시작일 년-월 형태
+	//시작일 년-월-일 형태
 	String submit_start = selectDay + "-" + strDay;
 
+	Map<Integer,Double> peaklist=roomdao.peak(selectDay);
+	
 	//예약체크
 	Set<Integer> list = roomdao.check(rnum, selectDay);
 	//rnum에 해당하는 방정보 얻기
@@ -48,11 +53,12 @@
 </style>
 <script type="text/javascript">
 $(function(){
-
+	var room=Number(<%=roomdto.getPrice()%>);
 	var startday="<%=strDay%>";
-	var price="<%=roomdto.getPrice()%>";
+	var price=0;
 	
-	$('.sel').click(function() {		
+	$('.sel').click(function() {
+		price=0;
 		var endDay=Number.parseInt($(this).text());
 		var add=0;
 		if(startday-endDay>=0){
@@ -80,19 +86,22 @@ $(function(){
 		for(var i=startday;i<=endDay;i++){
 			$('[date='+i+']').css('background-color','#fbc777');			
 			if($('[date='+i+']').attr('day')==6||$('[date='+i+']').attr('day')==0)
-			add+=price*0.25;
+			add+=room*<%=rate%>;
+		}
+		for(var i=startday;i<endDay;i++){
+			price+=Number($('[date='+i+']').attr('price'));
 		}
 		var z=endDay-startday;
 		$("#use").html(z+"박 "+(z+1)+"일");
-		$("#price").html(numberWithCommas(price*z)+"원");
-		$("#add").html(numberWithCommas(add)+"원");
-		$("#sum").html(numberWithCommas(price*z+add)+"원");
-		$("#total").val(price*z+add);
+		$("#price").html(numberWithCommas((room*z)+"원"));
+		$("#add").html(numberWithCommas((price+add-room*z)+"원"));
+		$("#sum").html(numberWithCommas((price+add)+"원"));
+		$("#total").val(price+add);
 		//input hidden 채우기
 		$("#submit_start").val('<%=submit_start%>');
 		$("#submit_end").val('<%=selectDay%>'+"-"+endDay);
 		$("#submit_rnum").val('<%=rnum%>');
-					$("#submit_price").val(price * z);
+					$("#submit_price").val(price);
 					$("#submit_add").val(add);
 
 				});
@@ -245,11 +254,12 @@ $(function(){
 						if (list.contains(i)) {
 				%>
 				<td style="color: white" day="<%=newLine%>" bgcolor="<%=backColor%>"
+				price="<%=peaklist.containsKey(i)?(int)Math.floor(Integer.parseInt(roomdto.getPrice())*peaklist.get(i)):roomdto.getPrice()%>"
 					date="<%=i%>" class="sel" soldout="1"><%=i%> <%
  	} else {
  %>
-				<td style="color:<%=color%>" day="<%=newLine%>"
-					bgcolor="<%=backColor%>" date="<%=i%>" class="sel"><%=i%> <%
+				<td style="color:<%=color%>" day="<%=newLine%>" 
+					bgcolor="<%=backColor%>" date="<%=i%>" class="sel" price="<%=peaklist.containsKey(i)?(int)Math.floor(Integer.parseInt(roomdto.getPrice())*peaklist.get(i)):roomdto.getPrice()%>"><%=i%> <%
  	}
 
  		out.println("<br></td>");
@@ -271,7 +281,7 @@ $(function(){
 		</tbody>
 	</table>
 	<div id="info"><pre>
-선택일 :<%=strYear + "-" + strMonth + "-" + strDay%> 부터
+선택일 :<%=strYear + "-" + (strMonth+1) + "-" + strDay%> 부터
 
 펜션 전화번호
 010-5181-6558
@@ -294,7 +304,7 @@ $(function(){
 					<th>객실명</th>
 					<th>이용일</th>
 					<th>인원수</th>
-					<th>적용요금</th>
+					<th>기본요금</th>
 					<th>추가요금</th>
 					<th>합계</th>
 				</tr>

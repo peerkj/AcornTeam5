@@ -14,6 +14,14 @@ String url=request.getContextPath();
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <script type="text/javascript">
 	$(function(){
+		
+		$("#pass").keyup(function(e) {
+			if (e.keyCode == 13) {
+				$("#submit").click();
+			}
+		});
+
+		
 		$('#submit').click(function() {
 			$.ajax({
 				type:"post",
@@ -79,7 +87,9 @@ String url=request.getContextPath();
 	width: 100px;
 	margin-left: 50px;
 }
-
+.checkform {
+	margin-left: 300px;
+}
 </style>
 </head>
 <body>

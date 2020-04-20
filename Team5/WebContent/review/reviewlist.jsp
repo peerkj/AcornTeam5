@@ -12,22 +12,74 @@
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <style>
-     #star_grade a{
-        text-decoration: none;
-        color: gray;
-    }
-    #star_grade a.on{
-        color: yellow;
-    }
-    .joayo{
-    	color: #cccccc;
-    }
-    .heart{
-    	color:red;
-    }
-    #del:hover{
-    	cursor: pointer;
-    }
+#fullbox{
+	margin-left: 630px;
+	margin-top: 150px;
+	width: 615px;
+}
+#star_grade a{
+	text-decoration: none;
+	color: gray;
+	float: left;
+}
+#star_grade a.on{
+	color: #faa727;
+}
+#star_grade{
+	min-width: 400px;
+}
+.joayo{
+	color: #cccccc;
+	margin-left: 15px;
+}
+.heart{
+	color: #ef1843;
+}
+#del:hover{
+	cursor: pointer;
+}
+#infodel{
+	color: #aaaaaa;
+	font-size: 10pt;
+	font-weight: 400;
+}
+#infodel a{
+	display: liline;
+	color: #aaaaaa;
+}
+#pagenum{
+	text-align: center;
+	width: 600px;
+}
+#pagenum li{
+	list-style: none;
+}
+#reviewimg{
+	min-width:150px;
+}
+#textbox{
+	min-height: 100px;
+}
+#hearttd{
+	align: center;
+	min-width: 50px;
+}
+#writereview{
+	width: 100px;
+	height: 35px;
+	background-color: #eeeeee;
+	border: none;
+	font-size: 10pt;
+	font-style: none;
+	font-weight: 700;
+	float: right;
+	color: #000;
+	border-radius: 15px;
+}
+#writereview:hover{
+	background-color: #e5e4e4;
+	cursor: pointer;
+}
 </style>
 <script type="text/javascript">
 	$(function(){
@@ -108,84 +160,85 @@
 	
 %>
 <body>
+<div id="fullbox">
 <input type="hidden" id="url" url="<%=url%>">
 <input type="hidden" id="check" check="<%=check%>">
 <h3>리뷰(<%=totalCount %>건)</h3>
-
+<br>
 <%
 	for(ReviewDto dto:list){
 		int joayosu = db.getJoayo(dto.getRevnum());
 		int checkjoayo = db.joayocheck(dto.getRevnum(), id);
 	%>	
-		<table>
+		<table id="reviewtb">
 			<tr>
 				<td>
 					<p id="star_grade">
 						<%for(int i=1;i<=Integer.parseInt(dto.getStar());i++){ %>
-				    		<a href="#" class="on">★</a>
+				    		<a class="on">★</a>
 				    	<%} 
 						for(int i=1;i<=5-Integer.parseInt(dto.getStar());i++){ %>
-					   		<a href="#">★</a>
+					   		<a>★</a>
 					   	<%}%>
 					   	<b><%=dto.getStar() %></b>
 					</p>				
-				</td>			
-			</tr>
-			<tr>
-				<td>
-					<%=dto.getId() %>·<%=sdf.format(dto.getRwriteday())%>
-					<%if(dto.getId().equals(id)){%>
-					|<a id="del" rnum="<%=dto.getRnum()%>" revnum="<%=dto.getRevnum()%>" pageNum="<%=currentPage%>">
-				삭제</a>
-				<%}%>					
 				</td>
-				<td align="center">	
+				<td rowspan="3" id="reviewimg">
+					<img src="<%=url%>/review/reviewimg/<%=dto.getImg()%>" style="width: 150px;height: 100px;">
+				</td>
+				<td id="hearttd" rowspan="3">	
 					<%if(db.joayocheck(dto.getRevnum(), id)!=1){%>
 						<span class="joayo" style="cursor: pointer;" revnum="<%=dto.getRevnum()%>">						
 					<%}else{%>
 						<span class="joayo heart" style="cursor: pointer;" revnum="<%=dto.getRevnum()%>">
 					<%} %>
-					
 					♥</span>
 					<span class="joayosu"><%=joayosu %></span>
+				</td>			
+			</tr>
+			<tr>
+				<td id="infodel">
+					<%=dto.getId() %> · <%=sdf.format(dto.getRwriteday())%>
+					<%if(dto.getId().equals(id)){%>
+					|<a id="del" rnum="<%=dto.getRnum()%>" revnum="<%=dto.getRevnum()%>" pageNum="<%=currentPage%>">&nbsp;삭제</a>
+				<%}%>					
 				</td>
 			</tr>
 			<tr>
 				<td>
-					<pre><%=dto.getContent() %></pre>					
+					<pre id="textbox"><%=dto.getContent() %></pre>					
 				</td>
 				<%if(!dto.getImg().equals("..")){ %>
-				<td rowspan="3">
-					<img src="<%=url%>/review/reviewimg/<%=dto.getImg()%>" style="width: 100px;height: 100px;">
-				</td>
+				
 				<%}%>				
 			</tr>			
 		</table>
-		<hr>
+		<hr style="width:610px;">
 	<%}
 %>
 <!-- 페이지번호 출력 -->
-	<div style="width: 600px;text-align: center;">      
+	<div id="pagenum">      
       <ul>   
       <%
       if(startPage!=1){%>
-         <li><a href="<%=url %>/qna/qnalist.jsp?pageNum=<%=startPage-1 %>">이전</a></li>
+         <li><a href="<%=url %>/index.jsp?main=room/room1.jsp&rnum=<%=rnum %>&pageNum=<%=startPage-1 %>">이전</a></li>
       <%}
       for(int i=startPage; i<=endPage;i++){
          if(i==currentPage){%>
             <li class="active">
-               <a href="<%=url %>/qna/qnalist.jsp?pageNum=<%=i %>"><%=i %></a>
+               <a href="<%=url %>/index.jsp?main=room/room1.jsp&rnum=<%=rnum %>&pageNum=<%=i %>"><%=i %></a>
             </li>         
          <%}else{%>
             <li>
-               <a href="<%=url %>/qna/qnalist.jsp?pageNum=<%=i %>"><%=i %></a>
+               <a href="<%=url %>/index.jsp?main=room/room1.jsp&rnum=<%=rnum %>&pageNum=<%=i %>"><%=i %></a>
             </li>
          <%}
       } 
       if(currentPage<totalPage){%>
-         <li><a href="<%=url %>/qna/qnalist.jsp?pageNum=<%=endPage+1 %>">다음</a></li>
+         <li><a href="<%=url %>/index.jsp?main=room/room1.jsp&rnum=<%=rnum %>&pageNum=<%=endPage+1 %>">다음</a></li>
       <%}%>
       </ul>
    </div>
+</div>
 </body>
 </html>

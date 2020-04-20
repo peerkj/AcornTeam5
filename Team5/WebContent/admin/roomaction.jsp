@@ -18,5 +18,5 @@
 	dto.setAcception(acception);
 	
 	dao.updateRoom(dto);
-	response.sendRedirect(request.getContextPath()+"/admin/room.jsp");
+	response.sendRedirect(request.getContextPath()+"/index.jsp?main=admin/adminmain.jsp?select=room.jsp");
 %>

@@ -48,7 +48,6 @@ String url=request.getContextPath();
 	border: 1px solid #fc9740;
 	padding: 70px;
 	width: 600px;
-	margin-left: -250px;
 }
 #updateclient_title{
 	font-size: 20pt;

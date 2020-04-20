@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>라봉 로그인</title>
 <%
 String url=request.getContextPath();
 %>
@@ -49,29 +49,44 @@ String url=request.getContextPath();
 				});
 			}
 		});
+	}); 
+	
+	$(function(){
+		$("#mainlink").click(function() {
+			location.href="<%=url %>/index.jsp";		
+		});
 	});
 </script>
+<style type="text/css">
+#mainlink{
+	cursor: pointer;
+	display: inline;
+}
+</style>
 </head>
 <body>
 	<div class="login-page">
 		<div class="form">
-			<a href="../index.jsp" title="메인 화면으로 이동">
+			<a href="<%=url %>/index.jsp" title="메인 화면으로 이동">
 			<img src="<%=url %>/image/labong.png"></a>
 			<form class="login-form" action="#" method="post">
 				<input type="text" name="id" id="id" placeholder="아이디 입력"
-					required="required" /> <br> <input type="password"
+					required="required" /> <br> 
+				<input type="password"
 					name="pass" id="pass" placeholder="비밀번호 입력" required="required" />
 				<br>
 				<input type="hidden" id="url" value="<%=url%>">				
 				<button type="button" id="loginbtn" required="required">로그인</button>
 				<br>
 				<p class="message">
-					계정이 없으신가요? <a href="<%=url%>/register/registerform.jsp">회원가입</a>
+					계정이 없으신가요? <a href="<%=url%>/register/registerform.jsp">회원가입</a><br>					
 				</p>
-				<a href="<%=url%>/login/findid.jsp">아이디 찾기</a>
-            <a href="<%=url%>/login/findpass.jsp">비밀번호 찾기</a>
+				<a class="finds" href="<%=url%>/login/findid.jsp">아이디 찾기</a>
+				<span style="color: #fc9740; text-decoration: none;font-size: 12px;">|</span>
+            	<a class="finds"  href="<%=url%>/login/findpass.jsp">비밀번호 찾기</a>			
 			</form>
-		<div class="copyright">Copyright © 라봉펜션. All Rights Reserved.</div>
+		<div class="copyright">Copyright © 
+		<p id="mainlink">라봉펜션</p>. All Rights Reserved.</div>
 		</div>		
 	</div>	
 </body>

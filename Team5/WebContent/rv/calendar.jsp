@@ -1,3 +1,4 @@
+<%@page import="java.util.Map"%>
 <%@page import="java.util.Set"%>
 <%@page import="java.util.HashSet"%>
 <%@page import="data.dto.RoomDto"%>
@@ -13,6 +14,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <%
+	String url=request.getContextPath();
 	String id = (String) session.getAttribute("id");
 	//넘기기위해,,+DB에서 X월 정보 얻기위해?
 	String strYear = request.getParameter("year");
@@ -43,6 +45,11 @@
 	//년-월 형태
 	String s_month = String.format("%02d", month + 1);
 	String selectDay = year + "-" + s_month;
+	//주말추가금
+	double addrate=roomdao.getRate();
+	//성수기인지 확인
+	Map<Integer,Double> peaklist=roomdao.peak(selectDay);
+
 	//qnum 리스트 얻기
 	List<String> rnumList = roomdao.getAllRnum();
 	//qnum, 달 넣고 set 받기
@@ -61,16 +68,47 @@
 <script type="text/javascript">
 	$(function() {
 		$(document).on("mousemove","a.show_price",function(e) {
-					$("#v").css({
-						"top" : e.pageY + 8,
-						"left" : e.pageX + 13
-					});
-					$("#v").show()
-					var msg = $(this).attr("price");
-					$("#v").html(
-							"<b>객실 정보</b><br>" + "객실:" + $(this).text() + "<br>"
-									+ "가격:" + msg);
-				});
+			var day=$(this).attr('newLine');		
+			var price=Number($(this).attr('price'));
+			var p_rate=Number($(this).attr('rate'));
+			var w_rate=Number(<%=roomdao.getRate()%>);
+			$("#v").css({
+					"top" : e.pageY + 8,
+					"left" : e.pageX + 13
+			});		
+			$("#v").show();
+			//주말
+			if(day==0||day==6||day==5){
+				//주말+성수기
+				if(p_rate!=0){
+					var total=price*(p_rate+w_rate);
+					$('#v').html("<b>객실 정보</b><br>"+"객실:"+$(this).text()+"<br>"
+							+"<span style='text-decoration:line-through;text-decoration-color:red;'>기본요금:"
+							+numberWithCommas(price)+"</span><br>주말성수기요금:"+numberWithCommas(total));
+				}else{
+				//주말
+					var total=price*(1+w_rate);
+					$('#v').html("<b>객실 정보</b><br>"+"객실:"+$(this).text()+"<br>"
+							+"<span style='text-decoration:line-through;text-decoration-color:red;'>기본요금:"
+							+numberWithCommas(price)+"</span><br>주말요금:"+numberWithCommas(total));			
+				
+				}
+			//평일	
+			}else{
+				//평일성수기
+				if(p_rate!=0){
+					var total=price*p_rate;
+					$('#v').html("<b>객실 정보</b><br>"+"객실:"+$(this).text()+"<br>"
+							+"<span style='text-decoration:line-through;text-decoration-color:red;'>기본요금:"
+							+numberWithCommas(price)+"</span><br>평일성수기요금:"+numberWithCommas(total));
+				}else{
+				//평일
+				$('#v').html("<b>객실 정보</b><br>"+"객실:"+$(this).text()+"<br>"
+						+"기본요금:"+numberWithCommas(price));	
+				}
+			}		
+		});
+					
 		$(document).on("mouseout", "a.show_price", function(e) {
 			$("#v").hide();
 		});
@@ -84,57 +122,60 @@
 			}
 		});		
 	});
-	function need(){
-		
+	function numberWithCommas(x) {
+		return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	}
 </script>
 <style type="text/css">
 @import url('https://fonts.googleapis.com/css2?family=Rozha+One&display=swap');
 table{
-	margin: 0 auto 50px;
+   margin: 0 auto 50px;
 }
 .calcon td {
-	width: 150px;
-	height: 150px;
+   width: 150px;
+   height: 150px;
+   
+   padding: 5px 0 0 5px;
 }
 .calsub td{
-	font-weight: 700;
-	font-size: 17pt;
-	padding: 50px 0 30px;
+   font-weight: 700;
+   font-size: 17pt;
+   padding: 50px 0 30px;
+}
+td>a{
+   margin-bottom: 15px;
 }
 .calcon thead tr:first-child td{
-	height: 80px;
-	font-weight: 600;
-}
-.calcon tbody font{
-	padding: 5px 0 0 5px;
+   height: 80px;
+   font-weight: 600;
 }
 #v {
-	border: 2px solid #fbc777;
-	position: absolute;
-	display: none;
-	width: 150px;
-	height: 80px;
-	background-color: white;
+   border: 2px solid #fbc777;
+   position: absolute;
+   display: none;
+   width: 220px;
+   height: 100px;
+   background-color: white;
+   padding: 10px;
 }
 .hd_img{
-	height: 400px;
-	width: 100%;
-	background-size: cover;
-	background-image: url('image/rvpage.jpg');
-	position: relative;
+   height: 400px;
+   width: 100%;
+   background-size: cover;
+   background-image: url('image/rvpage.jpg');
+   position: relative;
 }
 .img_title{
-	width: 100%;
+   width: 100%;
     height: 100%;
     background-color: rgba(0,0,0,0.1);
 }
 .img_title span{
-	font-size: 70pt;
-	font-weight: 700;
-	color: #fff;
-	position: absolute;
-	bottom: -40px;
+   font-size: 70pt;
+   font-weight: 700;
+   color: #fff;
+   position: absolute;
+   bottom: -40px;
     left: 300px;
     font-family: 'Rozha One', serif;
 }
@@ -196,7 +237,7 @@ table{
 						newLine++;
 					}
 					for (int i = 1; i <= endDay; i++) {
-
+					
 						String color = "";
 						if (newLine == 0)
 							color = "RED";
@@ -209,7 +250,7 @@ table{
 							backColor = "#ffe5bd";
 						out.println("<td bgcolor='" + backColor + "'>");
 				%>
-				<font color="<%=color%>"><%=i%></font>
+				<font color="<%=color%>" style="font-weight: 600;"><%=i%></font>
 				<br>
 				<%
 					for (int j = 0; j < roomlist.size(); j++) {
@@ -217,11 +258,11 @@ table{
 								continue;
 							if (soldOut[j][i - 1] == 0) {
 				%>
-				<a href="<%=request.getContextPath()%>/index.jsp?main=rv/reservation.jsp?rnum=<%=roomlist.get(j).getRnum()%>&year=<%=year%>&month=<%=month%>&day=<%=i%>"
-					class="show_price" price="<%=roomlist.get(j).getPrice()%>"><%=roomlist.get(j).getRname()%></a>
-				<br>
+				<a href="<%=url%>/index.jsp?main=rv/reservation.jsp?rnum=<%=roomlist.get(j).getRnum()%>&year=<%=year%>&month=<%=month%>&day=<%=i%>"
+				 rate="<%=peaklist.containsKey(i)?peaklist.get(i):0 %>" price="<%=roomlist.get(j).getPrice() %>"
+				 newline="<%=newLine%>" class="show_price" ><%=roomlist.get(j).getRname()%></a>
 				<%
-					}
+				}
 						}
 						out.println("</td>");
 						newLine++;

@@ -45,11 +45,10 @@
 	color: #fff;
 }
 #select{
-	width:400px;
-    height:200px;
-    margin-left: 850px;
-    margin-top: 100px;
-    float: center;
+	width: 800px;
+	height: 200px;
+	margin-left: 620px;
+	margin-top: 100px;
 }
 .hd_img{
    height: 400px;
@@ -81,8 +80,9 @@
 <div id="allmypage">
 <div id="mypagebox">
 <ul>
-	<li class="mylist"><a href="<%=request.getContextPath()%>#">예약 내역</a></li>
-	<li class="mylist"><a href="<%=request.getContextPath()%>#">질문 내역</a></li>
+	<li class="mylist"><a href="<%=request.getContextPath()%>/index.jsp?main=mypage/mypage.jsp?select=clientlist.jsp">예약 내역</a></li>
+	<li class="mylist"><a href="<%=request.getContextPath()%>/index.jsp?main=mypage/mypage.jsp?select=cancellist.jsp">취소 내역</a></li>
+	<li class="mylist"><a href="<%=request.getContextPath()%>/index.jsp?main=mypage/mypage.jsp?select=myqnalist.jsp">질문 내역</a></li>
 	<li class="mylist"><a href="<%=request.getContextPath()%>/index.jsp?main=mypage/mypage.jsp?select=checkpass.jsp?ck=1">회원정보 수정</a></li>
 	<li class="mylist"><a href="<%=request.getContextPath()%>/index.jsp?main=mypage/mypage.jsp?select=updatepass.jsp">비밀번호 변경</a></li>
 	<li class="mylist"><a href="<%=request.getContextPath()%>/index.jsp?main=mypage/mypage.jsp?select=checkpass.jsp?ck=2">탈퇴하기</a></li>
@@ -92,10 +92,11 @@
 <div id="select">	
 	<%
 		String select=request.getParameter("select");
-		if(select!=null){
-	%>
-	<jsp:include page="<%=select%>"/>
-	<%}%>
+		if(select==null){
+		select="clientlist.jsp";
+		}
+		%>	
+		<jsp:include page="<%=select%>"/>
 </div>
 </div>
 </body>

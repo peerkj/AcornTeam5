@@ -61,7 +61,6 @@ String url=request.getContextPath();
 	padding: 40px;
 	text-align: center;
 	position: relative;
-	margin-left: -130px;
 }
 #reasontxt{
 	font-family: 'Noto Sans KR', sans-serif;
@@ -82,7 +81,7 @@ String url=request.getContextPath();
     transition: all 0.3 ease;
     cursor: pointer;
 	position: absolute;
-    top: 200px;
+    top: 210px;
     right: 35%;  
 }
 #ta{

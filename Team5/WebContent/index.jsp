@@ -39,7 +39,14 @@ String url=request.getContextPath();
 	color: #fff;
 }
 #contentarea{
-	margin-bottom: 200px;
+   margin-bottom: 300px;
+   background-color: #f7f7f7;
+}
+#content{
+   height: 2500px;
+}
+#wrapper{
+   background-color: #f7f7f7;
 }
 </style>
 <script type="text/javascript">

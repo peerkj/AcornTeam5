@@ -94,7 +94,7 @@ public class ReviewDao {
       Connection conn=null;
       PreparedStatement pstmt=null;
       ResultSet rs=null;
-      String sql= "select a.* from (select review.*, rownum snum from review where rnum=? order by rwriteday desc)a where snum>=? and snum<=?";
+      String sql= "select b.* from (select a.*, rownum snum from (select * from review where rnum=? order by rwriteday desc)a)b where snum>=? and snum<=?";
       conn=db.getConnection();
       try {
          pstmt=conn.prepareStatement(sql);
