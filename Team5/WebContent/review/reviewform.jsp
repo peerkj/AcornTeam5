@@ -12,6 +12,8 @@
 #star_grade a{
 	text-decoration: none;
 	color: gray;
+	float: left;
+	
 }
 #star_grade a.on{
 	color: #faa727;
