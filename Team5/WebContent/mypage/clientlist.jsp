@@ -120,6 +120,12 @@ button.writere{
     FONT-WEIGHT: 600;
     cursor: pointer;
 }
+#add{
+	cursor: pointer;
+    text-align: center;
+    font-weight: bold;
+    color: #2f2b2b;
+}
 </style>
 </head>
 <body>
@@ -177,6 +183,6 @@ button.writere{
    <%}%>
 
 </table>
-<div id="add" style="cursor: pointer;">더보기(+)</div>
+<div id="add">더보기(+)</div>
 </body>
 </html>

@@ -60,7 +60,7 @@
 	min-height: 100px;
 }
 #hearttd{
-	align: center;
+	margin-left: 300px;
 	min-width: 50px;
 }
 #writereview{
@@ -190,6 +190,9 @@
 				<%if(!dto.getImg().equals("..")){ %>
 				<td rowspan="3" id="reviewimg">
 					<img src="<%=url%>/review/reviewimg/<%=dto.getImg()%>" style="width: 150px;height: 100px;">
+				</td>
+				<%}else{%>
+				<td rowspan="3" id="reviewimg">
 				</td>
 				<%}%>	
 				<td id="hearttd" rowspan="3">	
