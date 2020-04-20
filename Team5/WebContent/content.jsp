@@ -1,3 +1,4 @@
+<%@page import="data.dao.ReservationDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -5,6 +6,8 @@
 <head>
 <%
    String url = request.getContextPath();
+	ReservationDao dao=new ReservationDao();
+
 %>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -63,7 +66,7 @@
       <img src="<%=url %>/image/room1-3.jpg">
    </div>
    <div class="roominfo">
-      <span class="roomnum">Room 1</span>
+      <span class="roomnum"><%=dao.getRoomName("7")%></span>
       <p class="roomtxt">객실은 공간 활용이 돋보이는 크기로 심플하고 모던한 방입니다.<br>깨끗하고 정돈된 침구 용품과 가구 및 다양한 편의 용품을 비치<br>하여 편안한 휴식을 제공합니다.</p>
       <a href="index.jsp?main=room/room1.jsp"><button type="button">자세히</button></a>
    </div>
@@ -73,7 +76,7 @@
       <img src="<%=url %>/image/room2-3.jpg">
    </div>
    <div class="roominfo">
-      <span class="roomnum">Room 2</span>
+      <span class="roomnum"><%=dao.getRoomName("8")%></span>
       <p class="roomtxt">객실은 공간 활용이 돋보이는 크기로 심플하고 모던한 방입니다.<br>깨끗하고 정돈된 침구 용품과 가구 및 다양한 편의 용품을 비치<br>하여 편안한 휴식을 제공합니다.</p>
       <a href="index.jsp?main=room/room2.jsp"><button type="button">자세히</button></a>
    </div>
@@ -83,7 +86,7 @@
       <img src="<%=url %>/image/room3-4.jpg">
    </div>
    <div class="roominfo">
-      <span class="roomnum">Room 3</span>
+      <span class="roomnum"><%=dao.getRoomName("9")%></span>
       <p class="roomtxt">Room 3은 복층 구조의 거실과 침실을 갖추고 있습니다.<br>
       독창적인 시설의 조화가 어우러진 고급형 객실입니다.</p>
       <a href="index.jsp?main=room/room3.jsp"><button type="button">자세히</button></a>
@@ -94,7 +97,7 @@
       <img src="<%=url %>/image/room4-4.jpg">
    </div>
    <div class="roominfo">
-      <span class="roomnum">Room 4</span>
+      <span class="roomnum"><%=dao.getRoomName("10")%></span>
       <p class="roomtxt">Room 4는 복층 구조의 거실과 침실을 갖추고 있습니다.<br>
       독창적인 시설의 조화가 어우러진 고급형 객실입니다.</p>
       <a href="index.jsp?main=room/room4.jsp"><button type="button">자세히</button></a>
@@ -105,7 +108,7 @@
       <img src="<%=url %>/image/room5-2.jpg">
    </div>
    <div class="roominfo">
-      <span class="roomnum">Room 5</span>
+      <span class="roomnum"><%=dao.getRoomName("42")%></span>
       <p class="roomtxt">복층 구조로 이루어져 가족 단위 숙박에 제격입니다.<br>
       숙소 내에서 개인 스파 시설을 이용하실 수 있습니다.</p>
       <a href="index.jsp?main=room/room5.jsp"><button type="button">자세히</button></a>
@@ -116,7 +119,7 @@
       <img src="<%=url %>/image/room6-2.jpg">
    </div>
    <div class="roominfo">
-      <span class="roomnum">Room 6</span>
+      <span class="roomnum"><%=dao.getRoomName("43")%></span>
       <p class="roomtxt">복층 구조로 이루어져 가족 단위 숙박에 제격입니다.<br>
       테라스가 있어 아이들과 함께하기 좋은 방입니다.</p>
       <a href="index.jsp?main=room/room6.jsp"><button type="button">자세히</button></a>

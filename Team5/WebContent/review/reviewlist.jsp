@@ -10,7 +10,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <style>
 #fullbox{
 	margin-left: 630px;
@@ -116,7 +115,11 @@
 	    });
 		
 		$("#del").click(function() {
-			alert("삭제하시겠습니까?");
+			var m = confirm("삭제하시겠습니까?");
+			
+			if(m==false)
+				return;
+			
 			var revnum = $(this).attr("revnum");
 			var rnum = $(this).attr("rnum");
 			var pageNum = $(this).attr("pageNum");
@@ -125,9 +128,10 @@
 				type : "post",
 				url : url+"/review/reviewdeleteaction.jsp",
 				dataType : "html",
-				data : {"revnum":revnum},
+				data : {"revnum":revnum, "rnum":rnum},
 				success : function(data){
-					location.href=url+"/review/reviewlist.jsp?rnum="+rnum+"&pageNum="+pageNum;
+					var room=data.trim();
+					location.href=url+"/index.jsp?main=room/"+room+".jsp?pageNum="+pageNum;
 				}
 			});
 		});
@@ -183,9 +187,11 @@
 					   	<b><%=dto.getStar() %></b>
 					</p>				
 				</td>
+				<%if(!dto.getImg().equals("..")){ %>
 				<td rowspan="3" id="reviewimg">
 					<img src="<%=url%>/review/reviewimg/<%=dto.getImg()%>" style="width: 150px;height: 100px;">
 				</td>
+				<%}%>	
 				<td id="hearttd" rowspan="3">	
 					<%if(db.joayocheck(dto.getRevnum(), id)!=1){%>
 						<span class="joayo" style="cursor: pointer;" revnum="<%=dto.getRevnum()%>">						
@@ -208,9 +214,7 @@
 				<td>
 					<pre id="textbox"><%=dto.getContent() %></pre>					
 				</td>
-				<%if(!dto.getImg().equals("..")){ %>
-				
-				<%}%>				
+								
 			</tr>			
 		</table>
 		<hr style="width:610px;">

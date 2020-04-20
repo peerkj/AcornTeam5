@@ -111,7 +111,12 @@ button.cancel{
     border: none;
     font-size: 16px;
     color: #ff3c3c;
-    background-color: white;
+    FONT-WEIGHT: 600;
+    cursor: pointer;
+}
+button.writere{
+	border: none;
+    font-size: 16px;
     FONT-WEIGHT: 600;
     cursor: pointer;
 }
@@ -165,7 +170,7 @@ button.cancel{
                취소승인 중
             <%}
          }else{%>
-            이용완료 / <button type="button" onclick="location.href='<%=url%>/index.jsp?main=review/reviewform.jsp?rnum=<%=dto.getRnum()%>'">리뷰작성</button>
+            이용완료 / <button type="button" class="writere" onclick="location.href='<%=url%>/index.jsp?main=review/reviewform.jsp?rnum=<%=dto.getRnum()%>'">리뷰작성</button>
          <%}%>
          </td>
       </tr>

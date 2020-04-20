@@ -1,3 +1,6 @@
+<%@page import="data.dao.ReservationDao"%>
+<%@page import="java.util.List"%>
+<%@page import="data.dao.RoomDao"%>
 <%@page import="data.dao.ClientDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -8,6 +11,11 @@
 <title>Insert title here</title>
 <%
 String url=request.getContextPath();
+RoomDao dao=new RoomDao();
+ReservationDao rdao=new ReservationDao();
+List<String> list=dao.getAllRnum();
+
+
 %>
 <link rel="stylesheet" href="<%=url%>/css/style_header.css">
 <style type="text/css">
@@ -82,12 +90,10 @@ $(function(){
       <a>ROOM</a>
       <div class="dropouter">
          <ul class="dropmenu">
-            <li class="dropitem"><a href="index.jsp?main=room/room1.jsp">ROOM01</a></li>
-            <li class="dropitem"><a href="index.jsp?main=room/room2.jsp">ROOM02</a></li>
-            <li class="dropitem"><a href="index.jsp?main=room/room3.jsp">ROOM03</a></li>
-            <li class="dropitem"><a href="index.jsp?main=room/room4.jsp">ROOM04</a></li>
-            <li class="dropitem"><a href="index.jsp?main=room/room5.jsp">ROOM05</a></li>
-            <li class="dropitem"><a href="index.jsp?main=room/room6.jsp">ROOM06</a></li>
+         	<%for(int i=0;i<list.size();i++){ %>
+         	<li class="dropitem"><a href="index.jsp?main=room/room<%=(i+1)%>.jsp"><%=rdao.getRoomName(list.get(i))%></a></li>
+            
+         	<%} %>
          </ul>
       </div>
    </li>

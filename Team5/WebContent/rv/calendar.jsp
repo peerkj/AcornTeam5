@@ -179,6 +179,9 @@ td>a{
     left: 300px;
     font-family: 'Rozha One', serif;
 }
+a.show_price {
+    display: block;
+}
 </style>
 </head>
 <body>

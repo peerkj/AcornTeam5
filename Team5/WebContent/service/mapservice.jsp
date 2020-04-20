@@ -120,7 +120,7 @@
    // 마커가 지도 위에 표시되도록 설정합니다
    marker.setMap(map);
 
-   var iwContent = '<div style="padding:5px;width:150px;font-size:11pt;">라봉펜션 <br><a href="https://map.kakao.com/link/map/라봉펜션,33.5551925, 126.7971304" style="color:#384abe;font-size:10pt;" target="_blank">큰 지도 보기</a> | <a href="https://map.kakao.com/link/to/라봉펜션,33.5551925, 126.7971304" style="color:#384abe;font-size:10pt;" target="_blank">길 찾기</a></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+   var iwContent = '<div style="padding:5px;width:150px;font-size:11pt;">라봉펜션 <br><a href="https://map.kakao.com/link/map/라봉펜션,33.5551925, 126.7971304" style="color:#384abe;font-size:10pt;" target="_blank">큰 지도 보기</a><span style="color:#384abe;font-size:10pt;"> | </span><a href="https://map.kakao.com/link/to/라봉펜션,33.5551925, 126.7971304" style="color:#384abe;font-size:10pt;" target="_blank">길 찾기</a></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
        iwPosition = new kakao.maps.LatLng(33.5551925, 126.7971304); //인포윈도우 표시 위치입니다
 
    // 인포윈도우를 생성합니다

@@ -26,7 +26,7 @@ td{
 	padding: 10px 30px;
 	font-weight: 400;
 }
-#content{
+#qnacontent{
 	resize: none;
 	width: 550px;
 	height: 300px;
@@ -100,7 +100,7 @@ button{
 				<tr>
 					<th>  </th>
 					<td>
-						<textarea name="content" id="content" required="required"></textarea>
+						<textarea name="content" id="qnacontent" required="required"></textarea>
 					</td>
 				</tr>
 				<tr>

@@ -1,3 +1,6 @@
+<%@page import="java.text.NumberFormat"%>
+<%@page import="data.dao.RoomDao"%>
+<%@page import="data.dao.ReservationDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -7,8 +10,15 @@
 <title>Insert title here</title>
 <%
 String url=request.getContextPath();
+ReservationDao dao =new ReservationDao();
+
+RoomDao roomdao=new RoomDao();
+NumberFormat nf=NumberFormat.getInstance();
+int price=Integer.parseInt(roomdao.getRoom("10").getPrice());
+int add=(int)(price+price*roomdao.getRate());
 %>
 <link rel="stylesheet" href="<%=url%>/css/jquery.bxslider_room.css">
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <script src="<%=url %>/js/jquery.bxslider.js"></script>
 <script type="text/javascript">
 $(function(){ 
@@ -89,7 +99,47 @@ $(function(){
    font-weight: 600;
     color: #3f3b3b;
 }
-
+#pricegroup{
+	margin:100px 0 50px 750px;
+}
+#pricetb{
+	margin:0 0 50px 30px;
+	border-collapse: collapse;
+	border: 1px solid #cccccc;
+}
+#pricetb th{
+	background-color: #eeeeee;
+	border: 1px solid #cccccc;
+	padding: 5px;
+}
+#pricetb td{
+	border: 1px solid #cccccc;
+	width: 150px;
+	text-align: center;
+	padding: 5px;
+}
+#pricetb caption{
+	padding-bottom: 15px;
+	font-size: 13pt;
+	font-weight: 700;
+}
+#gorv{
+	width: 200px;
+	height: 50px;
+	background-color: #eeeeee;
+	border: none;
+	font-size: 12pt;
+	font-style: none;
+	margin-left: 90px;
+	font-weight: 700;
+}
+#gorv:hover{
+	background-color: #e5e4e4;
+	cursor: pointer;
+}
+#reviewbox{
+	width:900px;
+} 
 </style>
 </head>
 <body>
@@ -139,7 +189,7 @@ $(function(){
    <div class="roomcontent">
       <div class="box1" style="width: 100%;">
          <div style="padding: 100px 50px;float: right;text-align: right;">
-            <span class="roomname">ROOM04</span>
+            <span class="roomname"><%=dao.getRoomName("10") %></span>
             <div style="font-family: 'Montserrat', sans-serif; font-size:40px;margin-top: 50px;">Room Information </div>
             <div style="font-size:18px;">객실정보</div>
             <div style="font-size:16px; line-height:25px; margin-top:40px;">
@@ -171,8 +221,8 @@ $(function(){
 				<th>주말</th>
 			</tr>
 			<tr>
-				<td>#</td>
-				<td>#</td>
+				<td><%=nf.format(price) %></td>
+				<td><%=nf.format(add) %></td>
 			</tr>
 			<tr>
 				<td colspan="2">※성수기는 위 요금의 1.5배</td>
@@ -180,7 +230,11 @@ $(function(){
 		</table>
 		<button type="button" id="gorv" onclick="location.href='<%=url%>/index.jsp?main=rv/calendar.jsp'">예약하기</button>
    </div>
-   
+   <div id="reviewbox">
+	<jsp:include page="../review/reviewlist.jsp">
+		<jsp:param value="4" name="rnum"/>
+	</jsp:include>
+	</div>
 </div>
 </body>
 </html>
