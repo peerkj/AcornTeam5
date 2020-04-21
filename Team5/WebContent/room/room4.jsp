@@ -232,7 +232,7 @@ $(function(){
    </div>
    <div id="reviewbox">
 	<jsp:include page="../review/reviewlist.jsp">
-		<jsp:param value="4" name="rnum"/>
+		<jsp:param value="10" name="rnum"/>
 	</jsp:include>
 	</div>
 </div>

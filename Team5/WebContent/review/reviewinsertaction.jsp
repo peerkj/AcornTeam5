@@ -48,7 +48,6 @@
 		dto.setImg(photo);
 		
 		db.insertReview(dto);
-		
 		response.sendRedirect(url+"/index.jsp?main=room/"+map.get(rnum)+".jsp");
 	} catch(Exception e){
 		System.out.println("업로드오류:"+e.getMessage());

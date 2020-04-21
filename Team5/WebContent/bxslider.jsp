@@ -29,7 +29,7 @@ $(function(){
     position: relative;
     width: 100%;
     height: 800px;
-    background-image: url(image/main1.jpg);
+    background-image: url(image/mainmain.jpg);
     background-repeat: no-repeat;
     background-size: cover; /* contain:비율에 맞게 | cover: 비율무시  */    
 }

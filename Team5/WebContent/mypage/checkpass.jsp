@@ -94,7 +94,7 @@ String url=request.getContextPath();
 </head>
 <body>
 <div class="checkform">
-<img src="<%=url %>/image/labong.png"><br>
+<img src="<%=url %>/image/la2.png"><br>
 <span id="passtext">비밀번호를 입력하세요!</span><br>
 <input type="password" name="pass" id="pass"><br>
 <button type="button" id="submit">확인</button>

@@ -88,7 +88,7 @@ body {
 </head>
 <body>
 <div class="form">
-	<a href="<%=url %>/index.jsp" title="메인 화면으로 이동"><img src="<%=url %>/image/labong.png"></a>
+	<a href="<%=url %>/index.jsp" title="메인 화면으로 이동"><img src="<%=url %>/image/la2.png"></a>
 	<div class="findidtb">
 		<p>
 		<%if(!id.equals("0")){%>

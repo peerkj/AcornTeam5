@@ -93,7 +93,7 @@ body {
 </head>
 <body>
 <div class="form">
-<a href="<%=url %>/index.jsp" title="메인 화면으로 이동"><img src="<%=url %>/image/labong.png"></a>
+<a href="<%=url %>/index.jsp" title="메인 화면으로 이동"><img src="<%=url %>/image/la2.png"></a>
 	<div class="findpasstb">
 	<h3>비밀번호 찾기</h3>
 	<form action="<%=request.getContextPath()%>/login/passsend.jsp" method="post">

@@ -66,7 +66,7 @@ String url=request.getContextPath();
 </head>
 <body>
 <div id="allform">
-<img id="lagbongimg" src="<%=url %>/image/labong.png">
+<img id="lagbongimg" src="<%=url %>/image/la2.png">
 <br><br><br>
 <div id="text">결제가 정상적으로 완료되었습니다.<br>
 라봉펜션을 이용해 주셔서 감사합니다.</div><br>
