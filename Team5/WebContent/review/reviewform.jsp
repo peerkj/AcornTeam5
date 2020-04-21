@@ -130,7 +130,7 @@
       <tr>
          <th>별점</th>
          <td>
-            <p id="star_grade">
+            <p id="star_grade" style="font-size: 30px;">
                 <a href="#">★</a>
                 <a href="#">★</a>
                 <a href="#">★</a>
