@@ -222,21 +222,21 @@ n++;
       <ul>   
       <%
       if(startPage!=1){%>
-         <li><a href="<%=url%>/admin/allrv.jsp?pageNum=<%=startPage-1 %>">이전</a></li>
+         <li><a href="<%=url%>/index.jsp?main=admin/adminmain.jsp?select=allrv.jsp?pageNum=<%=startPage-1 %>">이전</a></li>
       <%}
       for(int i=startPage; i<=endPage;i++){
          if(i==currentPage){%>
             <li class="pnum">
-               <a href="<%=url %>//admin/allrv.jsp?pageNum=<%=i %>"><%=i %></a>
+               <a href="<%=url %>/index.jsp?main=admin/adminmain.jsp?select=allrv.jsp?pageNum=<%=i %>"><%=i %></a>
             </li>         
          <%}else{%>
             <li>
-               <a href="<%=url %>/admin/allrv.jsp?pageNum=<%=i %>"><%=i %></a>
+               <a href="<%=url %>/index.jsp?main=admin/adminmain.jsp?select=allrv.jsp?pageNum=<%=i %>"><%=i %></a>
             </li>
          <%}
       } 
       if(currentPage<totalPage){%>
-         <li><a href="<%=url %>/admin/allrv.jsp?pageNum=<%=endPage+1 %>">다음</a></li>
+         <li><a href="<%=url %>/index.jsp?main=admin/adminmain.jsp?select=allrv.jsp?pageNum=<%=endPage+1 %>">다음</a></li>
       <%}%>
       </ul>
    </div>

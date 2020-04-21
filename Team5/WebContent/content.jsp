@@ -87,7 +87,7 @@
    </div>
    <div class="roominfo">
       <span class="roomnum"><%=dao.getRoomName("9")%></span>
-      <p class="roomtxt">Room 3은 복층 구조의 거실과 침실을 갖추고 있습니다.<br>
+      <p class="roomtxt">복층 구조의 거실과 침실을 갖추고 있습니다.<br>
       독창적인 시설의 조화가 어우러진 고급형 객실입니다.</p>
       <a href="index.jsp?main=room/room3.jsp"><button type="button">자세히</button></a>
    </div>
@@ -98,7 +98,7 @@
    </div>
    <div class="roominfo">
       <span class="roomnum"><%=dao.getRoomName("10")%></span>
-      <p class="roomtxt">Room 4는 복층 구조의 거실과 침실을 갖추고 있습니다.<br>
+      <p class="roomtxt">복층 구조의 거실과 침실을 갖추고 있습니다.<br>
       독창적인 시설의 조화가 어우러진 고급형 객실입니다.</p>
       <a href="index.jsp?main=room/room4.jsp"><button type="button">자세히</button></a>
    </div>
