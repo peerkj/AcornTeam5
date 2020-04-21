@@ -109,6 +109,7 @@
    String url = request.getContextPath();
    String id = (String)session.getAttribute("id");
    String rnum = request.getParameter("rnum");
+   String resnum=request.getParameter("resnum");
 %>
 <body>
 <div class="hd_img" style="background-image: url('<%=url%>/image/room1.jpg')">
@@ -118,6 +119,7 @@
 <form action="<%=url %>/review/reviewinsertaction.jsp" method="post" enctype="multipart/form-data">
    <input type="hidden" name="id" value="<%= id%>">
    <input type="hidden" name="rnum" value="<%= rnum%>">
+   <input type="hidden" name="resnum" value="<%=resnum%>">
    <input type="hidden" name="star" id="star" value="">
    <table id="reid">
       <caption><b>리뷰 작성</b></caption>

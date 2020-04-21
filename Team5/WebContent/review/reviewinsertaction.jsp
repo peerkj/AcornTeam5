@@ -22,7 +22,7 @@
 	
 	try{
 		multi= new MultipartRequest(request,uploadFolder,uploadSize,"utf-8",new DefaultFileRenamePolicy());
-		
+		String resnum=multi.getParameter("resnum");
 		String id = multi.getParameter("id");
 		String rnum = multi.getParameter("rnum");
 		//String id= "kihong";
@@ -46,7 +46,7 @@
 		dto.setContent(content);
 		dto.setStar(star);
 		dto.setImg(photo);
-		
+		dto.setResnum(resnum);
 		db.insertReview(dto);
 		response.sendRedirect(url+"/index.jsp?main=room/"+map.get(rnum)+".jsp");
 	} catch(Exception e){

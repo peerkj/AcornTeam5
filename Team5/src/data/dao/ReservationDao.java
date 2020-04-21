@@ -711,4 +711,27 @@ public class ReservationDao {
 		}
 		return -1;
 	}
+	
+	public boolean findReview(String resnum) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = "select * from review where resnum=?";
+		ResultSet rs=null;
+		conn = db.getConnection();
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, resnum);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				return true;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			db.dbClose(rs, pstmt, conn);
+		}
+		return false;
+	}
+
 }

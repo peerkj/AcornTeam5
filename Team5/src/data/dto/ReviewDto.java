@@ -10,7 +10,14 @@ public class ReviewDto {
 	private String id;
 	private String rnum;
 	private String img;
+	private String resnum;
 	
+	public String getResnum() {
+		return resnum;
+	}
+	public void setResnum(String resnum) {
+		this.resnum = resnum;
+	}
 	public String getImg() {
 		return img;
 	}

@@ -20,7 +20,7 @@ public class ReviewDao {
       ResultSet rs=null;
       String img="..";
       //revnum, content,rwriteday,star,id,rum,img
-      String sql="insert into review values (seq_semi.nextval,?,sysdate,?,?,?,?)";
+      String sql="insert into review values (seq_semi.nextval,?,sysdate,?,?,?,?,?)";
       conn=db.getConnection();
       try {
          if(dto.getImg()!=null)
@@ -32,7 +32,8 @@ public class ReviewDao {
          pstmt.setString(2, dto.getStar());
          pstmt.setString(3, dto.getId());
          pstmt.setString(4, dto.getRnum());
-         pstmt.setString(5, img);         
+         pstmt.setString(5, img);
+         pstmt.setString(6, dto.getResnum());
          
          return pstmt.executeUpdate();
       } catch (SQLException e) {
@@ -111,6 +112,7 @@ public class ReviewDao {
             dto.setId(rs.getString("id"));
             dto.setRnum(rs.getString("rnum"));
             dto.setImg(rs.getString("img"));
+            dto.setResnum(rs.getString("resnum"));
             list.add(dto);
          }
       } catch (SQLException e) {
@@ -142,6 +144,7 @@ public class ReviewDao {
             dto.setId(rs.getString("id"));
             dto.setRnum(rs.getString("rnum"));
             dto.setImg(rs.getString("img"));
+            dto.setResnum(rs.getString("resnum"));
             list.add(dto);
          }
       } catch (SQLException e) {
