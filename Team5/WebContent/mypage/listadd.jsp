@@ -63,7 +63,7 @@
 				cancel = "취소승인 중";
 			}
 		}else{
-			cancel = "이용완료 / <button type='button' onclick=\"location.href='"+url+"/index.jsp?main=review/reviewform.jsp?rnum="+dto.getRnum()+"'\">리뷰작성</button>";	
+			cancel = "이용완료 / <button type='button' style='border: none;font-size: 16px;FONT-WEIGHT: 600;cursor: pointer;' onclick=\"location.href='"+url+"/index.jsp?main=review/reviewform.jsp?rnum="+dto.getRnum()+"'\">리뷰작성</button>";	
 		}
 		
 		JSONObject ob = new JSONObject();
