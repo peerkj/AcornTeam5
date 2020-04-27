@@ -11,7 +11,7 @@
    if(db.joayocheck(revnum, id)==-1)
    		db.insertjoayo(id, revnum);
    
-   db.updateJoayo(joayo, revnum);
+   db.updateJoayo(joayo, revnum, id);
    int joayosu= db.getJoayo(revnum);
    
    String sb = "[{\"joayo\":"+joayosu+"}]";

@@ -100,7 +100,7 @@ body, html {
    <div id="addr">주소 : 제주특별자치도 제주시 구좌읍 해맞이해안로 474</div><br>
    <div class="mapbox">
    <div id="map" style="width:500px;height:350px;"></div>
-      <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ab26249c8187df994f6c8b7e59927bfd"></script>
+      <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4fc65f171a18ebd0b095c3cd23b9119c"></script>
       <script>
          var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
          var options = { //지도를 생성할 때 필요한 기본 옵션

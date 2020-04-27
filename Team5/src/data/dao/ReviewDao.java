@@ -42,10 +42,10 @@ public class ReviewDao {
       } finally {
          db.dbClose(pstmt, conn);
       }   
-      return -1; //db�삤瑜�
+      return -1; //db占쎌궎�몴占�
    }
    
-   //좋아요 insert
+   //醫뗭븘�슂 insert
    public int insertjoayo(String id, String revnum) {
       Connection conn=null;
       PreparedStatement pstmt=null;
@@ -63,10 +63,10 @@ public class ReviewDao {
       } finally {
          db.dbClose(pstmt, conn);
       }   
-      return -1; //db�삤瑜�
+      return -1; //db占쎌궎�몴占�
    }
    
-   //좋아요 확인
+   //醫뗭븘�슂 �솗�씤
    public int joayocheck(String revnum, String id) {
       Connection conn = null;
       PreparedStatement pstmt =null;
@@ -86,10 +86,10 @@ public class ReviewDao {
          // TODO Auto-generated catch block
          e.printStackTrace();
       }
-      return -1; //�삤瑜�
+      return -1; //占쎌궎�몴占�
    }
    
-   //데이터 가져오기
+   //�뜲�씠�꽣 媛��졇�삤湲�
    public List<ReviewDto> getAllReview(int start,int end, String rnum){
       List<ReviewDto> list= new ArrayList<ReviewDto>();
       Connection conn=null;
@@ -124,7 +124,7 @@ public class ReviewDao {
       return list;
    }
    
-   //해당 아이디가 작성한 리뷰
+   //�빐�떦 �븘�씠�뵒媛� �옉�꽦�븳 由щ럭
    public List<ReviewDto> getClientReview(String id){
       List<ReviewDto> list= new ArrayList<ReviewDto>();
       Connection conn=null;
@@ -174,7 +174,7 @@ public class ReviewDao {
          // TODO Auto-generated catch block
          e.printStackTrace();
       }
-      return -1; //�삤瑜�
+      return -1; //占쎌궎�몴占�
    }
 
    //delete need revnum
@@ -197,21 +197,22 @@ public class ReviewDao {
          return -1;//db error
       }
       
-   //좋아요 증가
-   public void updateJoayo(String joayo, String revnum) {
+   //醫뗭븘�슂 利앷�
+   public void updateJoayo(String joayo, String revnum, String id) {
          Connection conn=null;
          PreparedStatement pstmt= null;
          DbConnect db = new DbConnect();
          String sql = "";
          if(joayo.equals("1"))
-            sql = "update joayo set joayocheck=1 where revnum=?";
+            sql = "update joayo set joayocheck=1 where revnum=? and id=?";
          else
-            sql = "update joayo set joayocheck=0 where revnum=?";
+            sql = "update joayo set joayocheck=0 where revnum=? and id=?";
          
          conn=db.getConnection();
          try {
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, revnum);
+            pstmt.setString(2, id);
             pstmt.execute();
          } catch (SQLException e) {
             // TODO Auto-generated catch block
@@ -221,7 +222,7 @@ public class ReviewDao {
          }
    }
    
-   //좋아요갯수반환
+   //醫뗭븘�슂媛��닔諛섑솚
    public int getJoayo(String revnum) {
          Connection conn=null;
          PreparedStatement pstmt= null;
