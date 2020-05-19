@@ -5,13 +5,14 @@
 Model1 (JSP-JQUERY-JDBC-ORACLE)
 펜션 예약 사이트
 
+
 Version
 java : jdk1.8.0_241
 
 oracle : Oracle Database 11g Express Edition Release 11.2.0.2.0 - 64bit Production
 
-Using Library
 
+Using Library
 ojdbc14
 
 mail-1.5.0-b01 - 이메일 전송(비밀번호 찾기에 사용)
@@ -19,6 +20,7 @@ mail-1.5.0-b01 - 이메일 전송(비밀번호 찾기에 사용)
 json_simple - JSON 타입으로 변환
 
 cos - 파일업로드(리뷰 작성 시 이미지 업로드에 사용)
+
 
 Function
  1. 회원가입
