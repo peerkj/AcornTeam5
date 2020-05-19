@@ -7,12 +7,14 @@ Model1 (JSP-JQUERY-JDBC-ORACLE)
 
 
 Version
+
 java : jdk1.8.0_241
 
 oracle : Oracle Database 11g Express Edition Release 11.2.0.2.0 - 64bit Production
 
 
 Using Library
+
 ojdbc14
 
 mail-1.5.0-b01 - 이메일 전송(비밀번호 찾기에 사용)
