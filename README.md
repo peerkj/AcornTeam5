@@ -7,6 +7,7 @@ Model1 (JSP-JQUERY-JDBC-ORACLE)
 
 Version
 java : jdk1.8.0_241
+
 oracle : Oracle Database 11g Express Edition Release 11.2.0.2.0 - 64bit Production
 
 Using Library
